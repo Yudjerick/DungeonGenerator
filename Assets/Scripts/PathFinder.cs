@@ -1,10 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class PathFinder
+public class Pathfinder
 {
     private bool[,,] _solidMap;
     private PathfindingNode[,,] _searchMap;
@@ -19,7 +17,7 @@ public class PathFinder
 
     private PathfindingNode _current;
 
-    public PathFinder(bool[,,] solidMap, int startX, int startY, int startZ, int endX, int endY, int endZ){
+    public Pathfinder(bool[,,] solidMap, int startX, int startY, int startZ, int endX, int endY, int endZ){
         _solidMap = solidMap;
         _searchMap = new PathfindingNode[_solidMap.GetLength(0), _solidMap.GetLength(1), _solidMap.GetLength(2)];
         _explored = new List<PathfindingNode>();
@@ -51,12 +49,10 @@ public class PathFinder
         ResearchAround();
         AddPotentialWaysAround(_current.X, _current.Y, _current.Z, potentialWays);
         
-        while(potentialWays.Count > 0){
-            ResearchAround();
-            foreach(var node in _explored){
-                AddPotentialWaysAround(_current.X, _current.Y, _current.Z, potentialWays);
-            }
-
+        int cycle = 0;
+        
+        while(true){
+            cycle++;
             float minH = float.MaxValue;
             PathfindingNode bestNext = null;
             foreach (var node in potentialWays)
@@ -71,6 +67,9 @@ public class PathFinder
                 potentialWays.Remove(bestNext);
                 _current = bestNext;
                 _current.Explored = true;
+                _explored.Add(_current);
+                ResearchAround();
+                AddPotentialWaysAround(_current.X, _current.Y, _current.Z, potentialWays);
             }
             if(_current.X == _endX && _current.Y == _endY && _current.Z == _endZ)
             {
@@ -81,6 +80,13 @@ public class PathFinder
                     _current = _current.Previous;
                 }
                 return path;
+            }
+            if(potentialWays.Count == 0){
+                Debug.Log("No way");
+                return null;
+            }
+            if(cycle > 1000){
+                break;
             }
         }
         return null;
@@ -95,6 +101,10 @@ public class PathFinder
     }
 
     private void AddPotentialWayIfPossible(int x, int y, int z, List<PathfindingNode> ways){
+        if(x == _endX && y == _endY && z == _endZ){
+            ways.Add(_searchMap[x,y,z]);
+            return;
+        }
         if(x < 0 || x >= _solidMap.GetLength(0)){
             return;
         }
@@ -110,6 +120,7 @@ public class PathFinder
     }
 
     private void ResearchAround(){
+        
         ResearchCoords(_current.X + 1, _current.Y, _current.Z, _current);
         ResearchCoords(_current.X - 1, _current.Y, _current.Z, _current);
         ResearchCoords(_current.X, _current.Y, _current.Z + 1, _current);
@@ -117,6 +128,10 @@ public class PathFinder
     }
 
     private void ResearchCoords(int x, int y, int z, PathfindingNode current){
+        if(x == _endX && y == _endY && z == _endZ){
+            _searchMap[x,y,z] = new PathfindingNode(false, false, x, y, z, current, 0);
+            return;
+        }
         if(x < 0 || x >= _solidMap.GetLength(0)){
             return;
         }

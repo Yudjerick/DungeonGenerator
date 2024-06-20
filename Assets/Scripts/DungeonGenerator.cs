@@ -1,13 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
-using System.Xml.Serialization;
-using NaughtyAttributes;
 using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = System.Random;
 
@@ -104,7 +97,31 @@ public class DungeonGenerator : MonoBehaviour
     }
     
     public void MakePathes(){
-        
+        foreach (var room in rooms){
+            foreach(var transition in room.Transitions){
+                if(!transition.PathBuilt){
+                    Vector3 start = transition.Door.position;
+                    Transition endTransition = transition.NextRoom.Transitions.Where(t => t.NextRoom == room).FirstOrDefault();
+                    Vector3 end = endTransition.Door.position;
+                    Pathfinder pathfinder = new Pathfinder(solidMap, (int)start.x, (int)start.y, (int)start.z,
+                        (int)end.x, (int)end.y, (int)end.z);
+                    
+                    List<Vector3> path = pathfinder.FindPath();
+                    if(path != null){
+                        foreach (var pos in path){
+                            Instantiate(corridor, pos, quaternion.identity);
+                            solidMap[(int)pos.x, (int)pos.y, (int)pos.z] = true;
+                        }
+                        transition.PathBuilt = true;
+                        endTransition.PathBuilt = true;
+                    }
+                    else{
+                        print("A");
+                    }
+                    
+                }
+            }
+        }
     }
 
     public void Generate(){
@@ -138,7 +155,7 @@ public class DungeonGenerator : MonoBehaviour
         }
 
         SetMinimalTransitions();
-        
+        MakePathes();
     }
 }
 

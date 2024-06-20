@@ -426,9 +426,9 @@ MonoBehaviour:
   cellBlock: {fileID: 208784014145111196, guid: 1b00b939cbed01844826519e1741d099,
     type: 3}
   gridCellSize: 1
-  height: 7
-  width: 14
-  depth: 14
+  height: 2
+  width: 3
+  depth: 6
 --- !u!114 &1225032353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,16 +443,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gap: 3
   gridCellSize: 1
-  dungeonWidth: 100
+  dungeonWidth: 50
   dungeonHeight: 100
-  dungeonDepth: 100
+  dungeonDepth: 40
   roomRefs:
   - {fileID: 1415475951188093750, guid: be20c4dcbc0f9cc4486720330f51440d, type: 3}
-  - {fileID: 1415475951188093750, guid: be20c4dcbc0f9cc4486720330f51440d, type: 3}
-  - {fileID: 1415475951188093750, guid: be20c4dcbc0f9cc4486720330f51440d, type: 3}
-  - {fileID: 1415475951188093750, guid: be20c4dcbc0f9cc4486720330f51440d, type: 3}
-  - {fileID: 1415475951188093750, guid: be20c4dcbc0f9cc4486720330f51440d, type: 3}
-  - {fileID: 1415475951188093750, guid: be20c4dcbc0f9cc4486720330f51440d, type: 3}
+  - {fileID: 1275677945628152649, guid: d8801f3c66fab8748b0e8322a12f34ad, type: 3}
+  - {fileID: 1275677945628152649, guid: d8801f3c66fab8748b0e8322a12f34ad, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 1275677945628152649, guid: d8801f3c66fab8748b0e8322a12f34ad, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
   corridor: {fileID: 208784014145111196, guid: a3e4c7aa03c50c44caab60e2998eac28, type: 3}
   x1: 0
   x2: 0
