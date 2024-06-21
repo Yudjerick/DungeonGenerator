@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Mathematics;
@@ -57,7 +58,7 @@ public class DungeonGenerator : MonoBehaviour
                 }
             }
         }
-        var RoomDimensions = Instantiate(room, new Vector3(x,y,z) * gridCellSize, Quaternion.identity);
+        var RoomDimensions = Instantiate(room, new Vector3(x,y,z) * gridCellSize, quaternion.identity);
         return RoomDimensions;
     }
 
@@ -116,7 +117,7 @@ public class DungeonGenerator : MonoBehaviour
                         endTransition.PathBuilt = true;
                     }
                     else{
-                        print("A");
+                        print("Can't build path");
                     }
                     
                 }
@@ -124,19 +125,18 @@ public class DungeonGenerator : MonoBehaviour
         }
     }
 
-    public void Generate(){
-        solidMap = new bool[dungeonWidth, dungeonHeight, dungeonDepth];
-        Random random = new Random();
-        
-        foreach (RoomData room in roomRefs){
+    public void PlaceAllRooms(Random random, int y)
+    {
+        foreach (RoomData room in roomRefs)
+        {
             int x = random.Next(dungeonWidth);
-            int y = 10;
-            //int y = random.Next(3) * 8;
             int z = random.Next(dungeonDepth);
             int tryCount = 0;
             bool roomSkiped = false;
-            while(!CanPlaceRoom(x,y,z,room.Width, room.Height, room.Depth)){
-                if(tryCount > 10000){
+            while (!CanPlaceRoom(x, y, z, room.Width, room.Height, room.Depth))
+            {
+                if (tryCount > 10000)
+                {
                     print(x + " " + y + " " + z);
                     print("Skipping room");
                     roomSkiped = true;
@@ -144,16 +144,20 @@ public class DungeonGenerator : MonoBehaviour
                 }
                 tryCount++;
                 x = random.Next(dungeonWidth);
-                //y = random.Next(3) * 8;
-                y = 10;
                 z = random.Next(dungeonDepth);
             }
-            if(!roomSkiped){
-                rooms.Add(PlaceRoom(x,y,z,room));
+            if (!roomSkiped)
+            {
+                rooms.Add(PlaceRoom(x, y, z, room));
             }
-            
-        }
 
+        }
+    }
+
+    public void Generate(){
+        solidMap = new bool[dungeonWidth, dungeonHeight, dungeonDepth];
+        Random random = new Random();
+        PlaceAllRooms(random, 10);
         SetMinimalTransitions();
         MakePathes();
     }
