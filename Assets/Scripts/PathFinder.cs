@@ -53,12 +53,12 @@ public class Pathfinder
         
         while(true){
             cycle++;
-            float minH = float.MaxValue;
+            float minF = float.MaxValue;
             PathfindingNode bestNext = null;
             foreach (var node in potentialWays)
             {
-                if(node.H < minH){
-                    minH = node.H;
+                if(node.F < minF){
+                    minF = node.F;
                     bestNext = node;
                 }
             }

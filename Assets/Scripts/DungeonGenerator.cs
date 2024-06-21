@@ -29,7 +29,14 @@ public class DungeonGenerator : MonoBehaviour
         Generate();
     }
     
-    public bool CanPlaceRoom(int x, int y, int z, int width, int height, int depth){
+    public bool CanPlaceRoom(int x, int y, int z, RoomData room, int rotationsCount){
+        int width = room.Width;
+        int height = room.Height;
+        int depth = room.Depth;
+        if(rotationsCount % 2 != 0){
+            depth = room.Width;
+            width = room.Depth;
+        }
         if(x+width+gap >= dungeonWidth || y+height+gap >= dungeonHeight || z+depth+gap >= dungeonDepth)
         {
             return false;
@@ -40,7 +47,7 @@ public class DungeonGenerator : MonoBehaviour
         for (int i = -gap; i < width + gap; i++){
             for (int j = -gap; j < height + gap; j++){
                 for(int k = -gap; k < depth + gap; k++){
-                    if(solidMap[x+i,y+j,z+k]){
+                    if(solidMap[x + i, y + j, z + k]){
                         return false;
                     }
                 }
@@ -49,16 +56,33 @@ public class DungeonGenerator : MonoBehaviour
         return true;
     }
 
-    public RoomData PlaceRoom(int x, int y, int z, RoomData room){
-        for (int i = 0; i < room.Width; i++){
-            for (int j = 0; j < room.Height; j++){
-                for(int k = 0; k < room.Depth; k++){
+    public RoomData PlaceRoom(int x, int y, int z, RoomData room, int rotationsCount){
+        int width = room.Width;
+        int height = room.Height;
+        int depth = room.Depth;
+        int xOffset = 0;
+        int zOffset = 0;
+        if(rotationsCount % 2 != 0){
+            depth = room.Width;
+            width = room.Depth;
+        }
+        if(rotationsCount == 2 || rotationsCount == 3){
+            xOffset = width - 1;
+        }
+        if(rotationsCount == 1 || rotationsCount == 2){
+            zOffset = depth - 1;
+        }
+        for (int i = 0; i < width; i++){
+            for (int j = 0; j < height; j++){
+                for(int k = 0; k < depth; k++){
                     
                     solidMap[x+i,y+j,z+k] = true;
                 }
             }
         }
-        var RoomDimensions = Instantiate(room, new Vector3(x,y,z) * gridCellSize, quaternion.identity);
+        Instantiate(corridor, new Vector3(x,y+2,z), quaternion.identity);
+        var RoomDimensions = Instantiate(room, new Vector3(x + xOffset, y, z + zOffset) * gridCellSize,
+            Quaternion.Euler(0,90 * rotationsCount,0));
         return RoomDimensions;
     }
 
@@ -131,9 +155,10 @@ public class DungeonGenerator : MonoBehaviour
         {
             int x = random.Next(dungeonWidth);
             int z = random.Next(dungeonDepth);
+            int rotationsCount = random.Next(3);
             int tryCount = 0;
             bool roomSkiped = false;
-            while (!CanPlaceRoom(x, y, z, room.Width, room.Height, room.Depth))
+            while (!CanPlaceRoom(x, y, z, room, rotationsCount))
             {
                 if (tryCount > 10000)
                 {
@@ -148,7 +173,7 @@ public class DungeonGenerator : MonoBehaviour
             }
             if (!roomSkiped)
             {
-                rooms.Add(PlaceRoom(x, y, z, room));
+                rooms.Add(PlaceRoom(x, y, z, room, rotationsCount));
             }
 
         }
