@@ -210,7 +210,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 50, y: 100, z: 50}
+  m_LocalPosition: {x: 20, y: 42, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -465,9 +465,10 @@ MonoBehaviour:
   - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
   - {fileID: 4143471271229231523, guid: e5f86bea509f0594f844d1e733655513, type: 3}
   - {fileID: 4143471271229231523, guid: e5f86bea509f0594f844d1e733655513, type: 3}
-  corridor: {fileID: 208784014145111196, guid: a3e4c7aa03c50c44caab60e2998eac28, type: 3}
-  x1: 0
-  x2: 0
+  - {fileID: 4143471271229231523, guid: e5f86bea509f0594f844d1e733655513, type: 3}
+  - {fileID: 4143471271229231523, guid: e5f86bea509f0594f844d1e733655513, type: 3}
+  - {fileID: 4143471271229231523, guid: e5f86bea509f0594f844d1e733655513, type: 3}
+  segmentPack: {fileID: 11400000, guid: a53600260885c16418673ac548f1aeea, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

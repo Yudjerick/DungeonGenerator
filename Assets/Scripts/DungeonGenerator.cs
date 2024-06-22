@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 using Random = System.Random;
 
 public class DungeonGenerator : MonoBehaviour
@@ -15,9 +16,7 @@ public class DungeonGenerator : MonoBehaviour
     
     [SerializeField] private List<RoomData> roomRefs = new List<RoomData>();
 
-    [SerializeField] private GameObject corridor;
-    [SerializeField] int x1;
-    [SerializeField] int x2;
+    [SerializeField] private CorridorSegmentPack segmentPack;
 
     private List<RoomData> rooms = new List<RoomData>();
     private bool[,,] solidMap;
@@ -80,7 +79,6 @@ public class DungeonGenerator : MonoBehaviour
                 }
             }
         }
-        Instantiate(corridor, new Vector3(x,y+2,z), quaternion.identity);
         var RoomDimensions = Instantiate(room, new Vector3(x + xOffset, y, z + zOffset) * gridCellSize,
             Quaternion.Euler(0,90 * rotationsCount,0));
         return RoomDimensions;
@@ -133,9 +131,13 @@ public class DungeonGenerator : MonoBehaviour
                     
                     List<Vector3> path = pathfinder.FindPath();
                     if(path != null){
-                        foreach (var pos in path){
-                            Instantiate(corridor, pos, quaternion.identity);
-                            solidMap[(int)pos.x, (int)pos.y, (int)pos.z] = true;
+                        
+                        for(int i = 1; i < path.Count - 1; i++){
+                            List<Vector3> corridorSegmentKeys = new List<Vector3>();
+                            corridorSegmentKeys.Add(path[i - 1] - path[i]);
+                            corridorSegmentKeys.Add(path[i + 1] - path[i]);
+                            Instantiate(segmentPack.GetSegment(corridorSegmentKeys), path[i], quaternion.identity);
+                            solidMap[(int)path[i].x, (int)path[i].y, (int)path[i].z] = true;
                         }
                         transition.PathBuilt = true;
                         endTransition.PathBuilt = true;

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 691284039701d3841b2883054e3d09db, type: 3}
+  m_Name: Pack
+  m_EditorClassIdentifier: 
+  corridorSegments:
+  - keys:
+    - {x: 0, y: 0, z: 1}
+    - {x: 0, y: 0, z: -1}
+    segmentObject: {fileID: 6512406095345736371, guid: 77bea1f38f9d60c4e9aea59b8e06e8bd,
+      type: 3}
+  - keys:
+    - {x: -1, y: 0, z: 0}
+    - {x: 0, y: 0, z: -1}
+    segmentObject: {fileID: 2457647308433337733, guid: 39fbc83bf22b21143ad9830c0b4717c1,
+      type: 3}
+  - keys:
+    - {x: -1, y: 0, z: 0}
+    - {x: 0, y: 0, z: 1}
+    segmentObject: {fileID: 9011975235895821837, guid: 1037be9610ab28844bb21cc618939e6d,
+      type: 3}
+  - keys:
+    - {x: 1, y: 0, z: 0}
+    - {x: 0, y: 0, z: -1}
+    segmentObject: {fileID: 2457647308433337733, guid: 61f4f95e4f55a23468fc90fdbf3dea67,
+      type: 3}
+  - keys:
+    - {x: 1, y: 0, z: 0}
+    - {x: 0, y: 0, z: 1}
+    segmentObject: {fileID: 2457647308433337733, guid: bf71d6fb91ab2c143b63c49d4a159b30,
+      type: 3}
+  - keys:
+    - {x: 1, y: 0, z: 0}
+    - {x: -1, y: 0, z: 0}
+    segmentObject: {fileID: 6512406095345736371, guid: d77c887120c3f6445b86ab4ce4e4acc7,
+      type: 3}

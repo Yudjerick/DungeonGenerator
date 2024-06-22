@@ -79,6 +79,7 @@ public class Pathfinder
                     path.Add(new Vector3(_current.X, _current.Y, _current.Z));
                     _current = _current.Previous;
                 }
+                path.Add(new Vector3(_current.X, _current.Y, _current.Z));
                 return path;
             }
             if(potentialWays.Count == 0){
