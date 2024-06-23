@@ -43,3 +43,34 @@ MonoBehaviour:
     - {x: -1, y: 0, z: 0}
     segmentObject: {fileID: 6512406095345736371, guid: d77c887120c3f6445b86ab4ce4e4acc7,
       type: 3}
+  - keys:
+    - {x: 0, y: 0, z: 1}
+    - {x: 0, y: 0, z: -1}
+    - {x: -1, y: 0, z: 0}
+    segmentObject: {fileID: 8424851813946795692, guid: eefe21771d89aae4dbcb74a154458136,
+      type: 3}
+  - keys:
+    - {x: 1, y: 0, z: 0}
+    - {x: 0, y: 0, z: -1}
+    - {x: -1, y: 0, z: 0}
+    segmentObject: {fileID: 8424851813946795692, guid: 14ae484ab2e5b1143a84db387a50b0f1,
+      type: 3}
+  - keys:
+    - {x: 1, y: 0, z: 0}
+    - {x: 0, y: 0, z: 1}
+    - {x: 0, y: 0, z: -1}
+    segmentObject: {fileID: 8424851813946795692, guid: 11a34b7d3fc691e48b67555a58dea426,
+      type: 3}
+  - keys:
+    - {x: 1, y: 0, z: 0}
+    - {x: 0, y: 0, z: 1}
+    - {x: -1, y: 0, z: 0}
+    segmentObject: {fileID: 8424851813946795692, guid: d44dd9033274c57458e84e0be271728f,
+      type: 3}
+  - keys:
+    - {x: 1, y: 0, z: 0}
+    - {x: 0, y: 0, z: 1}
+    - {x: -1, y: 0, z: 0}
+    - {x: 0, y: 0, z: -1}
+    segmentObject: {fileID: 1002915827018073935, guid: 24b023b39c45d3342af00c1cfd58dd9d,
+      type: 3}

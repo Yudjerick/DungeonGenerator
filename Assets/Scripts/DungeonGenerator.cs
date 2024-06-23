@@ -21,12 +21,14 @@ public class DungeonGenerator : MonoBehaviour
 
     private List<RoomData> rooms = new List<RoomData>();
     private bool[,,] solidMap;
+    private List<Vector3>[,,] corridorMap; 
+    
     void Awake(){
         
     }
 
     private void Start() {
-        Generate();
+        Generate(); 
 
     }
     
@@ -138,11 +140,30 @@ public class DungeonGenerator : MonoBehaviour
                         path.Insert(0, end + endTransition.Door.forward);
 
                         for (int i = 1; i < path.Count - 1; i++){
-                            List<Vector3> corridorSegmentKeys = new List<Vector3>();
+                            int x = (int)Mathf.Round(path[i].x);
+                            int y = (int)Mathf.Round(path[i].y);
+                            int z = (int)Mathf.Round(path[i].z);
+                            if (corridorMap[x, y, z] == null)
+                            {
+                                corridorMap[x, y, z] = new List<Vector3>();
+                            }
+                            corridorMap[x, y, z].Add(path[i - 1] - path[i]);
+                            corridorMap[x, y, z].Add(path[i + 1] - path[i]);
+                            /*if (!corridorMap[x, y, z].Where(k => Vector3.Distance(k, path[i - 1] - path[i]) < 0.01f).Any())
+                            {
+                                corridorMap[x, y, z].Add(path[i - 1] - path[i]);
+                            }
+                            if (!corridorMap[x, y, z].Where(k => Vector3.Distance(k, path[i - 1] - path[i]) < 0.01f).Any())
+                            {
+                                corridorMap[x, y, z].Add(path[i + 1] - path[i]);
+                            }*/
+                            
+                            /* List<Vector3> corridorSegmentKeys = new List<Vector3>();
                             corridorSegmentKeys.Add(path[i - 1] - path[i]);
                             corridorSegmentKeys.Add(path[i + 1] - path[i]);
                             Instantiate(segmentPack.GetSegment(corridorSegmentKeys), path[i], quaternion.identity);
-                            solidMap[(int)path[i].x, (int)path[i].y, (int)path[i].z] = true;
+                            solidMap[(int)path[i].x, (int)path[i].y, (int)path[i].z] = true; */
+
                         }
                         transition.PathBuilt = true;
                         endTransition.PathBuilt = true;
@@ -151,6 +172,21 @@ public class DungeonGenerator : MonoBehaviour
                         print("Can't build path");
                     }
                     
+                }
+            }
+        }
+    }
+
+    public void InstantiateCorridors()
+    {
+        for (int i = 0; i < dungeonWidth; i++)
+        {
+            for (int j = 0; j < dungeonHeight; j++)
+            {
+                for (int k = 0; k < dungeonDepth; k++) {
+                    if (corridorMap[i, j, k] != null) {
+                        Instantiate(segmentPack.GetSegment(corridorMap[i, j, k]), new Vector3(i, j, k), Quaternion.identity);
+                    }
                 }
             }
         }
@@ -188,10 +224,12 @@ public class DungeonGenerator : MonoBehaviour
 
     public void Generate(){
         solidMap = new bool[dungeonWidth, dungeonHeight, dungeonDepth];
+        corridorMap = new List<Vector3>[dungeonWidth, dungeonHeight, dungeonDepth];
         Random random = new Random();
         PlaceAllRooms(random, 10);
         SetMinimalTransitions();
         MakePathes();
+        InstantiateCorridors();
     }
 }
 
