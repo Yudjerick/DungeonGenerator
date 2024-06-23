@@ -17,7 +17,31 @@ public class CorridorSegmentPack : ScriptableObject
 
     public GameObject GetSegment(List<Vector3> keys)
     {
-        //return corridorSegments.Where(c => keys.All(k => c.keys.Contains(k))).FirstOrDefault().segmentObject;
-        return corridorSegments.Where(c => c.keys.Contains(keys[0]) && c.keys.Contains(keys[1])).FirstOrDefault().segmentObject;
+        foreach (var segment in corridorSegments)
+        {
+            bool flag = true;
+            foreach (var key in keys)
+            {
+                bool hasKey = false;
+                foreach (var segmentKey in segment.keys)
+                {
+                    if (Vector3.Distance(key,segmentKey) < 0.01f)
+                    {
+                        hasKey = true;
+                    }
+                }
+                if (!hasKey)
+                {
+                    flag = false;
+                }
+            }
+            if (flag)
+            {
+                return segment.segmentObject;
+            }
+
+        }
+        return null;
+        //return corridorSegments.Where(c => keys.All(k => c.keys.Contains(k))).FirstOrDefault().segmentObject; 
     }
 }

@@ -17,6 +17,7 @@ public class DungeonGenerator : MonoBehaviour
     [SerializeField] private List<RoomData> roomRefs = new List<RoomData>();
 
     [SerializeField] private CorridorSegmentPack segmentPack;
+    [SerializeField] private GameObject testCorridor;
 
     private List<RoomData> rooms = new List<RoomData>();
     private bool[,,] solidMap;
@@ -26,6 +27,7 @@ public class DungeonGenerator : MonoBehaviour
 
     private void Start() {
         Generate();
+
     }
     
     public bool CanPlaceRoom(int x, int y, int z, RoomData room, int rotationsCount){
@@ -126,13 +128,16 @@ public class DungeonGenerator : MonoBehaviour
                     Vector3 start = transition.Door.position;
                     Transition endTransition = transition.NextRoom.Transitions.Where(t => t.NextRoom == room).FirstOrDefault();
                     Vector3 end = endTransition.Door.position;
-                    Pathfinder pathfinder = new Pathfinder(solidMap, (int)start.x, (int)start.y, (int)start.z,
-                        (int)end.x, (int)end.y, (int)end.z);
+                    Pathfinder pathfinder = new Pathfinder(solidMap, (int)Mathf.Round(start.x), (int)Mathf.Round(start.y), (int)Mathf.Round(start.z), (int)Mathf.Round(end.x), (int)Mathf.Round(end.y), (int)Mathf.Round(end.z));
                     
                     List<Vector3> path = pathfinder.FindPath();
-                    if(path != null){
-                        
-                        for(int i = 1; i < path.Count - 1; i++){
+                    
+
+                    if (path != null){
+                        path.Add(start + transition.Door.forward);
+                        path.Insert(0, end + endTransition.Door.forward);
+
+                        for (int i = 1; i < path.Count - 1; i++){
                             List<Vector3> corridorSegmentKeys = new List<Vector3>();
                             corridorSegmentKeys.Add(path[i - 1] - path[i]);
                             corridorSegmentKeys.Add(path[i + 1] - path[i]);
