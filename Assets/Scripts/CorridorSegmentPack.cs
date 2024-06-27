@@ -9,39 +9,36 @@ public class CorridorSegmentPack : ScriptableObject
     [Serializable]
     class CorridorSegment
     {
-        public List<Vector3> keys;
+        public List<CorridorDirection> directions;
         public GameObject segmentObject;
     }
 
     [SerializeField] private List<CorridorSegment> corridorSegments; 
 
-    public GameObject GetSegment(List<Vector3> keys)
+    public GameObject GetSegment(List<CorridorDirection> keys)
     {
-        foreach (var segment in corridorSegments)
-        {
-            bool flag = true;
-            foreach (var key in keys)
-            {
-                bool hasKey = false;
-                foreach (var segmentKey in segment.keys)
-                {
-                    if (Vector3.Distance(key,segmentKey) < 0.01f)
-                    {
-                        hasKey = true;
-                    }
-                }
-                if (!hasKey)
-                {
-                    flag = false;
-                }
-            }
-            if (flag)
-            {
-                return segment.segmentObject;
-            }
+        return corridorSegments.Where(c => keys.All(k => c.directions.Contains(k))).FirstOrDefault().segmentObject; 
+    }
 
+    public static CorridorDirection Vector3ToCorridorDirection(Vector3 vector3)
+    {
+        float tolerance = 0.01f;
+        if(Vector3.Distance(Vector3.forward, vector3) <= tolerance)
+        {
+            return CorridorDirection.Forward;
         }
-        return null;
-        //return corridorSegments.Where(c => keys.All(k => c.keys.Contains(k))).FirstOrDefault().segmentObject; 
+        if(Vector3.Distance(Vector3.right, vector3) <= tolerance)
+        {
+            return CorridorDirection.Right;
+        }
+        if(Vector3.Distance(Vector3.back, vector3) <= tolerance)
+        {
+            return CorridorDirection.Back;
+        }
+        if(Vector3.Distance(Vector3.left , vector3) <= tolerance)
+        {
+            return CorridorDirection.Left;
+        }
+        return CorridorDirection.Back;
     }
 }

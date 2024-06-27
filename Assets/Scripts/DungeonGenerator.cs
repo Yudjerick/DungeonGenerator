@@ -21,7 +21,7 @@ public class DungeonGenerator : MonoBehaviour
 
     private List<RoomData> rooms = new List<RoomData>();
     private bool[,,] solidMap;
-    private List<Vector3>[,,] corridorMap; 
+    private List<CorridorDirection>[,,] corridorMap; 
     
     void Awake(){
         
@@ -119,10 +119,10 @@ public class DungeonGenerator : MonoBehaviour
             selectedFrom.AddBidirectionalTransition(selectedTo, selectedFromDoor, selectedToDoor);
             explored.Add(selectedTo);
             unexplored.Remove(selectedTo);
-            Debug.DrawLine( selectedFromDoor.position, selectedToDoor.position, Color.green, 100000f);
+            Debug.DrawLine( selectedFromDoor.position, selectedToDoor.position, Color.green, 100000f); //Null reference here
         }
     }
-    
+
     public void MakePathes(){
         foreach (var room in rooms){
             foreach(var transition in room.Transitions){
@@ -145,10 +145,10 @@ public class DungeonGenerator : MonoBehaviour
                             int z = (int)Mathf.Round(path[i].z);
                             if (corridorMap[x, y, z] == null)
                             {
-                                corridorMap[x, y, z] = new List<Vector3>();
+                                corridorMap[x, y, z] = new List<CorridorDirection>();
                             }
-                            corridorMap[x, y, z].Add(path[i - 1] - path[i]);
-                            corridorMap[x, y, z].Add(path[i + 1] - path[i]);
+                            corridorMap[x, y, z].Add(CorridorSegmentPack.Vector3ToCorridorDirection(path[i - 1] - path[i]));
+                            corridorMap[x, y, z].Add(CorridorSegmentPack.Vector3ToCorridorDirection(path[i + 1] - path[i]));
                             /*if (!corridorMap[x, y, z].Where(k => Vector3.Distance(k, path[i - 1] - path[i]) < 0.01f).Any())
                             {
                                 corridorMap[x, y, z].Add(path[i - 1] - path[i]);
@@ -224,7 +224,7 @@ public class DungeonGenerator : MonoBehaviour
 
     public void Generate(){
         solidMap = new bool[dungeonWidth, dungeonHeight, dungeonDepth];
-        corridorMap = new List<Vector3>[dungeonWidth, dungeonHeight, dungeonDepth];
+        corridorMap = new List<CorridorDirection>[dungeonWidth, dungeonHeight, dungeonDepth];
         Random random = new Random();
         PlaceAllRooms(random, 10);
         SetMinimalTransitions();
