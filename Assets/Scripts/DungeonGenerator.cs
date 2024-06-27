@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Mathematics;
+using UnityEditorInternal;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
-using Random = System.Random;
+using Random = UnityEngine.Random;
 
 public class DungeonGenerator : MonoBehaviour
 {
@@ -22,10 +23,6 @@ public class DungeonGenerator : MonoBehaviour
     private List<RoomData> rooms = new List<RoomData>();
     private bool[,,] solidMap;
     private List<CorridorDirection>[,,] corridorMap; 
-    
-    void Awake(){
-        
-    }
 
     private void Start() {
         Generate(); 
@@ -192,13 +189,13 @@ public class DungeonGenerator : MonoBehaviour
         }
     }
 
-    public void PlaceAllRooms(Random random, int y)
+    public void PlaceAllRooms(int y)
     {
         foreach (RoomData room in roomRefs)
         {
-            int x = random.Next(dungeonWidth);
-            int z = random.Next(dungeonDepth);
-            int rotationsCount = random.Next(3);
+            int x = Random.Range(0, dungeonWidth);
+            int z = Random.Range(0, dungeonDepth);
+            int rotationsCount = Random.Range(0,3);
             int tryCount = 0;
             bool roomSkiped = false;
             while (!CanPlaceRoom(x, y, z, room, rotationsCount))
@@ -211,8 +208,8 @@ public class DungeonGenerator : MonoBehaviour
                     break;
                 }
                 tryCount++;
-                x = random.Next(dungeonWidth);
-                z = random.Next(dungeonDepth);
+                x = Random.Range(0, dungeonWidth);
+                z = Random.Range(0, dungeonDepth);
             }
             if (!roomSkiped)
             {
@@ -225,8 +222,9 @@ public class DungeonGenerator : MonoBehaviour
     public void Generate(){
         solidMap = new bool[dungeonWidth, dungeonHeight, dungeonDepth];
         corridorMap = new List<CorridorDirection>[dungeonWidth, dungeonHeight, dungeonDepth];
-        Random random = new Random();
-        PlaceAllRooms(random, 10);
+        int seed = Random.Range(0, int.MaxValue);
+        Random.InitState(seed);
+        PlaceAllRooms(10);
         SetMinimalTransitions();
         MakePathes();
         InstantiateCorridors();
