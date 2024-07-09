@@ -19,12 +19,12 @@ public class RoomData : MonoBehaviour
         if(!transitions.Where(x => x.NextRoom == roomData).Any()){
             var transition = new Transition {NextRoom = roomData, Door = doorPos};
             transitions.Add(transition);
-            availableDoors.Remove(doorPos);
+            //availableDoors.Remove(doorPos);
         }
         if(!roomData.transitions.Where(x => x.NextRoom == this).Any()){
             var transition = new Transition {NextRoom = this, Door = otherDoorPos};
             roomData.transitions.Add(transition);
-            roomData.availableDoors.Remove(otherDoorPos);
+            //roomData.availableDoors.Remove(otherDoorPos);
         }
     }
 
@@ -38,6 +38,10 @@ public class RoomData : MonoBehaviour
         Transform selectedOtherDoor = null;
         foreach(var door in availableDoors){
             foreach (var otherDoor in other.availableDoors){
+                if(Mathf.Abs(door.position.y - otherDoor.position.y) > 0.01f)
+                {
+                    continue;
+                }
                 float distance = Vector3.Distance(door.position, otherDoor.position);
                 if(distance < minDistance){
                     minDistance = distance;

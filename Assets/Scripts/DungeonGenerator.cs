@@ -14,6 +14,9 @@ public class DungeonGenerator : MonoBehaviour
     [SerializeField] private int dungeonWidth;
     [SerializeField] private int dungeonHeight;
     [SerializeField] private int dungeonDepth;
+    [SerializeField] private int levelY = 10;
+    [SerializeField] private int loopCount = 3;
+    [SerializeField] private int minimalLoopLength = 3;
     
     [SerializeField] private List<RoomData> roomRefs = new List<RoomData>();
 
@@ -120,6 +123,43 @@ public class DungeonGenerator : MonoBehaviour
         }
     }
 
+    public void AddLoops(int loopCount)
+    {
+        int loopsCreated = 0;
+        while (loopCount > 0) 
+        {
+            RoomData selectedTo = null;
+            Transform selectedFromDoor = null;
+            Transform selectedToDoor = null;
+            float minDistance = float.MaxValue;
+            int fromRoomIndex = Random.Range(0, rooms.Count);
+            //RoomData fromRoom = rooms[fromRoomIndex];
+            RoomData fromRoom = rooms.OrderBy(x => x.Transitions.Count).ToList()[loopsCreated];
+            //List<float> distances = rooms.Select(x => float.PositiveInfinity).ToList();
+            //distances[fromRoomIndex] = 0;
+
+            foreach (var room in rooms)
+            {
+                if (fromRoom == room || fromRoom.Transitions.Any(x => x.NextRoom == room))
+                {
+                    continue;
+                }
+                float distance = fromRoom.OptimalDoorDistance(room, out Transform doorPos, out Transform otherDoorPos);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    selectedTo = room;
+                    selectedFromDoor = doorPos;
+                    selectedToDoor = otherDoorPos;
+                }
+            }
+            fromRoom.AddBidirectionalTransition(selectedTo, selectedFromDoor, selectedToDoor);
+            loopCount--;
+            loopsCreated++;
+            Debug.DrawLine(selectedFromDoor.position, selectedToDoor.position, Color.yellow, 100000f);
+        }
+    }
+
     public void MakePathes(){
         foreach (var room in rooms){
             foreach(var transition in room.Transitions){
@@ -146,20 +186,6 @@ public class DungeonGenerator : MonoBehaviour
                             }
                             corridorMap[x, y, z].Add(CorridorSegmentPack.Vector3ToCorridorDirection(path[i - 1] - path[i]));
                             corridorMap[x, y, z].Add(CorridorSegmentPack.Vector3ToCorridorDirection(path[i + 1] - path[i]));
-                            /*if (!corridorMap[x, y, z].Where(k => Vector3.Distance(k, path[i - 1] - path[i]) < 0.01f).Any())
-                            {
-                                corridorMap[x, y, z].Add(path[i - 1] - path[i]);
-                            }
-                            if (!corridorMap[x, y, z].Where(k => Vector3.Distance(k, path[i - 1] - path[i]) < 0.01f).Any())
-                            {
-                                corridorMap[x, y, z].Add(path[i + 1] - path[i]);
-                            }*/
-                            
-                            /* List<Vector3> corridorSegmentKeys = new List<Vector3>();
-                            corridorSegmentKeys.Add(path[i - 1] - path[i]);
-                            corridorSegmentKeys.Add(path[i + 1] - path[i]);
-                            Instantiate(segmentPack.GetSegment(corridorSegmentKeys), path[i], quaternion.identity);
-                            solidMap[(int)path[i].x, (int)path[i].y, (int)path[i].z] = true; */
 
                         }
                         transition.PathBuilt = true;
@@ -183,6 +209,7 @@ public class DungeonGenerator : MonoBehaviour
                 for (int k = 0; k < dungeonDepth; k++) {
                     if (corridorMap[i, j, k] != null) {
                         Instantiate(segmentPack.GetSegment(corridorMap[i, j, k]), new Vector3(i, j, k), Quaternion.identity);
+                        
                     }
                 }
             }
@@ -224,8 +251,11 @@ public class DungeonGenerator : MonoBehaviour
         corridorMap = new List<CorridorDirection>[dungeonWidth, dungeonHeight, dungeonDepth];
         int seed = Random.Range(0, int.MaxValue);
         Random.InitState(seed);
-        PlaceAllRooms(10);
+        PlaceAllRooms(levelY);
+        //PlaceAllRooms(20);
+        //PlaceAllRooms(30);
         SetMinimalTransitions();
+        AddLoops(loopCount);
         MakePathes();
         InstantiateCorridors();
     }

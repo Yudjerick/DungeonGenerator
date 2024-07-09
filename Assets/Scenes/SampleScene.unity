@@ -446,6 +446,9 @@ MonoBehaviour:
   dungeonWidth: 50
   dungeonHeight: 100
   dungeonDepth: 40
+  levelY: 10
+  loopCount: 5
+  minimalLoopLength: 3
   roomRefs:
   - {fileID: 1275677945628152649, guid: d8801f3c66fab8748b0e8322a12f34ad, type: 3}
   - {fileID: 1275677945628152649, guid: d8801f3c66fab8748b0e8322a12f34ad, type: 3}
@@ -479,6 +482,10 @@ MonoBehaviour:
   - {fileID: 8004593807692316964, guid: 24816956277b50f4db2bf588b4f50913, type: 3}
   - {fileID: 8004593807692316964, guid: 24816956277b50f4db2bf588b4f50913, type: 3}
   - {fileID: 8004593807692316964, guid: 040f9f3cb7424f04b82a0441e5c0f87d, type: 3}
+  - {fileID: 8004593807692316964, guid: 24816956277b50f4db2bf588b4f50913, type: 3}
+  - {fileID: 8004593807692316964, guid: 24816956277b50f4db2bf588b4f50913, type: 3}
+  - {fileID: 8004593807692316964, guid: 24816956277b50f4db2bf588b4f50913, type: 3}
+  - {fileID: 8004593807692316964, guid: 24816956277b50f4db2bf588b4f50913, type: 3}
   - {fileID: 8004593807692316964, guid: 24816956277b50f4db2bf588b4f50913, type: 3}
   segmentPack: {fileID: 11400000, guid: a53600260885c16418673ac548f1aeea, type: 2}
   testCorridor: {fileID: 208784014145111196, guid: a3e4c7aa03c50c44caab60e2998eac28,
