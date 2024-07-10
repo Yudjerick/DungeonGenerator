@@ -4,7 +4,6 @@ public class PathfindingNode
     public bool IsSolid {get; set;}
     public bool Explored {get; set;}
     public int X {get; set;}
-    public int Y {get; set;}
     public int Z {get; set;}
     public PathfindingNode Previous {
         get => previous; 
@@ -21,24 +20,23 @@ public class PathfindingNode
     public float G {get; private set;}
     public float F => H + G;
 
-    public PathfindingNode(bool isSolid, bool explored, int x, int y, int z, PathfindingNode previous, int h){
+    public PathfindingNode(bool isSolid, bool explored, int x, int z, PathfindingNode previous, int h){
         this.IsSolid = isSolid;
         this.Explored = explored;
         this.X = x;
-        this.Y = y;
         this.Z = z;
         this.Previous = previous;
         this.H = h;
     }
 
-    public static PathfindingNode StartNode(int x, int y, int z, int h){
-        var node = new PathfindingNode(false, true, x,y,z, null, h);
+    public static PathfindingNode StartNode(int x, int z, int h){
+        var node = new PathfindingNode(false, true, x, z, null, h);
         node.G = 0;
         return node;
     }
 
-    public static PathfindingNode Solid(int x, int y, int z){
-        var node = new PathfindingNode(true, false, x, y, z, null, int.MaxValue);
+    public static PathfindingNode Solid(int x, int z){
+        var node = new PathfindingNode(true, false, x, z, null, int.MaxValue);
         return node;
     }
     public PathfindingNode(){
