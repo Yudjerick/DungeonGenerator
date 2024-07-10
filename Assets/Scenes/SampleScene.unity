@@ -333,7 +333,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 5000
+  m_ColorTemperature: 5115
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -447,8 +447,8 @@ MonoBehaviour:
   dungeonHeight: 100
   dungeonDepth: 40
   levelY: 10
-  loopCount: 5
-  minimalLoopLength: 3
+  loopCount: 7
+  minimalLoopLength: 4
   roomRefs:
   - {fileID: 1275677945628152649, guid: d8801f3c66fab8748b0e8322a12f34ad, type: 3}
   - {fileID: 1275677945628152649, guid: d8801f3c66fab8748b0e8322a12f34ad, type: 3}

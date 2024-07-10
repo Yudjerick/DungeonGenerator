@@ -5,6 +5,7 @@ using Unity.Mathematics;
 using UnityEditorInternal;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
+using static UnityEngine.UI.Selectable;
 using Random = UnityEngine.Random;
 
 public class DungeonGenerator : MonoBehaviour
@@ -123,6 +124,34 @@ public class DungeonGenerator : MonoBehaviour
         }
     }
 
+    List<float> HopsToRooms(int startRoomIndex)
+    {
+        List<RoomData> unexplored = new List<RoomData>(rooms);
+        List<RoomData> explored = new List<RoomData>();
+        List<float> distances = rooms.Select(x => float.PositiveInfinity).ToList();
+        distances[startRoomIndex] = 0;
+        int currentRoomIndex = startRoomIndex;
+        while(explored.Count < rooms.Count) 
+        {
+            explored.Add(rooms[currentRoomIndex]);
+            unexplored.Remove(rooms[currentRoomIndex]);
+            foreach (var transition in rooms[currentRoomIndex].Transitions) 
+            {
+                int nextRoomIndex = rooms.IndexOf(transition.NextRoom);
+                distances[nextRoomIndex] = Mathf.Min(distances[currentRoomIndex] + 1, distances[nextRoomIndex]);
+            }
+            foreach (var unexploredRoom in unexplored)
+            {
+                if(unexploredRoom.Transitions.Select(x => x.NextRoom).Where(y => explored.Contains(y)).Any())
+                {
+                    currentRoomIndex = rooms.IndexOf(unexploredRoom);
+                    break;
+                }
+            }
+        }
+        return distances;
+    }
+
     public void AddLoops(int loopCount)
     {
         int loopsCreated = 0;
@@ -132,15 +161,23 @@ public class DungeonGenerator : MonoBehaviour
             Transform selectedFromDoor = null;
             Transform selectedToDoor = null;
             float minDistance = float.MaxValue;
-            int fromRoomIndex = Random.Range(0, rooms.Count);
+            //int fromRoomIndex = Random.Range(0, rooms.Count);
             //RoomData fromRoom = rooms[fromRoomIndex];
+
             RoomData fromRoom = rooms.OrderBy(x => x.Transitions.Count).ToList()[loopsCreated];
-            //List<float> distances = rooms.Select(x => float.PositiveInfinity).ToList();
-            //distances[fromRoomIndex] = 0;
+            int fromRoomIndex = rooms.IndexOf(fromRoom);
+
+            var hops = HopsToRooms(fromRoomIndex);
+            /*foreach (var hop in hops)
+            {
+                print(hop);
+            }
+            print("-----");*/
 
             foreach (var room in rooms)
             {
-                if (fromRoom == room || fromRoom.Transitions.Any(x => x.NextRoom == room))
+                int toRoomIndex = rooms.IndexOf(room);
+                if (fromRoom == room || fromRoom.Transitions.Any(x => x.NextRoom == room) || hops[toRoomIndex] < minimalLoopLength)
                 {
                     continue;
                 }
