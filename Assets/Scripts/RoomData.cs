@@ -15,6 +15,8 @@ public class RoomData : MonoBehaviour
 
     [SerializeField] private List<Transform> availableDoors;
 
+    [field: SerializeField] public List<ExtraRoomSpawningRequest> AssociatedRooms { get; set; }
+
     public void AddBidirectionalTransition(RoomData roomData, Transform doorPos, Transform otherDoorPos){
         if(!transitions.Where(x => x.NextRoom == roomData).Any()){
             var transition = new Transition {NextRoom = roomData, Door = doorPos};
@@ -26,10 +28,6 @@ public class RoomData : MonoBehaviour
             roomData.transitions.Add(transition);
             //roomData.availableDoors.Remove(otherDoorPos);
         }
-    }
-
-    public Vector3 GetCenter(float gridCellSize){
-        return transform.position + (new Vector3(Width, Height, Depth) / 2 * gridCellSize);
     }
 
     public float OptimalDoorDistance(RoomData other, out Transform doorPos, out Transform otherDoorPos){

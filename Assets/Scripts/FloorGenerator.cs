@@ -24,15 +24,21 @@ public class FloorGenerator : MonoBehaviour
     [SerializeField] private CorridorSegmentPack segmentPack;
     [SerializeField] private GameObject testCorridor;
 
-    private List<RoomData> rooms = new List<RoomData>();
-    private bool[,] solidMap;
-    private List<CorridorDirection>[,] corridorMap; 
-
-    private void Start() {
-        Generate(); 
-
-    }
+    private List<RoomData> _rooms = new List<RoomData>();
+    private bool[,] _solidMap;
+    private List<CorridorDirection>[,] _corridorMap;
+    private GameObject _floor;
+    private DungeonGenerator _dungeonGenerator;
+    private int _floorIndex;
     
+    public void Initialize(DungeonGenerator dungeonGenerator, int floorIndex)
+    {
+        _floorIndex = floorIndex;
+        _dungeonGenerator = dungeonGenerator;
+        _floor = new GameObject("Floor");
+        _solidMap = new bool[dungeonWidth, dungeonDepth];
+        _corridorMap = new List<CorridorDirection>[dungeonWidth, dungeonDepth];
+    }
     public bool CanPlaceRoom(int x, int z, RoomData room, int rotationsCount){
         int width = room.Width;
         int height = room.Height;
@@ -51,7 +57,7 @@ public class FloorGenerator : MonoBehaviour
         for (int i = -gap; i < width + gap; i++){
             for (int k = -gap; k < depth + gap; k++)
             {
-                if (solidMap[x + i, z + k])
+                if (_solidMap[x + i, z + k])
                 {
                     return false;
                 }
@@ -80,19 +86,20 @@ public class FloorGenerator : MonoBehaviour
             for (int j = 0; j < height; j++){
                 for(int k = 0; k < depth; k++){
                     
-                    solidMap[x + i, z + k] = true;
+                    _solidMap[x + i, z + k] = true;
                 }
             }
         }
         var RoomDimensions = Instantiate(room, new Vector3(x + xOffset, levelY,  z + zOffset) * gridCellSize,
-            Quaternion.Euler(0,90 * rotationsCount,0));
+            Quaternion.Euler(0,90 * rotationsCount,0), _floor.transform);
+        _rooms.Add(RoomDimensions);
         return RoomDimensions;
     }
 
     
 
     public void SetMinimalTransitions(){
-        List<RoomData> unexplored = new List<RoomData>(rooms);
+        List<RoomData> unexplored = new List<RoomData>(_rooms);
         List<RoomData> explored = new List<RoomData>();
 
         RoomData firstRoom = unexplored[0];
@@ -124,27 +131,27 @@ public class FloorGenerator : MonoBehaviour
         }
     }
 
-    List<float> HopsToRooms(int startRoomIndex)
+    private List<float> HopsToRooms(int startRoomIndex)
     {
-        List<RoomData> unexplored = new List<RoomData>(rooms);
+        List<RoomData> unexplored = new List<RoomData>(_rooms);
         List<RoomData> explored = new List<RoomData>();
-        List<float> distances = rooms.Select(x => float.PositiveInfinity).ToList();
+        List<float> distances = _rooms.Select(x => float.PositiveInfinity).ToList();
         distances[startRoomIndex] = 0;
         int currentRoomIndex = startRoomIndex;
-        while(explored.Count < rooms.Count) 
+        while(explored.Count < _rooms.Count) 
         {
-            explored.Add(rooms[currentRoomIndex]);
-            unexplored.Remove(rooms[currentRoomIndex]);
-            foreach (var transition in rooms[currentRoomIndex].Transitions) 
+            explored.Add(_rooms[currentRoomIndex]);
+            unexplored.Remove(_rooms[currentRoomIndex]);
+            foreach (var transition in _rooms[currentRoomIndex].Transitions) 
             {
-                int nextRoomIndex = rooms.IndexOf(transition.NextRoom);
+                int nextRoomIndex = _rooms.IndexOf(transition.NextRoom);
                 distances[nextRoomIndex] = Mathf.Min(distances[currentRoomIndex] + 1, distances[nextRoomIndex]);
             }
             foreach (var unexploredRoom in unexplored)
             {
                 if(unexploredRoom.Transitions.Select(x => x.NextRoom).Where(y => explored.Contains(y)).Any())
                 {
-                    currentRoomIndex = rooms.IndexOf(unexploredRoom);
+                    currentRoomIndex = _rooms.IndexOf(unexploredRoom);
                     break;
                 }
             }
@@ -161,22 +168,15 @@ public class FloorGenerator : MonoBehaviour
             Transform selectedFromDoor = null;
             Transform selectedToDoor = null;
             float minDistance = float.MaxValue;
-            //int fromRoomIndex = Random.Range(0, rooms.Count);
-            //RoomData fromRoom = rooms[fromRoomIndex];
 
-            RoomData fromRoom = rooms.OrderBy(x => x.Transitions.Count).ToList()[loopsCreated];
-            int fromRoomIndex = rooms.IndexOf(fromRoom);
+            RoomData fromRoom = _rooms.OrderBy(x => x.Transitions.Count).ToList()[loopsCreated];
+            int fromRoomIndex = _rooms.IndexOf(fromRoom);
 
             var hops = HopsToRooms(fromRoomIndex);
-            /*foreach (var hop in hops)
-            {
-                print(hop);
-            }
-            print("-----");*/
 
-            foreach (var room in rooms)
+            foreach (var room in _rooms)
             {
-                int toRoomIndex = rooms.IndexOf(room);
+                int toRoomIndex = _rooms.IndexOf(room);
                 if (fromRoom == room || fromRoom.Transitions.Any(x => x.NextRoom == room) || hops[toRoomIndex] < minimalLoopLength)
                 {
                     continue;
@@ -198,13 +198,13 @@ public class FloorGenerator : MonoBehaviour
     }
 
     public void MakePathes(){
-        foreach (var room in rooms){
+        foreach (var room in _rooms){
             foreach(var transition in room.Transitions){
                 if(!transition.PathBuilt){
                     Vector3 start = transition.Door.position;
                     Transition endTransition = transition.NextRoom.Transitions.Where(t => t.NextRoom == room).FirstOrDefault();
                     Vector3 end = endTransition.Door.position;
-                    Pathfinder pathfinder = new Pathfinder(solidMap, (int)Mathf.Round(start.x), (int)Mathf.Round(start.z), (int)Mathf.Round(end.x), (int)Mathf.Round(end.z));
+                    Pathfinder pathfinder = new Pathfinder(_solidMap, (int)Mathf.Round(start.x), (int)Mathf.Round(start.z), (int)Mathf.Round(end.x), (int)Mathf.Round(end.z));
                     
                     List<Vector3> path = pathfinder.FindPath();
                     
@@ -217,12 +217,12 @@ public class FloorGenerator : MonoBehaviour
                             int x = (int)Mathf.Round(path[i].x);
                             int y = (int)Mathf.Round(path[i].y);
                             int z = (int)Mathf.Round(path[i].z);
-                            if (corridorMap[x, z] == null)
+                            if (_corridorMap[x, z] == null)
                             {
-                                corridorMap[x, z] = new List<CorridorDirection>();
+                                _corridorMap[x, z] = new List<CorridorDirection>();
                             }
-                            corridorMap[x, z].Add(CorridorSegmentPack.Vector3ToCorridorDirection(path[i - 1] - path[i]));
-                            corridorMap[x, z].Add(CorridorSegmentPack.Vector3ToCorridorDirection(path[i + 1] - path[i]));
+                            _corridorMap[x, z].Add(CorridorSegmentPack.Vector3ToCorridorDirection(path[i - 1] - path[i]));
+                            _corridorMap[x, z].Add(CorridorSegmentPack.Vector3ToCorridorDirection(path[i + 1] - path[i]));
 
                         }
                         transition.PathBuilt = true;
@@ -239,13 +239,15 @@ public class FloorGenerator : MonoBehaviour
 
     public void InstantiateCorridors()
     {
+        var corridor = new GameObject("Corridor");
+        corridor.transform.parent = _floor.transform;
         for (int i = 0; i < dungeonWidth; i++)
         {
             for (int k = 0; k < dungeonDepth; k++)
             {
-                if (corridorMap[i, k] != null)
+                if (_corridorMap[i, k] != null)
                 {
-                    Instantiate(segmentPack.GetSegment(corridorMap[i, k]), new Vector3(i, levelY, k), Quaternion.identity);
+                    Instantiate(segmentPack.GetSegment(_corridorMap[i, k]), new Vector3(i, levelY, k), Quaternion.identity, corridor.transform);
 
                 }
             }
@@ -277,15 +279,18 @@ public class FloorGenerator : MonoBehaviour
             }
             if (!roomSkiped)
             {
-                rooms.Add(PlaceRoom(x, z, room, rotationsCount));
+                PlaceRoom(x, z, room, rotationsCount);
+                foreach(var extraRoom in room.AssociatedRooms)
+                {
+                    _dungeonGenerator.floorGenerators[_floorIndex + extraRoom.FloorOffset].PlaceRoom(x, z, extraRoom.ExtraRoom, rotationsCount); 
+                }
             }
 
         }
     }
 
     public void Generate(){
-        solidMap = new bool[dungeonWidth, dungeonDepth];
-        corridorMap = new List<CorridorDirection>[dungeonWidth, dungeonDepth];
+
         int seed = Random.Range(0, int.MaxValue);
         Random.InitState(seed);
         PlaceAllRooms(levelY);
