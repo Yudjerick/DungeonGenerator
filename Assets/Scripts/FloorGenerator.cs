@@ -201,12 +201,15 @@ public class FloorGenerator : MonoBehaviour
         foreach (var room in _rooms){
             foreach(var transition in room.Transitions){
                 if(!transition.PathBuilt){
-                    Vector3 start = transition.Door.position;
+                    Vector3 start = transition.Door.position / gridCellSize;
+                    start.y = 0;
                     Transition endTransition = transition.NextRoom.Transitions.Where(t => t.NextRoom == room).FirstOrDefault();
-                    Vector3 end = endTransition.Door.position;
+                    Vector3 end = endTransition.Door.position / gridCellSize;
+                    end.y = 0;
                     Pathfinder pathfinder = new Pathfinder(_solidMap, (int)Mathf.Round(start.x), (int)Mathf.Round(start.z), (int)Mathf.Round(end.x), (int)Mathf.Round(end.z));
                     
                     List<Vector3> path = pathfinder.FindPath();
+                   
                     
 
                     if (path != null){
