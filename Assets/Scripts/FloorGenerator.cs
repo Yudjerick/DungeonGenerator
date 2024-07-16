@@ -18,26 +18,33 @@ public class FloorGenerator : MonoBehaviour
     [SerializeField] private int levelY = 10;
     [SerializeField] private int loopCount = 3;
     [SerializeField] private int minimalLoopLength = 3;
-    
     [SerializeField] private List<RoomData> roomRefs = new List<RoomData>();
-
     [SerializeField] private CorridorSegmentPack segmentPack;
     [SerializeField] private GameObject testCorridor;
-
-    private List<RoomData> _rooms = new List<RoomData>();
-    private bool[,] _solidMap;
     private List<CorridorDirection>[,] _corridorMap;
-    private GameObject _floor;
     private DungeonGenerator _dungeonGenerator;
     private int _floorIndex;
-    
+
+    public bool[,] SolidMap { get; set; }
+    public List<RoomData> Rooms { get; set; } = new List<RoomData>();
+    public GameObject Floor { get; set; }
+    public int Gap { get => gap; set => gap = value; }
+    public float GridCellSize { get => gridCellSize; set => gridCellSize = value; }
+    public int DungeonWidth { get => dungeonWidth; set => dungeonWidth = value; }
+    public int DungeonHeight { get => dungeonHeight; set => dungeonHeight = value; }
+    public int DungeonDepth { get => dungeonDepth; set => dungeonDepth = value; }
+    public int LevelY { get => levelY; set => levelY = value; }
+    public List<RoomData> RoomRefs { get => roomRefs; set => roomRefs = value; }
+    public DungeonGenerator DungeonGenerator { get => _dungeonGenerator; set => _dungeonGenerator = value; }
+    public int FloorIndex { get => _floorIndex; set => _floorIndex = value; }
+
     public void Initialize(DungeonGenerator dungeonGenerator, int floorIndex)
     {
-        _floorIndex = floorIndex;
-        _dungeonGenerator = dungeonGenerator;
-        _floor = new GameObject("Floor");
-        _solidMap = new bool[dungeonWidth, dungeonDepth];
-        _corridorMap = new List<CorridorDirection>[dungeonWidth, dungeonDepth];
+        FloorIndex = floorIndex;
+        DungeonGenerator = dungeonGenerator;
+        Floor = new GameObject("Floor");
+        SolidMap = new bool[DungeonWidth, DungeonDepth];
+        _corridorMap = new List<CorridorDirection>[DungeonWidth, DungeonDepth];
     }
     public bool CanPlaceRoom(int x, int z, RoomData room, int rotationsCount){
         int width = room.Width;
@@ -47,17 +54,17 @@ public class FloorGenerator : MonoBehaviour
             depth = room.Width;
             width = room.Depth;
         }
-        if(x+width+gap >= dungeonWidth || z+depth+gap >= dungeonDepth)
+        if(x+width+Gap >= DungeonWidth || z+depth+Gap >= DungeonDepth)
         {
             return false;
         }
-        if(x-gap < 0 || z-gap < 0){
+        if(x-Gap < 0 || z-Gap < 0){
             return false;
         }
-        for (int i = -gap; i < width + gap; i++){
-            for (int k = -gap; k < depth + gap; k++)
+        for (int i = -Gap; i < width + Gap; i++){
+            for (int k = -Gap; k < depth + Gap; k++)
             {
-                if (_solidMap[x + i, z + k])
+                if (SolidMap[x + i, z + k])
                 {
                     return false;
                 }
@@ -86,20 +93,52 @@ public class FloorGenerator : MonoBehaviour
             for (int j = 0; j < height; j++){
                 for(int k = 0; k < depth; k++){
                     
-                    _solidMap[x + i, z + k] = true;
+                    SolidMap[x + i, z + k] = true;
                 }
             }
         }
-        var RoomDimensions = Instantiate(room, new Vector3(x + xOffset, levelY,  z + zOffset) * gridCellSize,
-            Quaternion.Euler(0,90 * rotationsCount,0), _floor.transform);
-        _rooms.Add(RoomDimensions);
+        var RoomDimensions = Instantiate(room, new Vector3(x + xOffset, LevelY,  z + zOffset) * GridCellSize,
+            Quaternion.Euler(0,90 * rotationsCount,0), Floor.transform);
+        Rooms.Add(RoomDimensions);
         return RoomDimensions;
     }
 
-    
+    public void PlaceAllRooms(int y)
+    {
+        foreach (RoomData room in RoomRefs)
+        {
+            int x = Random.Range(0, DungeonWidth);
+            int z = Random.Range(0, DungeonDepth);
+            int rotationsCount = Random.Range(0, 3);
+            int tryCount = 0;
+            bool roomSkiped = false;
+            while (!CanPlaceRoom(x, z, room, rotationsCount))
+            {
+                if (tryCount > 10000)
+                {
+                    print(x + " " + y + " " + z);
+                    print("Skipping room");
+                    roomSkiped = true;
+                    break;
+                }
+                tryCount++;
+                x = Random.Range(0, DungeonWidth);
+                z = Random.Range(0, DungeonDepth);
+            }
+            if (!roomSkiped)
+            {
+                PlaceRoom(x, z, room, rotationsCount);
+                foreach (var extraRoom in room.AssociatedRooms)
+                {
+                    DungeonGenerator.floorGenerators[FloorIndex + extraRoom.FloorOffset].PlaceRoom(x, z, extraRoom.ExtraRoom, rotationsCount);
+                }
+            }
+
+        }
+    }
 
     public void SetMinimalTransitions(){
-        List<RoomData> unexplored = new List<RoomData>(_rooms);
+        List<RoomData> unexplored = new List<RoomData>(Rooms);
         List<RoomData> explored = new List<RoomData>();
 
         RoomData firstRoom = unexplored[0];
@@ -133,25 +172,25 @@ public class FloorGenerator : MonoBehaviour
 
     private List<float> HopsToRooms(int startRoomIndex)
     {
-        List<RoomData> unexplored = new List<RoomData>(_rooms);
+        List<RoomData> unexplored = new List<RoomData>(Rooms);
         List<RoomData> explored = new List<RoomData>();
-        List<float> distances = _rooms.Select(x => float.PositiveInfinity).ToList();
+        List<float> distances = Rooms.Select(x => float.PositiveInfinity).ToList();
         distances[startRoomIndex] = 0;
         int currentRoomIndex = startRoomIndex;
-        while(explored.Count < _rooms.Count) 
+        while(explored.Count < Rooms.Count) 
         {
-            explored.Add(_rooms[currentRoomIndex]);
-            unexplored.Remove(_rooms[currentRoomIndex]);
-            foreach (var transition in _rooms[currentRoomIndex].Transitions) 
+            explored.Add(Rooms[currentRoomIndex]);
+            unexplored.Remove(Rooms[currentRoomIndex]);
+            foreach (var transition in Rooms[currentRoomIndex].Transitions) 
             {
-                int nextRoomIndex = _rooms.IndexOf(transition.NextRoom);
+                int nextRoomIndex = Rooms.IndexOf(transition.NextRoom);
                 distances[nextRoomIndex] = Mathf.Min(distances[currentRoomIndex] + 1, distances[nextRoomIndex]);
             }
             foreach (var unexploredRoom in unexplored)
             {
                 if(unexploredRoom.Transitions.Select(x => x.NextRoom).Where(y => explored.Contains(y)).Any())
                 {
-                    currentRoomIndex = _rooms.IndexOf(unexploredRoom);
+                    currentRoomIndex = Rooms.IndexOf(unexploredRoom);
                     break;
                 }
             }
@@ -169,14 +208,14 @@ public class FloorGenerator : MonoBehaviour
             Transform selectedToDoor = null;
             float minDistance = float.MaxValue;
 
-            RoomData fromRoom = _rooms.OrderBy(x => x.Transitions.Count).ToList()[loopsCreated];
-            int fromRoomIndex = _rooms.IndexOf(fromRoom);
+            RoomData fromRoom = Rooms.OrderBy(x => x.Transitions.Count).ToList()[loopsCreated];
+            int fromRoomIndex = Rooms.IndexOf(fromRoom);
 
             var hops = HopsToRooms(fromRoomIndex);
 
-            foreach (var room in _rooms)
+            foreach (var room in Rooms)
             {
-                int toRoomIndex = _rooms.IndexOf(room);
+                int toRoomIndex = Rooms.IndexOf(room);
                 if (fromRoom == room || fromRoom.Transitions.Any(x => x.NextRoom == room) || hops[toRoomIndex] < minimalLoopLength)
                 {
                     continue;
@@ -198,15 +237,15 @@ public class FloorGenerator : MonoBehaviour
     }
 
     public void MakePathes(){
-        foreach (var room in _rooms){
+        foreach (var room in Rooms){
             foreach(var transition in room.Transitions){
                 if(!transition.PathBuilt){
-                    Vector3 start = transition.Door.position / gridCellSize;
+                    Vector3 start = transition.Door.position / GridCellSize;
                     start.y = 0;
                     Transition endTransition = transition.NextRoom.Transitions.Where(t => t.NextRoom == room).FirstOrDefault();
-                    Vector3 end = endTransition.Door.position / gridCellSize;
+                    Vector3 end = endTransition.Door.position / GridCellSize;
                     end.y = 0;
-                    Pathfinder pathfinder = new Pathfinder(_solidMap, (int)Mathf.Round(start.x), (int)Mathf.Round(start.z), (int)Mathf.Round(end.x), (int)Mathf.Round(end.z));
+                    Pathfinder pathfinder = new Pathfinder(SolidMap, (int)Mathf.Round(start.x), (int)Mathf.Round(start.z), (int)Mathf.Round(end.x), (int)Mathf.Round(end.z));
                     
                     List<Vector3> path = pathfinder.FindPath();
                    
@@ -243,14 +282,14 @@ public class FloorGenerator : MonoBehaviour
     public void InstantiateCorridors()
     {
         var corridor = new GameObject("Corridor");
-        corridor.transform.parent = _floor.transform;
-        for (int i = 0; i < dungeonWidth; i++)
+        corridor.transform.parent = Floor.transform;
+        for (int i = 0; i < DungeonWidth; i++)
         {
-            for (int k = 0; k < dungeonDepth; k++)
+            for (int k = 0; k < DungeonDepth; k++)
             {
                 if (_corridorMap[i, k] != null)
                 {
-                    Instantiate(segmentPack.GetSegment(_corridorMap[i, k]), new Vector3(i, levelY, k), Quaternion.identity, corridor.transform);
+                    Instantiate(segmentPack.GetSegment(_corridorMap[i, k]), new Vector3(i, LevelY, k), Quaternion.identity, corridor.transform);
 
                 }
             }
@@ -258,45 +297,14 @@ public class FloorGenerator : MonoBehaviour
         }
     }
 
-    public void PlaceAllRooms(int y)
-    {
-        foreach (RoomData room in roomRefs)
-        {
-            int x = Random.Range(0, dungeonWidth);
-            int z = Random.Range(0, dungeonDepth);
-            int rotationsCount = Random.Range(0,3);
-            int tryCount = 0;
-            bool roomSkiped = false;
-            while (!CanPlaceRoom(x, z, room, rotationsCount))
-            {
-                if (tryCount > 10000)
-                {
-                    print(x + " " + y + " " + z);
-                    print("Skipping room");
-                    roomSkiped = true;
-                    break;
-                }
-                tryCount++;
-                x = Random.Range(0, dungeonWidth);
-                z = Random.Range(0, dungeonDepth);
-            }
-            if (!roomSkiped)
-            {
-                PlaceRoom(x, z, room, rotationsCount);
-                foreach(var extraRoom in room.AssociatedRooms)
-                {
-                    _dungeonGenerator.floorGenerators[_floorIndex + extraRoom.FloorOffset].PlaceRoom(x, z, extraRoom.ExtraRoom, rotationsCount); 
-                }
-            }
-
-        }
-    }
+    
 
     public void Generate(){
 
         int seed = Random.Range(0, int.MaxValue);
         Random.InitState(seed);
-        PlaceAllRooms(levelY);
+        RoomPlacing roomPlacing = new RoomPlacing();
+        roomPlacing.PlaceAllRoomsPush(levelY, this);
         //PlaceAllRooms(20);
         //PlaceAllRooms(30);
         SetMinimalTransitions();

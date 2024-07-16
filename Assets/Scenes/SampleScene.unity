@@ -304,11 +304,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c655c697799e5042bbca7d267e8430c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gap: 1
+  gap: 2
   gridCellSize: 1
-  dungeonWidth: 30
+  dungeonWidth: 60
   dungeonHeight: 30
-  dungeonDepth: 50
+  dungeonDepth: 60
   levelY: 8
   loopCount: 2
   minimalLoopLength: 4
@@ -318,9 +318,20 @@ MonoBehaviour:
   - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
   - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
   - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 1275677945628152649, guid: d8801f3c66fab8748b0e8322a12f34ad, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
   - {fileID: 8004593807692316964, guid: 040f9f3cb7424f04b82a0441e5c0f87d, type: 3}
   - {fileID: 8004593807692316964, guid: 24816956277b50f4db2bf588b4f50913, type: 3}
-  - {fileID: 8004593807692316964, guid: 24816956277b50f4db2bf588b4f50913, type: 3}
+  - {fileID: 3862282996077402392, guid: 0dbfc366d126cd549a23dd0dd94a2e1f, type: 3}
+  - {fileID: 6699276238108054115, guid: 2398b712307c4ed4984a11df2f7ba7fe, type: 3}
+  - {fileID: 1275677945628152649, guid: d8801f3c66fab8748b0e8322a12f34ad, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 1275677945628152649, guid: d8801f3c66fab8748b0e8322a12f34ad, type: 3}
   segmentPack: {fileID: 11400000, guid: a53600260885c16418673ac548f1aeea, type: 2}
   testCorridor: {fileID: 0}
 --- !u!1 &410087039
@@ -441,6 +452,80 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!1 &1274990604
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1274990606}
+  - component: {fileID: 1274990605}
+  m_Layer: 0
+  m_Name: FloorGenerator (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1274990605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274990604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c655c697799e5042bbca7d267e8430c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gap: 2
+  gridCellSize: 1
+  dungeonWidth: 60
+  dungeonHeight: 30
+  dungeonDepth: 60
+  levelY: 6
+  loopCount: 2
+  minimalLoopLength: 4
+  roomRefs:
+  - {fileID: 1275677945628152649, guid: d8801f3c66fab8748b0e8322a12f34ad, type: 3}
+  - {fileID: 1275677945628152649, guid: d8801f3c66fab8748b0e8322a12f34ad, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 1275677945628152649, guid: d8801f3c66fab8748b0e8322a12f34ad, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 8004593807692316964, guid: 040f9f3cb7424f04b82a0441e5c0f87d, type: 3}
+  - {fileID: 8004593807692316964, guid: 24816956277b50f4db2bf588b4f50913, type: 3}
+  - {fileID: 8004593807692316964, guid: 24816956277b50f4db2bf588b4f50913, type: 3}
+  - {fileID: 1275677945628152649, guid: d8801f3c66fab8748b0e8322a12f34ad, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 1275677945628152649, guid: d8801f3c66fab8748b0e8322a12f34ad, type: 3}
+  segmentPack: {fileID: 11400000, guid: a53600260885c16418673ac548f1aeea, type: 2}
+  testCorridor: {fileID: 0}
+--- !u!4 &1274990606
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274990604}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1835216200}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1409321082
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,25 +570,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c655c697799e5042bbca7d267e8430c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gap: 1
+  gap: 2
   gridCellSize: 1
-  dungeonWidth: 30
+  dungeonWidth: 60
   dungeonHeight: 30
-  dungeonDepth: 50
+  dungeonDepth: 60
   levelY: 10
   loopCount: 2
   minimalLoopLength: 4
   roomRefs:
   - {fileID: 3862282996077402392, guid: 0dbfc366d126cd549a23dd0dd94a2e1f, type: 3}
-  - {fileID: 3862282996077402392, guid: 0dbfc366d126cd549a23dd0dd94a2e1f, type: 3}
-  - {fileID: 3862282996077402392, guid: 0dbfc366d126cd549a23dd0dd94a2e1f, type: 3}
-  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
   - {fileID: 1275677945628152649, guid: d8801f3c66fab8748b0e8322a12f34ad, type: 3}
   - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
   - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
   - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
-  - {fileID: 8004593807692316964, guid: 040f9f3cb7424f04b82a0441e5c0f87d, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
   - {fileID: 8004593807692316964, guid: 24816956277b50f4db2bf588b4f50913, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 1275677945628152649, guid: d8801f3c66fab8748b0e8322a12f34ad, type: 3}
+  - {fileID: 3862282996077402392, guid: 0dbfc366d126cd549a23dd0dd94a2e1f, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4143471271229231523, guid: e5f86bea509f0594f844d1e733655513, type: 3}
+  - {fileID: 3862282996077402392, guid: 0dbfc366d126cd549a23dd0dd94a2e1f, type: 3}
+  - {fileID: 1275677945628152649, guid: d8801f3c66fab8748b0e8322a12f34ad, type: 3}
+  - {fileID: 6699276238108054115, guid: 2398b712307c4ed4984a11df2f7ba7fe, type: 3}
+  - {fileID: 8004593807692316964, guid: 040f9f3cb7424f04b82a0441e5c0f87d, type: 3}
+  - {fileID: 8004593807692316964, guid: 040f9f3cb7424f04b82a0441e5c0f87d, type: 3}
   - {fileID: 8004593807692316964, guid: 040f9f3cb7424f04b82a0441e5c0f87d, type: 3}
   - {fileID: 8004593807692316964, guid: 040f9f3cb7424f04b82a0441e5c0f87d, type: 3}
   - {fileID: 8004593807692316964, guid: 040f9f3cb7424f04b82a0441e5c0f87d, type: 3}
@@ -519,6 +613,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1835216200}
   - component: {fileID: 1835216201}
+  - component: {fileID: 1835216202}
   m_Layer: 0
   m_Name: DungeonGenerator
   m_TagString: Untagged
@@ -541,6 +636,7 @@ Transform:
   m_Children:
   - {fileID: 1409321083}
   - {fileID: 349909673}
+  - {fileID: 1274990606}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1835216201
@@ -558,6 +654,25 @@ MonoBehaviour:
   <floorGenerators>k__BackingField:
   - {fileID: 1409321084}
   - {fileID: 349909674}
+  - {fileID: 1274990605}
+--- !u!114 &1835216202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835216199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430389721abe82b42babf31130e24f63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cellBlock: {fileID: 208784014145111196, guid: 60bed8894788a2443881e7b79621fc35,
+    type: 3}
+  gridCellSize: 1
+  height: 2
+  width: 5
+  depth: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
