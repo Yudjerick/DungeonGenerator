@@ -1,11 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Mathematics;
-using UnityEditorInternal;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
-using static UnityEngine.UI.Selectable;
 using Random = UnityEngine.Random;
 
 public class FloorGenerator : MonoBehaviour
@@ -297,7 +293,23 @@ public class FloorGenerator : MonoBehaviour
         }
     }
 
-    
+    public void AddCorridorsToUnusedDoors()
+    {
+        foreach(RoomData room in Rooms)
+        {
+            List<Transform> unusedDoors = room.AvailableDoors.Where(d => !room.Transitions.Select(x => x.Door).Contains(d)).ToList();
+            foreach(Transform unusedDoor in unusedDoors)
+            {
+                int x = (int)Mathf.Round(unusedDoor.position.x);
+                int z = (int)Mathf.Round(unusedDoor.position.z);
+                if (_corridorMap[x, z] == null)
+                {
+                    _corridorMap[x, z] = new List<CorridorDirection>();
+                }
+                _corridorMap[x, z].Add(CorridorSegmentPack.Vector3ToCorridorDirection(unusedDoor.forward));
+            }
+        }
+    }
 
     public void Generate(){
 
@@ -305,11 +317,10 @@ public class FloorGenerator : MonoBehaviour
         Random.InitState(seed);
         RoomPlacing roomPlacing = new RoomPlacing();
         roomPlacing.PlaceAllRoomsPush(levelY, this);
-        //PlaceAllRooms(20);
-        //PlaceAllRooms(30);
         SetMinimalTransitions();
         AddLoops(loopCount);
         MakePathes();
+        AddCorridorsToUnusedDoors();
         InstantiateCorridors();
     }
 }

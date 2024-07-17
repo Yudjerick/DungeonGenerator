@@ -13,6 +13,18 @@ MonoBehaviour:
   m_Name: Pack
   m_EditorClassIdentifier: 
   corridorSegments:
+  - directions: 02000000
+    segmentObject: {fileID: 208784014145111196, guid: c321bf8690eeffd40a069143ac1a72b5,
+      type: 3}
+  - directions: 00000000
+    segmentObject: {fileID: 208784014145111196, guid: c321bf8690eeffd40a069143ac1a72b5,
+      type: 3}
+  - directions: 03000000
+    segmentObject: {fileID: 208784014145111196, guid: c321bf8690eeffd40a069143ac1a72b5,
+      type: 3}
+  - directions: 01000000
+    segmentObject: {fileID: 208784014145111196, guid: c321bf8690eeffd40a069143ac1a72b5,
+      type: 3}
   - directions: 0000000001000000
     segmentObject: {fileID: 6512406095345736371, guid: 77bea1f38f9d60c4e9aea59b8e06e8bd,
       type: 3}

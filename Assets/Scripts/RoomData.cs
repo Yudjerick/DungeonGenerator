@@ -16,6 +16,7 @@ public class RoomData : MonoBehaviour
     [SerializeField] private List<Transform> availableDoors;
 
     [field: SerializeField] public List<ExtraRoomSpawningRequest> AssociatedRooms { get; set; }
+    public List<Transform> AvailableDoors { get => availableDoors; set => availableDoors = value; }
 
     public void AddBidirectionalTransition(RoomData roomData, Transform doorPos, Transform otherDoorPos){
         if(!transitions.Where(x => x.NextRoom == roomData).Any()){
@@ -34,8 +35,8 @@ public class RoomData : MonoBehaviour
         float minDistance = float.MaxValue;
         Transform selectedDoor = null;
         Transform selectedOtherDoor = null;
-        foreach(var door in availableDoors){
-            foreach (var otherDoor in other.availableDoors){
+        foreach(var door in AvailableDoors){
+            foreach (var otherDoor in other.AvailableDoors){
                 if(Mathf.Abs(door.position.y - otherDoor.position.y) > 0.01f)
                 {
                     continue;
