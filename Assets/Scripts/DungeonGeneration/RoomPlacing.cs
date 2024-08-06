@@ -71,7 +71,8 @@ public class RoomPlacing
                 }
             }
         }
-        var RoomDimensions = UnityEngine.Object.Instantiate(room, new Vector3(x + xOffset, fg.LevelY, z + zOffset) * fg.GridCellSize, Quaternion.Euler(0, 90 * rotationsCount, 0), fg.Floor.transform);
+        var RoomDimensions = UnityEngine.Object.Instantiate(room, new Vector3((x + xOffset) * fg.GridCellSize,
+            fg.LevelY, (z + zOffset) * fg.GridCellSize), Quaternion.Euler(0, 90 * rotationsCount, 0), fg.Floor.transform);
         fg.Rooms.Add(RoomDimensions);
         return RoomDimensions;
     }
@@ -103,7 +104,7 @@ public class RoomPlacing
                 PlaceRoom(x, z, room, rotationsCount, fg);
                 foreach (var extraRoom in room.AssociatedRooms)
                 {
-                    fg.DungeonGenerator.floorGenerators[fg.FloorIndex + extraRoom.FloorOffset].PlaceRoom(x, z, extraRoom.ExtraRoom, rotationsCount);
+                    PlaceRoom(x, z, extraRoom.ExtraRoom, rotationsCount, fg.DungeonGenerator.floorGenerators[fg.FloorIndex + extraRoom.FloorOffset]);
                 }
             }
 
@@ -138,7 +139,7 @@ public class RoomPlacing
                 PlaceRoom(x, z, room, rotationsCount, fg);
                 foreach (var extraRoom in room.AssociatedRooms)
                 {
-                    fg.DungeonGenerator.floorGenerators[fg.FloorIndex + extraRoom.FloorOffset].PlaceRoom(x, z, extraRoom.ExtraRoom, rotationsCount);
+                    PlaceRoom(x, z, extraRoom.ExtraRoom, rotationsCount, fg.DungeonGenerator.floorGenerators[fg.FloorIndex + extraRoom.FloorOffset]);
                 }
             }
 

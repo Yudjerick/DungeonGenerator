@@ -42,96 +42,6 @@ public class FloorGenerator : MonoBehaviour
         SolidMap = new bool[DungeonWidth, DungeonDepth];
         _corridorMap = new List<CorridorDirection>[DungeonWidth, DungeonDepth];
     }
-    public bool CanPlaceRoom(int x, int z, RoomData room, int rotationsCount){
-        int width = room.Width;
-        int height = room.Height;
-        int depth = room.Depth;
-        if(rotationsCount % 2 != 0){
-            depth = room.Width;
-            width = room.Depth;
-        }
-        if(x+width+Gap >= DungeonWidth || z+depth+Gap >= DungeonDepth)
-        {
-            return false;
-        }
-        if(x-Gap < 0 || z-Gap < 0){
-            return false;
-        }
-        for (int i = -Gap; i < width + Gap; i++){
-            for (int k = -Gap; k < depth + Gap; k++)
-            {
-                if (SolidMap[x + i, z + k])
-                {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    public RoomData PlaceRoom(int x, int z, RoomData room, int rotationsCount){
-        int width = room.Width;
-        int height = room.Height;
-        int depth = room.Depth;
-        int xOffset = 0;
-        int zOffset = 0;
-        if(rotationsCount % 2 != 0){
-            depth = room.Width;
-            width = room.Depth;
-        }
-        if(rotationsCount == 2 || rotationsCount == 3){
-            xOffset = width - 1;
-        }
-        if(rotationsCount == 1 || rotationsCount == 2){
-            zOffset = depth - 1;
-        }
-        for (int i = 0; i < width; i++){
-            for (int j = 0; j < height; j++){
-                for(int k = 0; k < depth; k++){
-                    
-                    SolidMap[x + i, z + k] = true;
-                }
-            }
-        }
-        var RoomDimensions = Instantiate(room, new Vector3(x + xOffset, LevelY,  z + zOffset) * GridCellSize,
-            Quaternion.Euler(0,90 * rotationsCount,0), Floor.transform);
-        Rooms.Add(RoomDimensions);
-        return RoomDimensions;
-    }
-
-    public void PlaceAllRooms(int y)
-    {
-        foreach (RoomData room in RoomRefs)
-        {
-            int x = Random.Range(0, DungeonWidth);
-            int z = Random.Range(0, DungeonDepth);
-            int rotationsCount = Random.Range(0, 3);
-            int tryCount = 0;
-            bool roomSkiped = false;
-            while (!CanPlaceRoom(x, z, room, rotationsCount))
-            {
-                if (tryCount > 10000)
-                {
-                    print(x + " " + y + " " + z);
-                    print("Skipping room");
-                    roomSkiped = true;
-                    break;
-                }
-                tryCount++;
-                x = Random.Range(0, DungeonWidth);
-                z = Random.Range(0, DungeonDepth);
-            }
-            if (!roomSkiped)
-            {
-                PlaceRoom(x, z, room, rotationsCount);
-                foreach (var extraRoom in room.AssociatedRooms)
-                {
-                    DungeonGenerator.floorGenerators[FloorIndex + extraRoom.FloorOffset].PlaceRoom(x, z, extraRoom.ExtraRoom, rotationsCount);
-                }
-            }
-
-        }
-    }
 
     public void SetMinimalTransitions(){
         List<RoomData> unexplored = new List<RoomData>(Rooms);
@@ -285,7 +195,7 @@ public class FloorGenerator : MonoBehaviour
             {
                 if (_corridorMap[i, k] != null)
                 {
-                    Instantiate(segmentPack.GetSegment(_corridorMap[i, k]), new Vector3(i, LevelY, k), Quaternion.identity, corridor.transform);
+                    Instantiate(segmentPack.GetSegment(_corridorMap[i, k]), new Vector3(i * gridCellSize, LevelY, k * gridCellSize), Quaternion.identity, corridor.transform);
 
                 }
             }
@@ -300,8 +210,8 @@ public class FloorGenerator : MonoBehaviour
             List<Transform> unusedDoors = room.AvailableDoors.Where(d => !room.Transitions.Select(x => x.Door).Contains(d)).ToList();
             foreach(Transform unusedDoor in unusedDoors)
             {
-                int x = (int)Mathf.Round(unusedDoor.position.x);
-                int z = (int)Mathf.Round(unusedDoor.position.z);
+                int x = (int)Mathf.Round(unusedDoor.position.x / gridCellSize);
+                int z = (int)Mathf.Round(unusedDoor.position.z / gridCellSize);
                 if (_corridorMap[x, z] == null)
                 {
                     _corridorMap[x, z] = new List<CorridorDirection>();
