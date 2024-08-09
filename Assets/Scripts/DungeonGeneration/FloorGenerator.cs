@@ -223,8 +223,8 @@ public class FloorGenerator : MonoBehaviour
 
     public void Generate(){
 
-        int seed = Random.Range(0, int.MaxValue);
-        Random.InitState(seed);
+        //int seed = Random.Range(0, int.MaxValue);
+        //Random.InitState(seed);
         RoomPlacing roomPlacing = new RoomPlacing();
         roomPlacing.PlaceAllRoomsPush(levelY, this);
         SetMinimalTransitions();

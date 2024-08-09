@@ -5,7 +5,7 @@ using UnityEngine;
 public class DungeonGenerator : MonoBehaviour
 {
     [field: SerializeField] public List<FloorGenerator> floorGenerators { get; set; } = new List<FloorGenerator>();
-    void Start()
+    public void Generate()
     {
         foreach (var floorGenerator in floorGenerators)
         {
@@ -15,10 +15,5 @@ public class DungeonGenerator : MonoBehaviour
         {
             floorGenerator.Generate();
         }
-    }
-
-    void Update()
-    {
-        
     }
 }
