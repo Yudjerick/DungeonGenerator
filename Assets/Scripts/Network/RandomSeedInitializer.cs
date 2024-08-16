@@ -1,4 +1,5 @@
 using Mirror;
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,14 +10,6 @@ public class RandomSeedInitializer : NetworkBehaviour
     [SerializeField] private int seed;
     void Start()
     {
-        //if (isServer)
-        //{
-        //    seed = Random.Range(0, int.MaxValue);
-        //}
-
-
-
-
 
     }
 
@@ -34,7 +27,6 @@ public class RandomSeedInitializer : NetworkBehaviour
 
     public void GenerateDungeon()
     {
-        print("RPC");
         Random.InitState(seed);
         FindAnyObjectByType<DungeonGenerator>().Generate();
     }
