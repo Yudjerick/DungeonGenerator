@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 4356400263725494789}
   - component: {fileID: 4497298909979175507}
   m_Layer: 0
-  m_Name: Room_2x3x3
+  m_Name: Gr2Room_2x3x3 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -384,7 +384,7 @@ MonoBehaviour:
   <Width>k__BackingField: 3
   <Height>k__BackingField: 2
   <Depth>k__BackingField: 3
-  <TransitionGroupId>k__BackingField: 0
+  <TransitionGroupId>k__BackingField: 1
   transitions: []
   availableDoors:
   - {fileID: 133952645405858017}
@@ -460,11 +460,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 71961ccb25d8fe940a09a890df5df241, type: 2}
-    - target: {fileID: -7511558181221131132, guid: b9496ec4ed8f35343914ca0725c08fa3,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: a247eb327bc91de44998e64d87a88273, type: 2}
     - target: {fileID: 919132149155446097, guid: b9496ec4ed8f35343914ca0725c08fa3,
         type: 3}
       propertyPath: m_Name

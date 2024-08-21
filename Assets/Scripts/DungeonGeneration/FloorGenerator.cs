@@ -44,35 +44,11 @@ public class FloorGenerator : MonoBehaviour
     }
 
     public void SetMinimalTransitions(){
-        List<RoomData> unexplored = new List<RoomData>(Rooms);
-        List<RoomData> explored = new List<RoomData>();
-
-        RoomData firstRoom = unexplored[0];
-        explored.Add(firstRoom);
-        unexplored.Remove(firstRoom);
-
-        while (unexplored.Count > 0){
-            RoomData selectedFrom = explored[0];
-            RoomData selectedTo = unexplored[0];
-            Transform selectedFromDoor = null;
-            Transform selectedToDoor = null;
-            float minDistance = float.MaxValue;
-            foreach (var from in explored){
-                foreach (var to in unexplored){
-                    float distance = from.OptimalDoorDistance(to, out Transform doorPos, out Transform otherDoorPos);
-                    if (distance < minDistance){
-                        minDistance = distance;
-                        selectedFrom = from;
-                        selectedTo = to;
-                        selectedFromDoor = doorPos;
-                        selectedToDoor = otherDoorPos;
-                    }
-                }
-            }
-            selectedFrom.AddBidirectionalTransition(selectedTo, selectedFromDoor, selectedToDoor);
-            explored.Add(selectedTo);
-            unexplored.Remove(selectedTo);
-            Debug.DrawLine( selectedFromDoor.position, selectedToDoor.position, Color.green, 100000f); //Null reference here
+        var groups = Rooms.GroupBy(x => x.TransitionGroupId);
+        foreach (var group in groups)
+        {
+            var tm = new TransitionMakingComponent(group.ToList());
+            tm.SetMinimalTransitions();
         }
     }
 
@@ -225,7 +201,7 @@ public class FloorGenerator : MonoBehaviour
 
         //int seed = Random.Range(0, int.MaxValue);
         //Random.InitState(seed);
-        RoomPlacing roomPlacing = new RoomPlacing();
+        RoomPlacingComponent roomPlacing = new RoomPlacingComponent();
         roomPlacing.PlaceAllRoomsPush(levelY, this);
         SetMinimalTransitions();
         AddLoops(loopCount);

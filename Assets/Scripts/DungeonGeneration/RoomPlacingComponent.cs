@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class RoomPlacing
+public class RoomPlacingComponent
 {
     public bool CanPlaceRoom(int x, int z, RoomData room, int rotationsCount, FloorGenerator floorGenerator)
     {

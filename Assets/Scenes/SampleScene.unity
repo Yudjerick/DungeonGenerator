@@ -124,6 +124,68 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &33619235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 33619237}
+  - component: {fileID: 33619236}
+  m_Layer: 0
+  m_Name: FloorGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &33619236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33619235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c655c697799e5042bbca7d267e8430c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gap: 2
+  gridCellSize: 1
+  dungeonWidth: 60
+  dungeonHeight: 30
+  dungeonDepth: 60
+  levelY: 10
+  loopCount: 0
+  minimalLoopLength: 4
+  roomRefs:
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 10802a5598a5baa49b7f02a301f6ef2b, type: 3}
+  - {fileID: 4497298909979175507, guid: 10802a5598a5baa49b7f02a301f6ef2b, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 10802a5598a5baa49b7f02a301f6ef2b, type: 3}
+  segmentPack: {fileID: 11400000, guid: a53600260885c16418673ac548f1aeea, type: 2}
+  testCorridor: {fileID: 0}
+--- !u!4 &33619237
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33619235}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2139936861}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &349909672
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,6 +874,72 @@ MonoBehaviour:
   height: 2
   width: 5
   depth: 5
+--- !u!1 &2139936858
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2139936861}
+  - component: {fileID: 2139936860}
+  - component: {fileID: 2139936859}
+  m_Layer: 0
+  m_Name: DungeonGenerator (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &2139936859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139936858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430389721abe82b42babf31130e24f63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cellBlock: {fileID: 208784014145111196, guid: 60bed8894788a2443881e7b79621fc35,
+    type: 3}
+  gridCellSize: 1
+  height: 2
+  width: 5
+  depth: 5
+--- !u!114 &2139936860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139936858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 800aed5397b37d4479daa2b211d41bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <floorGenerators>k__BackingField:
+  - {fileID: 33619236}
+--- !u!4 &2139936861
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139936858}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1975.0099, y: -7402.7, z: 5360.573}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 33619237}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -819,4 +947,5 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 1835216200}
   - {fileID: 704747525}
+  - {fileID: 2139936861}
   - {fileID: 608600755}

@@ -10,6 +10,8 @@ public class RoomData : MonoBehaviour
     [field: SerializeField] public int Height {get; set;}
     [field: SerializeField] public int Depth {get; set;}
 
+    [field: SerializeField] public int TransitionGroupId { get; set; } = 0;
+
     public List<Transition> Transitions => transitions;  
     [SerializeField] private List<Transition> transitions = new List<Transition>();
 
