@@ -1,13 +1,13 @@
+using DungeonGeneration;
 using Mirror;
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomSeedInitializer : NetworkBehaviour
+public class Bootstrap : NetworkBehaviour
 {
-    [SyncVar]
-    [SerializeField] private int seed;
+    [SerializeField] private SeedInitializer seedInitializer;
     void Start()
     {
 
@@ -15,8 +15,7 @@ public class RandomSeedInitializer : NetworkBehaviour
 
     public override void OnStartServer()
     {
-        print("OnStartServer");
-        seed = Random.Range(0, int.MaxValue);
+        seedInitializer.GenerateSeed();
     }
 
     public override void OnStartClient()
@@ -27,8 +26,10 @@ public class RandomSeedInitializer : NetworkBehaviour
 
     public void GenerateDungeon()
     {
-        Random.InitState(seed);
+        seedInitializer.SetRandomInitialState();
+        
         FindAnyObjectByType<DungeonGenerator>().Generate();
+        FindAnyObjectByType<NavMeshBaker>().Bake();
     }
 
     // Update is called once per frame

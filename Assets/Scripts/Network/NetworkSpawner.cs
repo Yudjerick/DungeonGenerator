@@ -6,17 +6,23 @@ using UnityEngine;
 public class NetworkSpawner : NetworkBehaviour
 {
     [SerializeField] private GameObject spawnObj;
-    void Start()
+    [SerializeField] private float delay = 3f;
+
+    public override void OnStartServer()
     {
+        Invoke("Spawn", delay);
+    }
+
+    public void Spawn()
+    {
+        if(!isServer)
+        {
+            return;
+        }
         var instance = Instantiate(spawnObj);
         NetworkServer.Spawn(instance);
     }
 
-    public override void OnStartServer()
-    {
-
-        
-    }
 
     // Update is called once per frame
     void Update()

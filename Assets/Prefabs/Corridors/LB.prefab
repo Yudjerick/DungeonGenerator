@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5728537318444876447
 Transform:
@@ -100,10 +100,25 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: a247eb327bc91de44998e64d87a88273, type: 2}
+    - target: {fileID: 7053106991716059325, guid: 1037be9610ab28844bb21cc618939e6d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534512591751931469, guid: 1037be9610ab28844bb21cc618939e6d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 9011975235895821837, guid: 1037be9610ab28844bb21cc618939e6d,
         type: 3}
       propertyPath: m_Name
       value: CorridorRF
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011975235895821837, guid: 1037be9610ab28844bb21cc618939e6d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

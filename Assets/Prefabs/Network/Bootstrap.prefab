@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4753057630295792296}
   - component: {fileID: 554228904665160395}
   m_Layer: 0
-  m_Name: SeedSetter
+  m_Name: Bootstrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

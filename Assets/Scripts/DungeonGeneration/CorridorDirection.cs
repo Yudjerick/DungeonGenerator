@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public enum CorridorDirection
+namespace DungeonGeneration
 {
-    Forward,
-    Back,
-    Right,
-    Left
+    public enum CorridorDirection
+    {
+        Forward,
+        Back,
+        Right,
+        Left
+    }
 }
