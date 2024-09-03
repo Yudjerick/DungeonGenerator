@@ -58,69 +58,13 @@ namespace DungeonGeneration
             }
         }
 
-        private List<float> HopsToRooms(int startRoomIndex)
-        {
-            List<RoomData> unexplored = new List<RoomData>(Rooms);
-            List<RoomData> explored = new List<RoomData>();
-            List<float> distances = Rooms.Select(x => float.PositiveInfinity).ToList();
-            distances[startRoomIndex] = 0;
-            int currentRoomIndex = startRoomIndex;
-            while (explored.Count < Rooms.Count)
-            {
-                explored.Add(Rooms[currentRoomIndex]);
-                unexplored.Remove(Rooms[currentRoomIndex]);
-                foreach (var transition in Rooms[currentRoomIndex].Transitions)
-                {
-                    int nextRoomIndex = Rooms.IndexOf(transition.NextRoom);
-                    distances[nextRoomIndex] = Mathf.Min(distances[currentRoomIndex] + 1, distances[nextRoomIndex]);
-                }
-                foreach (var unexploredRoom in unexplored)
-                {
-                    if (unexploredRoom.Transitions.Select(x => x.NextRoom).Where(y => explored.Contains(y)).Any())
-                    {
-                        currentRoomIndex = Rooms.IndexOf(unexploredRoom);
-                        break;
-                    }
-                }
-            }
-            return distances;
-        }
-
         public void AddLoops(int loopCount)
         {
-            int loopsCreated = 0;
-            while (loopCount > 0)
+            var groups = Rooms.GroupBy(x => x.TransitionGroupId);
+            foreach (var group in groups)
             {
-                RoomData selectedTo = null;
-                Transform selectedFromDoor = null;
-                Transform selectedToDoor = null;
-                float minDistance = float.MaxValue;
-
-                RoomData fromRoom = Rooms.OrderBy(x => x.Transitions.Count).ToList()[loopsCreated];
-                int fromRoomIndex = Rooms.IndexOf(fromRoom);
-
-                var hops = HopsToRooms(fromRoomIndex);
-
-                foreach (var room in Rooms)
-                {
-                    int toRoomIndex = Rooms.IndexOf(room);
-                    if (fromRoom == room || fromRoom.Transitions.Any(x => x.NextRoom == room) || hops[toRoomIndex] < minimalLoopLength)
-                    {
-                        continue;
-                    }
-                    float distance = fromRoom.OptimalDoorDistance(room, out Transform doorPos, out Transform otherDoorPos);
-                    if (distance < minDistance)
-                    {
-                        minDistance = distance;
-                        selectedTo = room;
-                        selectedFromDoor = doorPos;
-                        selectedToDoor = otherDoorPos;
-                    }
-                }
-                fromRoom.AddBidirectionalTransition(selectedTo, selectedFromDoor, selectedToDoor);
-                loopCount--;
-                loopsCreated++;
-                Debug.DrawLine(selectedFromDoor.position, selectedToDoor.position, Color.yellow, 100000f);
+                var tm = new TransitionMakingComponent(group.ToList());
+                tm.AddLoops(loopCount, minimalLoopLength);
             }
         }
 
@@ -132,10 +76,10 @@ namespace DungeonGeneration
                 {
                     if (!transition.PathBuilt)
                     {
-                        Vector3 start = transition.Door.position / GridCellSize;
+                        Vector3 start = transition.Door.Transform.position / GridCellSize;
                         start.y = 0;
                         Transition endTransition = transition.NextRoom.Transitions.Where(t => t.NextRoom == room).FirstOrDefault();
-                        Vector3 end = endTransition.Door.position / GridCellSize;
+                        Vector3 end = endTransition.Door.Transform.position / GridCellSize;
                         end.y = 0;
                         Pathfinder pathfinder = new Pathfinder(SolidMap, (int)Mathf.Round(start.x), (int)Mathf.Round(start.z), (int)Mathf.Round(end.x), (int)Mathf.Round(end.z));
 
@@ -145,8 +89,8 @@ namespace DungeonGeneration
 
                         if (path != null)
                         {
-                            path.Add(start + transition.Door.forward);
-                            path.Insert(0, end + endTransition.Door.forward);
+                            path.Add(start + transition.Door.Transform.forward);
+                            path.Insert(0, end + endTransition.Door.Transform.forward);
 
                             for (int i = 1; i < path.Count - 1; i++)
                             {
@@ -196,16 +140,16 @@ namespace DungeonGeneration
         {
             foreach (RoomData room in Rooms)
             {
-                List<Transform> unusedDoors = room.AvailableDoors.Where(d => !room.Transitions.Select(x => x.Door).Contains(d)).ToList();
-                foreach (Transform unusedDoor in unusedDoors)
+                List<DoorData> unusedDoors = room.AvailableDoors.Where(d => !room.Transitions.Select(x => x.Door).Contains(d)).ToList();
+                foreach (DoorData unusedDoor in unusedDoors)
                 {
-                    int x = (int)Mathf.Round(unusedDoor.position.x / gridCellSize);
-                    int z = (int)Mathf.Round(unusedDoor.position.z / gridCellSize);
+                    int x = (int)Mathf.Round(unusedDoor.Transform.position.x / gridCellSize);
+                    int z = (int)Mathf.Round(unusedDoor.Transform.position.z / gridCellSize);
                     if (_corridorMap[x, z] == null)
                     {
                         _corridorMap[x, z] = new List<CorridorDirection>();
                     }
-                    _corridorMap[x, z].Add(CorridorSegmentPack.Vector3ToCorridorDirection(unusedDoor.forward));
+                    _corridorMap[x, z].Add(CorridorSegmentPack.Vector3ToCorridorDirection(unusedDoor.Transform.forward));
                 }
             }
         }

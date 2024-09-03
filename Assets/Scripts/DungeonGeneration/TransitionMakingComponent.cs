@@ -27,14 +27,14 @@ namespace DungeonGeneration
             {
                 RoomData selectedFrom = explored[0];
                 RoomData selectedTo = unexplored[0];
-                Transform selectedFromDoor = null;
-                Transform selectedToDoor = null;
+                DoorData selectedFromDoor = null;
+                DoorData selectedToDoor = null;
                 float minDistance = float.MaxValue;
                 foreach (var from in explored)
                 {
                     foreach (var to in unexplored)
                     {
-                        float distance = from.OptimalDoorDistance(to, out Transform doorPos, out Transform otherDoorPos);
+                        float distance = from.OptimalDoorDistance(to, out DoorData doorPos, out DoorData otherDoorPos);
                         if (distance < minDistance)
                         {
                             minDistance = distance;
@@ -48,7 +48,7 @@ namespace DungeonGeneration
                 selectedFrom.AddBidirectionalTransition(selectedTo, selectedFromDoor, selectedToDoor);
                 explored.Add(selectedTo);
                 unexplored.Remove(selectedTo);
-                Debug.DrawLine(selectedFromDoor.position, selectedToDoor.position, Color.green, 100000f); //Null reference here
+                Debug.DrawLine(selectedFromDoor.Transform.position, selectedToDoor.Transform.position, Color.green, 100000f); //Null reference here
             }
         }
 
@@ -86,8 +86,8 @@ namespace DungeonGeneration
             while (loopCount > 0)
             {
                 RoomData selectedTo = null;
-                Transform selectedFromDoor = null;
-                Transform selectedToDoor = null;
+                DoorData selectedFromDoor = null;
+                DoorData selectedToDoor = null;
                 float minDistance = float.MaxValue;
 
                 RoomData fromRoom = Rooms.OrderBy(x => x.Transitions.Count).ToList()[loopsCreated];
@@ -102,7 +102,7 @@ namespace DungeonGeneration
                     {
                         continue;
                     }
-                    float distance = fromRoom.OptimalDoorDistance(room, out Transform doorPos, out Transform otherDoorPos);
+                    float distance = fromRoom.OptimalDoorDistance(room, out DoorData doorPos, out DoorData otherDoorPos);
                     if (distance < minDistance)
                     {
                         minDistance = distance;
@@ -114,7 +114,7 @@ namespace DungeonGeneration
                 fromRoom.AddBidirectionalTransition(selectedTo, selectedFromDoor, selectedToDoor);
                 loopCount--;
                 loopsCreated++;
-                Debug.DrawLine(selectedFromDoor.position, selectedToDoor.position, Color.yellow, 100000f);
+                Debug.DrawLine(selectedFromDoor.Transform.position, selectedToDoor.Transform.position, Color.yellow, 100000f);
             }
         }
     }

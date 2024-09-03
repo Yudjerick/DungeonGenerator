@@ -48,9 +48,12 @@ MonoBehaviour:
   <Width>k__BackingField: 5
   <Height>k__BackingField: 2
   <Depth>k__BackingField: 5
+  <TransitionGroupId>k__BackingField: 0
   transitions: []
-  availableDoors:
-  - {fileID: 6586174776954865443}
+  limitedDoorUse: 0
+  <AvailableDoors>k__BackingField:
+  - <Transform>k__BackingField: {fileID: 6586174776954865443}
+    maxUses: 0
   <AssociatedRooms>k__BackingField: []
 --- !u!1 &7016455719515030531
 GameObject:

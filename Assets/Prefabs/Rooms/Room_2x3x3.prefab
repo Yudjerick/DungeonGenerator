@@ -386,14 +386,17 @@ MonoBehaviour:
   <Depth>k__BackingField: 3
   <TransitionGroupId>k__BackingField: 0
   transitions: []
-  availableDoors:
-  - {fileID: 133952645405858017}
-  - {fileID: 1825048308767194716}
-  - {fileID: 8102027530615495122}
-  - {fileID: 2996112085959033596}
+  limitedDoorUse: 1
+  <AvailableDoors>k__BackingField:
+  - <Transform>k__BackingField: {fileID: 133952645405858017}
+    maxUses: 1
+  - <Transform>k__BackingField: {fileID: 1825048308767194716}
+    maxUses: 1
+  - <Transform>k__BackingField: {fileID: 8102027530615495122}
+    maxUses: 1
+  - <Transform>k__BackingField: {fileID: 2996112085959033596}
+    maxUses: 1
   <AssociatedRooms>k__BackingField: []
-  limitedDoorUse: 0
-  maxTransitisitionPerDoor: 1
 --- !u!1001 &6532449549034503895
 PrefabInstance:
   m_ObjectHideFlags: 0

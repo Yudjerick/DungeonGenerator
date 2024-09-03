@@ -88,7 +88,10 @@ MonoBehaviour:
   <Width>k__BackingField: 1
   <Height>k__BackingField: 2
   <Depth>k__BackingField: 4
+  <TransitionGroupId>k__BackingField: 0
   transitions: []
-  availableDoors:
-  - {fileID: 3324792766532837262}
+  limitedDoorUse: 0
+  <AvailableDoors>k__BackingField:
+  - <Transform>k__BackingField: {fileID: 3324792766532837262}
+    maxUses: 0
   <AssociatedRooms>k__BackingField: []
