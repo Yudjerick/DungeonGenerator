@@ -207,16 +207,20 @@ MonoBehaviour:
   dungeonHeight: 30
   dungeonDepth: 60
   levelY: 10
-  loopCount: 0
+  loopCount: 2
   minimalLoopLength: 4
   roomRefs:
   - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
   - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
   - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
-  - {fileID: 4497298909979175507, guid: 10802a5598a5baa49b7f02a301f6ef2b, type: 3}
-  - {fileID: 4497298909979175507, guid: 10802a5598a5baa49b7f02a301f6ef2b, type: 3}
   - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
-  - {fileID: 4497298909979175507, guid: 10802a5598a5baa49b7f02a301f6ef2b, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
+  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
   segmentPack: {fileID: 11400000, guid: a53600260885c16418673ac548f1aeea, type: 2}
   testCorridor: {fileID: 0}
 --- !u!4 &33619237
@@ -619,7 +623,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &704747523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -945,6 +949,54 @@ MonoBehaviour:
   - {fileID: 8004593807692316964, guid: 040f9f3cb7424f04b82a0441e5c0f87d, type: 3}
   segmentPack: {fileID: 11400000, guid: a53600260885c16418673ac548f1aeea, type: 2}
   testCorridor: {fileID: 0}
+--- !u!1 &1665030881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1665030883}
+  - component: {fileID: 1665030882}
+  m_Layer: 5
+  m_Name: UIDocument
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1665030882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665030881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: 24570bcdba5be204d9d2a04309469a98, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 0}
+  m_SortingOrder: 0
+--- !u!4 &1665030883
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665030881}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1741672887
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,7 +1279,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2139936859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1288,3 +1340,4 @@ SceneRoots:
   - {fileID: 70028849}
   - {fileID: 2084296231}
   - {fileID: 1741672890}
+  - {fileID: 1665030883}

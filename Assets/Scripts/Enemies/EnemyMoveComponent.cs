@@ -18,16 +18,17 @@ public class EnemyMoveComponent : MonoBehaviour
         _player = FindAnyObjectByType<TestCubeController>().gameObject;
         _rb = GetComponent<Rigidbody>();
         transform.position = _player.transform.position;
-        //_agent.enabled = true;
+        _agent.enabled = true;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        _rb.velocity = (_player.transform.position - transform.position).normalized;
+        //_rb.velocity = (_player.transform.position - transform.position).normalized;
         if(_player != null && _agent.isActiveAndEnabled)
         {
-            _agent.Move(_player.transform.position);
+            _agent.SetDestination(_player.transform.position);
         }
         
     }

@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -21,19 +22,29 @@ namespace DungeonGeneration
         [field: SerializeField] public List<ExtraRoomSpawningRequest> AssociatedRooms { get; set; }
         public List<Transform> AvailableDoors { get => availableDoors; set => availableDoors = value; }
 
+        [SerializeField] private bool limitedDoorUse = false;
+        [ShowIf("limitedDoorUse")]
+        [SerializeField] private int maxTransitisitionPerDoor = 1;
+
         public void AddBidirectionalTransition(RoomData roomData, Transform doorPos, Transform otherDoorPos)
         {
             if (!transitions.Where(x => x.NextRoom == roomData).Any())
             {
                 var transition = new Transition { NextRoom = roomData, Door = doorPos };
                 transitions.Add(transition);
-                //availableDoors.Remove(doorPos);
+                if (limitedDoorUse)
+                {
+                    availableDoors.Remove(doorPos);
+                }
             }
             if (!roomData.transitions.Where(x => x.NextRoom == this).Any())
             {
                 var transition = new Transition { NextRoom = this, Door = otherDoorPos };
                 roomData.transitions.Add(transition);
-                //roomData.availableDoors.Remove(otherDoorPos);
+                if (roomData.limitedDoorUse)
+                {
+                    roomData.availableDoors.Remove(otherDoorPos);
+                }
             }
         }
 

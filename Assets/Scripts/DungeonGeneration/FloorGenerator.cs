@@ -6,6 +6,9 @@ using Random = UnityEngine.Random;
 
 namespace DungeonGeneration
 {
+    /// <summary>
+    /// Generates one dungeon floor
+    /// </summary>
     public class FloorGenerator : MonoBehaviour
     {
         [SerializeField] private int gap = 1;
