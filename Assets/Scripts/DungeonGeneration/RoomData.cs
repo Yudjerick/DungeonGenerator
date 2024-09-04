@@ -39,7 +39,7 @@ namespace DungeonGeneration
                 transitions.Add(transition);
                 if (limitedDoorUse)
                 {
-                    
+                    doorPos.Uses++;
                 }
             }
             if (!roomData.transitions.Where(x => x.NextRoom == this).Any())
@@ -48,7 +48,7 @@ namespace DungeonGeneration
                 roomData.transitions.Add(transition);
                 if (roomData.limitedDoorUse)
                 {
-                    
+                    otherDoorPos.Uses++;
                 }
             }
         }
@@ -58,9 +58,9 @@ namespace DungeonGeneration
             float minDistance = float.MaxValue;
             DoorData selectedDoor = null;
             DoorData selectedOtherDoor = null;
-            foreach (var door in AvailableDoors)
+            foreach (var door in AvailableDoors.Where(x => !limitedDoorUse || x.Uses < x.MaxUses))
             {
-                foreach (var otherDoor in other.AvailableDoors)
+                foreach (var otherDoor in other.AvailableDoors.Where(x => !other.limitedDoorUse || x.Uses < x.MaxUses))
                 {
                     if (Mathf.Abs(door.Transform.position.y - otherDoor.Transform.position.y) > 0.01f)
                     {
