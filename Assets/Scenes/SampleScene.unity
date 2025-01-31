@@ -207,21 +207,24 @@ MonoBehaviour:
   dungeonHeight: 30
   dungeonDepth: 60
   levelY: 10
-  loopCount: 2
+  loopCount: 4
   minimalLoopLength: 4
   roomRefs:
-  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
-  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
-  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
-  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
-  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
-  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
-  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
-  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
-  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
-  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
-  - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
-  segmentPack: {fileID: 11400000, guid: a53600260885c16418673ac548f1aeea, type: 2}
+  - {fileID: 8781849712297255680, guid: bdb581b0e2d04c0418f4a11df6eb1437, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8076634085858172999, guid: 2072ed32ceb19494b836271294758d6e, type: 3}
+  - {fileID: 8076634085858172999, guid: 2072ed32ceb19494b836271294758d6e, type: 3}
+  - {fileID: 8076634085858172999, guid: 2072ed32ceb19494b836271294758d6e, type: 3}
+  - {fileID: 8076634085858172999, guid: 2072ed32ceb19494b836271294758d6e, type: 3}
+  segmentPack: {fileID: 11400000, guid: 9fcd200346df5a645ad13ccdd3591898, type: 2}
   testCorridor: {fileID: 0}
 --- !u!4 &33619237
 Transform:
@@ -277,14 +280,14 @@ MonoBehaviour:
     m_Bits: 4294967295
   m_UseGeometry: 1
   m_DefaultArea: 0
-  m_GenerateLinks: 0
+  m_GenerateLinks: 1
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.033333335
-  m_MinRegionArea: 2
+  m_MinRegionArea: 1
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
 --- !u!4 &70028849
@@ -623,7 +626,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &704747523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -641,7 +644,7 @@ MonoBehaviour:
   gridCellSize: 1
   height: 2
   width: 5
-  depth: 5
+  depth: 4
 --- !u!114 &704747524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -674,6 +677,73 @@ Transform:
   - {fileID: 951884062}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &846968920
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 846968921}
+  - component: {fileID: 846968922}
+  m_Layer: 0
+  m_Name: FloorGenerator (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &846968921
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846968920}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2139936861}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &846968922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846968920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c655c697799e5042bbca7d267e8430c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gap: 2
+  gridCellSize: 1
+  dungeonWidth: 60
+  dungeonHeight: 30
+  dungeonDepth: 60
+  levelY: 8
+  loopCount: 3
+  minimalLoopLength: 4
+  roomRefs:
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  segmentPack: {fileID: 11400000, guid: 9fcd200346df5a645ad13ccdd3591898, type: 2}
+  testCorridor: {fileID: 0}
 --- !u!1 &912523480
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,7 +789,7 @@ MonoBehaviour:
   - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
   - {fileID: 6699276238108054115, guid: 2398b712307c4ed4984a11df2f7ba7fe, type: 3}
   - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
-  segmentPack: {fileID: 11400000, guid: a53600260885c16418673ac548f1aeea, type: 2}
+  segmentPack: {fileID: 11400000, guid: 9fcd200346df5a645ad13ccdd3591898, type: 2}
   testCorridor: {fileID: 0}
 --- !u!4 &912523482
 Transform:
@@ -796,7 +866,7 @@ MonoBehaviour:
   - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
   - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
   - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
-  segmentPack: {fileID: 11400000, guid: a53600260885c16418673ac548f1aeea, type: 2}
+  segmentPack: {fileID: 11400000, guid: 9fcd200346df5a645ad13ccdd3591898, type: 2}
   testCorridor: {fileID: 0}
 --- !u!1 &1274990604
 GameObject:
@@ -1279,7 +1349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2139936859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1297,7 +1367,7 @@ MonoBehaviour:
   gridCellSize: 1
   height: 2
   width: 5
-  depth: 5
+  depth: 6
 --- !u!114 &2139936860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1312,6 +1382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <floorGenerators>k__BackingField:
   - {fileID: 33619236}
+  - {fileID: 846968922}
 --- !u!4 &2139936861
 Transform:
   m_ObjectHideFlags: 0
@@ -1326,6 +1397,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 33619237}
+  - {fileID: 846968921}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807

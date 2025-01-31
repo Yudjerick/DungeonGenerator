@@ -1,6 +1,7 @@
 using DungeonGeneration;
 using Mirror;
 using NaughtyAttributes;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -60,7 +61,7 @@ public class TestCubeController : NetworkBehaviour
     void SetPos()
     {
         print("SetPos");
-        transform.position = generator.floorGenerators[0].Rooms[0].gameObject.transform.position + Vector3.up * 2;
+        transform.position = FindAnyObjectByType<NetworkStartPosition>().transform.position;
         
     }
 }

@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 691284039701d3841b2883054e3d09db, type: 3}
+  m_Name: CavePack
+  m_EditorClassIdentifier: 
+  corridorSegments:
+  - directions: 02000000
+    segmentObject: {fileID: 208784014145111196, guid: c321bf8690eeffd40a069143ac1a72b5,
+      type: 3}
+  - directions: 00000000
+    segmentObject: {fileID: 208784014145111196, guid: c321bf8690eeffd40a069143ac1a72b5,
+      type: 3}
+  - directions: 03000000
+    segmentObject: {fileID: 208784014145111196, guid: c321bf8690eeffd40a069143ac1a72b5,
+      type: 3}
+  - directions: 01000000
+    segmentObject: {fileID: 208784014145111196, guid: c321bf8690eeffd40a069143ac1a72b5,
+      type: 3}
+  - directions: 0000000001000000
+    segmentObject: {fileID: 2724947174246837200, guid: 18dbb6bcbfe2480458dc096a55699fd4,
+      type: 3}
+  - directions: 0300000001000000
+    segmentObject: {fileID: 908499646401595463, guid: bf464309efc2d334d984af04abae7787,
+      type: 3}
+  - directions: 0000000003000000
+    segmentObject: {fileID: 1680167665490829344, guid: 00ebe66decd544440b97fc022f00421a,
+      type: 3}
+  - directions: 0200000001000000
+    segmentObject: {fileID: 4975970492685471152, guid: 474a07d6977903746a7f64d661bc7e3d,
+      type: 3}
+  - directions: 0200000000000000
+    segmentObject: {fileID: 7914131886920041033, guid: 8c83b621994e9fc409781b4690b7d026,
+      type: 3}
+  - directions: 0200000003000000
+    segmentObject: {fileID: 6661133778141541692, guid: fa2a5da513cda9a488b1d6ed99e6d764,
+      type: 3}
+  - directions: 000000000100000003000000
+    segmentObject: {fileID: 3167721897712066317, guid: 4c5114ab838616b428a6c7b72567bd63,
+      type: 3}
+  - directions: 020000000100000003000000
+    segmentObject: {fileID: 6750843854284982607, guid: cd5c7a4b71add114fbbe0ea9edbd5776,
+      type: 3}
+  - directions: 020000000000000001000000
+    segmentObject: {fileID: 3249092568442611116, guid: 398bcc5826d901e43a5727c0b2e6d8a8,
+      type: 3}
+  - directions: 020000000000000003000000
+    segmentObject: {fileID: 4389506884977366416, guid: d554b5cbb73fb8c478b7dcefb0673ddb,
+      type: 3}
+  - directions: 02000000000000000300000001000000
+    segmentObject: {fileID: 4518172882861375761, guid: 5f503ec8b4d263241ac5fec6d795a52a,
+      type: 3}
