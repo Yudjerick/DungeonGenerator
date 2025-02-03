@@ -376,8 +376,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.44234243, g: 0.6679245, b: 0.44399977, a: 1}
-  m_Intensity: 0.27
-  m_Range: 4.16
+  m_Intensity: 1
+  m_Range: 8
   m_SpotAngle: 120.36255
   m_InnerSpotAngle: 87.520294
   m_CookieSize: 10
@@ -712,6 +712,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68435db039f3e314bbcf6af2f243601f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   rb: {fileID: 8280068053071315147}
   animator: {fileID: 2172370273755960457}
 --- !u!95 &2172370273755960457
