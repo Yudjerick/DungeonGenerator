@@ -28,7 +28,7 @@ public class EnemyMoveComponent : MonoBehaviour
         //_rb.velocity = (_player.transform.position - transform.position).normalized;
         if(_player != null && _agent.isActiveAndEnabled)
         {
-//            _agent.SetDestination(_player.transform.position);
+           _agent.SetDestination(_player.transform.position);
         }
         
     }

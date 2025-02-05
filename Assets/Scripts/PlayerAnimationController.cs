@@ -12,12 +12,12 @@ public class PlayerAnimationController : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            if(rb.velocity.magnitude > 0.05f && !_isRunning)
+            if(rb.linearVelocity.magnitude > 0.05f && !_isRunning)
             {
                 animator.SetBool("isRunning", true);
                 _isRunning = true;
             }
-            else if(rb.velocity.magnitude <= 0.05f && _isRunning)
+            else if(rb.linearVelocity.magnitude <= 0.05f && _isRunning)
             {
                 animator.SetBool("isRunning", false);
                 _isRunning = false;

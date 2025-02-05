@@ -43,7 +43,7 @@ public class TestCubeController : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            rb.velocity = (transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical")) * walkingSpeed + rb.velocity.y * Vector3.up;
+            rb.linearVelocity = (transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical")) * walkingSpeed + rb.linearVelocity.y * Vector3.up;
 
             // Player and Camera rotation
             if (canMove)
@@ -61,7 +61,7 @@ public class TestCubeController : NetworkBehaviour
     void SetPos()
     {
         print("SetPos");
-        transform.position = FindAnyObjectByType<NetworkStartPosition>().transform.position;
+        transform.position = FindAnyObjectByType<NetworkStartPosition>().transform.position; 
         
     }
 }
