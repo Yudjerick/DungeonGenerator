@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : NetworkBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private DungeonGenerator generator;
     private Rigidbody rb;
@@ -55,11 +55,6 @@ public class PlayerMovement : NetworkBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Invoke("SetPos", 1f);
-        if (!isLocalPlayer)
-        {
-            transform.GetChild(0).gameObject.SetActive(false);
-        }
-
         _sprintAction.canceled += OnSprintButtonStateChanged;
         _sprintAction.performed += OnSprintButtonStateChanged;
         _jumpAction.performed += OnJumpButtonPressed;
@@ -71,39 +66,35 @@ public class PlayerMovement : NetworkBehaviour
 
     void Update()
     {
-        if (isLocalPlayer)
+        var movement = _moveAction.ReadValue<Vector2>();
+        rb.linearVelocity = (transform.right * movement.x + transform.forward * movement.y) * _moveSpeed + rb.linearVelocity.y * Vector3.up;
+
+        // Player and Camera rotation
+        if (canMove)
         {
-            var movement = _moveAction.ReadValue<Vector2>();
-            rb.linearVelocity = (transform.right * movement.x + transform.forward * movement.y) * _moveSpeed + rb.linearVelocity.y * Vector3.up;
+            var lookInput = _lookAction.ReadValue<Vector2>();
+            _rotationY += -lookInput.y * lookSpeed;
+            _rotationY = Mathf.Clamp(_rotationY, -lookYLimit, lookYLimit);
+            playerCamera.transform.localRotation = Quaternion.Euler(_rotationY, 0, 0);
+            transform.rotation *= Quaternion.Euler(0, lookInput.x * lookSpeed, 0);
+        }
 
-            // Player and Camera rotation
-            if (canMove)
+        CheckIfCanJump();
+        if (_jumpRequested)
+        {
+            if (_canJump)
             {
-                var lookInput = _lookAction.ReadValue<Vector2>();
-                _rotationY += -lookInput.y * lookSpeed;
-                _rotationY = Mathf.Clamp(_rotationY, -lookYLimit, lookYLimit);
-                playerCamera.transform.localRotation = Quaternion.Euler(_rotationY, 0, 0);
-                transform.rotation *= Quaternion.Euler(0, lookInput.x * lookSpeed, 0);
+                Jump();
             }
-
-            CheckIfCanJump();
-            if(_jumpRequested)
+            else
             {
-                if(_canJump)
+                _jumpRequestTimer -= Time.deltaTime;
+                if (_jumpRequestTimer <= 0f)
                 {
-                    Jump();
-                }
-                else
-                {
-                    _jumpRequestTimer -= Time.deltaTime;
-                    if(_jumpRequestTimer <= 0f)
-                    {
-                        _jumpRequested = false;
-                    }
+                    _jumpRequested = false;
                 }
             }
         }
-
     }
 
     private void CheckIfCanJump()
