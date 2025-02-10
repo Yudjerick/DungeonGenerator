@@ -12,7 +12,14 @@ namespace Assets.Scripts.Items
         [field: SerializeField] public string Name { get; private set; }
         [field: SerializeField] public Sprite InventoryPicture { get; private set; }
 
-        public bool Interact(InteractionController controller)
+        public Action OnHoverEnterEvent;
+        public Action OnHoverExitEvent;
+
+        private void Start()
+        {
+        }
+
+        public virtual bool Interact(InteractionController controller)
         {
             var inventory = controller.gameObject.GetComponent<Inventory>();
             var result = inventory.AddItem(this);
@@ -22,6 +29,16 @@ namespace Assets.Scripts.Items
                 gameObject.SetActive(false);
             }
             return result;
+        }
+
+        public void OnHoverEnter(InteractionController controller)
+        {
+            OnHoverEnterEvent?.Invoke();
+        }
+
+        public void OnHoverExit(InteractionController controller)
+        {
+            OnHoverExitEvent?.Invoke();
         }
     }
 }
