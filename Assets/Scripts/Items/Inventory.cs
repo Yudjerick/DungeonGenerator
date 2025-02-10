@@ -14,6 +14,10 @@ public class Inventory : MonoBehaviour
         get => _selectedSlotIndex; 
         set 
         {
+            if (_selectedSlotIndex < 0 || _selectedSlotIndex >= Items.Count) 
+            {
+                return;
+            }
             value = _selectedSlotIndex;
             InventoryUpdatedEvent?.Invoke();
         } 
@@ -65,6 +69,29 @@ public class Inventory : MonoBehaviour
         }
         return false;
         
+    }
+
+    public bool IncreaseSlotIndex()
+    {
+        if (_selectedSlotIndex == Items.Count - 1)
+        {
+            return false;
+        }
+
+        _selectedSlotIndex++;
+        InventoryUpdatedEvent?.Invoke();
+        return true;
+    }
+
+    public bool DecreaseSlotIndex()
+    {
+        if (_selectedSlotIndex == 0)
+        {
+            return false;
+        }
+        _selectedSlotIndex--;
+        InventoryUpdatedEvent?.Invoke();
+        return true;
     }
 
     public int GetItemCount()

@@ -32,6 +32,15 @@ public class InventoryUI : MonoBehaviour
             {
                 slotImages[i].sprite = emptySlotSprite;
             }
+            if(i == model.SelectedSlotIndex)
+            {
+                slotImages[i].transform.parent.GetComponent<Image>().color = Color.blue;
+            }
+            else
+            {
+                slotImages[i].transform.parent.GetComponent<Image>().color = Color.white;
+            }
+            
         }
     }
     // Update is called once per frame

@@ -443,6 +443,7 @@ GameObject:
   - component: {fileID: 8871083123836459876}
   - component: {fileID: 8507991777945653577}
   - component: {fileID: 6047369254377593694}
+  - component: {fileID: 2174950753927515938}
   - component: {fileID: 5531052203066612199}
   - component: {fileID: 1934095798079072981}
   - component: {fileID: 3139300957624196989}
@@ -624,6 +625,19 @@ MonoBehaviour:
   <Items>k__BackingField: []
   _selectedSlotIndex: 0
   inventorySize: 4
+--- !u!114 &2174950753927515938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5740565089628344684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa4b572a0ddfcf44bb648c54e2559bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 6047369254377593694}
 --- !u!114 &5531052203066612199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1171,6 +1185,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventorySlot (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5243792435747545374, guid: ac78cdcc9a099854da8242b1bea5357a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5243792435747545374, guid: ac78cdcc9a099854da8242b1bea5357a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 5712417567266799162, guid: ac78cdcc9a099854da8242b1bea5357a,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1306,6 +1330,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: InventorySlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 5243792435747545374, guid: ac78cdcc9a099854da8242b1bea5357a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5243792435747545374, guid: ac78cdcc9a099854da8242b1bea5357a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 5712417567266799162, guid: ac78cdcc9a099854da8242b1bea5357a,
         type: 3}
@@ -1443,6 +1477,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventorySlot (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5243792435747545374, guid: ac78cdcc9a099854da8242b1bea5357a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5243792435747545374, guid: ac78cdcc9a099854da8242b1bea5357a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 5712417567266799162, guid: ac78cdcc9a099854da8242b1bea5357a,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1578,6 +1622,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: InventorySlot (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5243792435747545374, guid: ac78cdcc9a099854da8242b1bea5357a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5243792435747545374, guid: ac78cdcc9a099854da8242b1bea5357a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 5712417567266799162, guid: ac78cdcc9a099854da8242b1bea5357a,
         type: 3}
