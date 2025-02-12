@@ -1,16 +1,30 @@
+using Assets.Scripts.Items;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InteractionController : MonoBehaviour
 {
-    private InputAction _interactAction;
     [SerializeField] private float interactionDistance = 2f;
+    [SerializeField] private Inventory inventory;
+    [SerializeField] private Transform handPosition;
+
     private Collider _hoveredObject = null;
+    private InputAction _interactAction;
+    private InputAction _scrollAction;
+    private InputAction _dropAction;
 
     void Start()
     {
+        inventory = GetComponent<Inventory>();
         _interactAction = InputSystem.actions.FindAction("Interact");
         _interactAction.performed += OnInteract;
+
+        _scrollAction = InputSystem.actions.FindAction("Scroll");
+        _scrollAction.performed += OnScroll;
+
+        _dropAction = InputSystem.actions.FindAction("Drop");
+        _dropAction.performed += OnDrop;
     }
 
     // Update is called once per frame
@@ -44,5 +58,42 @@ public class InteractionController : MonoBehaviour
         {
             hitInfo.collider.gameObject.GetComponent<Interactable>()?.Interact(this);
         }
+    }
+
+    private void OnScroll(InputAction.CallbackContext context)
+    {
+        var scrollValue = context.ReadValue<float>();
+        if (scrollValue > 0f)
+        {
+            inventory.IncreaseSlotIndex();
+        }
+        else
+        {
+            inventory.DecreaseSlotIndex();
+        }
+    }
+
+    private void OnDrop(InputAction.CallbackContext context)
+    {
+
+        var dropedItem = inventory.DropItem();
+        if (dropedItem != null)
+        {
+            dropedItem.gameObject.SetActive(true);
+            dropedItem.transform.position = handPosition.position;
+            dropedItem.transform.parent = null;
+        }
+
+    }
+
+    public bool AddItemToInventory(InventoryItem item)
+    {
+        var success = inventory.AddItem(item);
+        if (success)
+        {
+            item.gameObject.SetActive(false);
+            item.transform.parent = transform;
+        }
+        return success;
     }
 }

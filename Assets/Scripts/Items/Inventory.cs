@@ -52,22 +52,21 @@ public class Inventory : MonoBehaviour
         }
         return false;
     }
-
-    [Button]
-    public bool DropItem()
+    //TO DO: move droping logic somewhere else
+    public InventoryItem DropItem()
     {
         if (Items[SelectedSlotIndex] != null)
         {
             var dropedItem = Items[SelectedSlotIndex];
             Items[SelectedSlotIndex] = null;
-            dropedItem.gameObject.SetActive(true);
-            dropedItem.transform.localPosition = Vector3.zero;
-            dropedItem.transform.parent = null;
+            //dropedItem.gameObject.SetActive(true);
+            //dropedItem.transform.localPosition = Vector3.zero;
+            //dropedItem.transform.parent = null;
             
             InventoryUpdatedEvent?.Invoke();
-            return true;
+            return dropedItem;
         }
-        return false;
+        return null;
         
     }
 

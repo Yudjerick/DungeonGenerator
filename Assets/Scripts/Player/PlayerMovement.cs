@@ -94,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
                     _jumpRequested = false;
                 }
             }
-        }
+        } 
     }
 
     private void CheckIfCanJump()

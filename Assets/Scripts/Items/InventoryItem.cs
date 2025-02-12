@@ -21,14 +21,7 @@ namespace Assets.Scripts.Items
 
         public virtual bool Interact(InteractionController controller)
         {
-            var inventory = controller.gameObject.GetComponent<Inventory>();
-            var result = inventory.AddItem(this);
-            if (result)
-            {
-                transform.SetParent(controller.transform);
-                gameObject.SetActive(false);
-            }
-            return result;
+            return controller.AddItemToInventory(this);
         }
 
         public void OnHoverEnter(InteractionController controller)
