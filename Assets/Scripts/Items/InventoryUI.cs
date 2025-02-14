@@ -18,11 +18,13 @@ public class InventoryUI : MonoBehaviour
     private void OnEnable()
     {
         model.InventoryUpdatedEvent += UpdateUI;
+        model.SlotIndexUpdatedEvent += UpdateUI;
     }
 
     private void OnDisable()
     {
         model.InventoryUpdatedEvent -= UpdateUI;
+        model.SlotIndexUpdatedEvent -= UpdateUI;
     }
 
     private void RecreateItemSlots()

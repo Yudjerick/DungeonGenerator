@@ -14,6 +14,8 @@ public class InteractionController : MonoBehaviour
     private InputAction _scrollAction;
     private InputAction _dropAction;
 
+    private InventoryItem _equippedItem = null;
+
     void Start()
     {
         inventory = GetComponent<Inventory>();
@@ -25,6 +27,8 @@ public class InteractionController : MonoBehaviour
 
         _dropAction = InputSystem.actions.FindAction("Drop");
         _dropAction.performed += OnDrop;
+
+        inventory.SlotIndexUpdatedEvent += UpdateEquippedItem;
     }
 
     // Update is called once per frame
@@ -82,6 +86,7 @@ public class InteractionController : MonoBehaviour
             dropedItem.gameObject.SetActive(true);
             dropedItem.transform.position = handPosition.position;
             dropedItem.transform.parent = null;
+            dropedItem.GetComponent<Rigidbody>().isKinematic = false; //rewrite later
         }
 
     }
@@ -91,9 +96,27 @@ public class InteractionController : MonoBehaviour
         var success = inventory.AddItem(item);
         if (success)
         {
+            item.OnHoverExit(this);
             item.gameObject.SetActive(false);
-            item.transform.parent = transform;
+            item.transform.parent = handPosition;
+            item.transform.localPosition = Vector3.zero;
+            item.GetComponent<Rigidbody>().isKinematic = true;
+            UpdateEquippedItem();
         }
         return success;
+    }
+
+    private void UpdateEquippedItem()
+    {
+        print("Upd Equip");
+        if (inventory.Items[inventory.SelectedSlotIndex] == _equippedItem)
+        {
+            return;
+        }
+        _equippedItem?.gameObject.SetActive(false);
+        _equippedItem = inventory.Items[inventory.SelectedSlotIndex];
+        _equippedItem?.gameObject.SetActive(true);
+        
+
     }
 }

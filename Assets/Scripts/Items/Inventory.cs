@@ -26,6 +26,7 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] private int inventorySize = 4;
     public Action InventoryUpdatedEvent;
+    public Action SlotIndexUpdatedEvent;
 
     private void Start()
     {
@@ -52,17 +53,12 @@ public class Inventory : MonoBehaviour
         }
         return false;
     }
-    //TO DO: move droping logic somewhere else
     public InventoryItem DropItem()
     {
         if (Items[SelectedSlotIndex] != null)
         {
             var dropedItem = Items[SelectedSlotIndex];
             Items[SelectedSlotIndex] = null;
-            //dropedItem.gameObject.SetActive(true);
-            //dropedItem.transform.localPosition = Vector3.zero;
-            //dropedItem.transform.parent = null;
-            
             InventoryUpdatedEvent?.Invoke();
             return dropedItem;
         }
@@ -78,7 +74,7 @@ public class Inventory : MonoBehaviour
         }
 
         _selectedSlotIndex++;
-        InventoryUpdatedEvent?.Invoke();
+        SlotIndexUpdatedEvent?.Invoke();
         return true;
     }
 
@@ -89,7 +85,7 @@ public class Inventory : MonoBehaviour
             return false;
         }
         _selectedSlotIndex--;
-        InventoryUpdatedEvent?.Invoke();
+        SlotIndexUpdatedEvent?.Invoke();
         return true;
     }
 
