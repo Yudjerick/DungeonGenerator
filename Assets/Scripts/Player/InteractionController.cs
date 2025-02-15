@@ -83,6 +83,7 @@ public class InteractionController : MonoBehaviour
         var dropedItem = inventory.DropItem();
         if (dropedItem != null)
         {
+            _equippedItem = null;
             dropedItem.gameObject.SetActive(true);
             dropedItem.transform.position = handPosition.position;
             dropedItem.transform.parent = null;
