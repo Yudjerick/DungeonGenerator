@@ -7,6 +7,7 @@ public class NetworkPlayerBootstrap : NetworkBehaviour
 {
     [SerializeField] List<GameObject> localPlayerObjects;
     [SerializeField] List<MonoBehaviour> localPlayerScripts;
+    [SerializeField] List<Component> localPlayerComponents;
     private void Start()
     {
         if (!isLocalPlayer)
@@ -19,7 +20,11 @@ public class NetworkPlayerBootstrap : NetworkBehaviour
             {
                 Destroy(obj);
             }
+            foreach(Component obj in localPlayerComponents)
+            {
+                Destroy(obj);
+            }
         }
-        
+        Destroy(this);
     }
 }
