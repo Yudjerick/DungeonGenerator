@@ -10,23 +10,13 @@ public class InteractionController : MonoBehaviour
     [SerializeField] private Transform handPosition;
 
     private Collider _hoveredObject = null;
-    private InputAction _interactAction;
-    private InputAction _scrollAction;
-    private InputAction _dropAction;
 
     private InventoryItem _equippedItem = null;
 
     void Start()
     {
         inventory = GetComponent<Inventory>();
-        _interactAction = InputSystem.actions.FindAction("Interact");
-        _interactAction.performed += OnInteract;
-
-        _scrollAction = InputSystem.actions.FindAction("Scroll");
-        _scrollAction.performed += OnScroll;
-
-        _dropAction = InputSystem.actions.FindAction("Drop");
-        _dropAction.performed += OnDrop;
+       
 
         inventory.SlotIndexUpdatedEvent += UpdateEquippedItem;
     }
@@ -54,7 +44,7 @@ public class InteractionController : MonoBehaviour
         
     }
 
-    private void OnInteract(InputAction.CallbackContext context)
+    public void Interact()
     {
         var camera = Camera.main;
         var wasHit = Physics.Raycast(camera.transform.position, camera.transform.forward, out RaycastHit hitInfo, interactionDistance);
@@ -64,9 +54,8 @@ public class InteractionController : MonoBehaviour
         }
     }
 
-    private void OnScroll(InputAction.CallbackContext context)
+    public void OnScroll(float scrollValue)
     {
-        var scrollValue = context.ReadValue<float>();
         if (scrollValue > 0f)
         {
             inventory.IncreaseSlotIndex();
@@ -77,7 +66,7 @@ public class InteractionController : MonoBehaviour
         }
     }
 
-    private void OnDrop(InputAction.CallbackContext context)
+    public void OnDrop()
     {
 
         var dropedItem = inventory.DropItem();

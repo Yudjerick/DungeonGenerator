@@ -33,20 +33,14 @@ public class PlayerMovement : MonoBehaviour
 
     private float _rotationY;
 
-    private InputAction _moveAction;
-    private InputAction _lookAction;
-    private InputAction _sprintAction;
-    private InputAction _jumpAction;
+    
 
     [HideInInspector]
     public bool canMove = true;
 
     void Start()
     {
-        _moveAction = InputSystem.actions.FindAction("Move");
-        _lookAction = InputSystem.actions.FindAction("Look");
-        _sprintAction = InputSystem.actions.FindAction("Sprint");
-        _jumpAction = InputSystem.actions.FindAction("Jump");
+        
 
         rb = GetComponent<Rigidbody>();
         generator = FindAnyObjectByType<DungeonGenerator>();
@@ -55,24 +49,21 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Invoke("SetPos", 1f);
-        _sprintAction.canceled += OnSprintButtonStateChanged;
-        _sprintAction.performed += OnSprintButtonStateChanged;
-        _jumpAction.performed += OnJumpButtonPressed;
 
         _moveSpeed = walkingSpeed;
         _groundCheckOverlapColliders = new Collider[_maxGroundCheckOverlapColliders];
         _playerCollider = GetComponent<Collider>();
     }
 
-    void Update()
+    public void HandleMovement(Vector2 movementInput, Vector2 lookInput)
     {
-        var movement = _moveAction.ReadValue<Vector2>();
-        rb.linearVelocity = (transform.right * movement.x + transform.forward * movement.y) * _moveSpeed + rb.linearVelocity.y * Vector3.up;
+       //var movement = _moveAction.ReadValue<Vector2>();
+        rb.linearVelocity = (transform.right * movementInput.x + transform.forward * movementInput.y) * _moveSpeed + rb.linearVelocity.y * Vector3.up;
 
         // Player and Camera rotation
         if (canMove)
         {
-            var lookInput = _lookAction.ReadValue<Vector2>();
+            //var lookInput = _lookAction.ReadValue<Vector2>();
             _rotationY += -lookInput.y * lookSpeed;
             _rotationY = Mathf.Clamp(_rotationY, -lookYLimit, lookYLimit);
             playerCamera.transform.localRotation = Quaternion.Euler(_rotationY, 0, 0);
@@ -111,9 +102,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnSprintButtonStateChanged(InputAction.CallbackContext context)
+    public void OnSprintButtonStateChanged(bool isPressed)
     {
-        if(context.performed)
+        if(isPressed)
         {
             _moveSpeed = sprintSpeed;
         }
@@ -123,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnJumpButtonPressed(InputAction.CallbackContext context)
+    public void OnJumpButtonPressed()
     {
         if (_canJump)
         {

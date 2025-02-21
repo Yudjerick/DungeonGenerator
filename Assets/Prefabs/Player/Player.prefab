@@ -556,10 +556,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5714026299009799099}
-  - component: {fileID: 1631922996410267608}
-  - component: {fileID: 601070724953637337}
   - component: {fileID: 8280068053071315147}
   - component: {fileID: 1555735598916946489}
+  - component: {fileID: 4307311120130049909}
   - component: {fileID: 8871083123836459876}
   - component: {fileID: 8507991777945653577}
   - component: {fileID: 6047369254377593694}
@@ -592,59 +591,6 @@ Transform:
   - {fileID: 3637259790298977028}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1631922996410267608
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5740565089628344684}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &601070724953637337
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5740565089628344684}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!54 &8280068053071315147
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -691,10 +637,25 @@ MonoBehaviour:
   - {fileID: 3119415143089509551}
   localPlayerScripts:
   - {fileID: 8871083123836459876}
+  - {fileID: 4307311120130049909}
   localPlayerComponents:
   - {fileID: 1515279145109904702}
   - {fileID: 1346016773369037229}
   - {fileID: 8395185102318143828}
+--- !u!114 &4307311120130049909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5740565089628344684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77ddf8b3ae5fb4498faf1230a1cd51b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionController: {fileID: 8507991777945653577}
+  playerMovement: {fileID: 8871083123836459876}
 --- !u!114 &8871083123836459876
 MonoBehaviour:
   m_ObjectHideFlags: 0
