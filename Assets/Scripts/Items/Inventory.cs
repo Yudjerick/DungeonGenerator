@@ -33,7 +33,7 @@ public class Inventory : MonoBehaviour
         Items = new List<InventoryItem>();
         for(int i = 0; i < inventorySize; i++)
         {
-            Items.Add(null); 
+            Items.Add(null);
         }
     }
     public bool AddItem(InventoryItem item)

@@ -561,7 +561,9 @@ GameObject:
   - component: {fileID: 4307311120130049909}
   - component: {fileID: 8871083123836459876}
   - component: {fileID: 8507991777945653577}
+  - component: {fileID: 3214197866134342861}
   - component: {fileID: 6047369254377593694}
+  - component: {fileID: 1347983251649556454}
   - component: {fileID: 5531052203066612199}
   - component: {fileID: 1934095798079072981}
   - component: {fileID: 3139300957624196989}
@@ -656,6 +658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionController: {fileID: 8507991777945653577}
   playerMovement: {fileID: 8871083123836459876}
+  networkInteractionController: {fileID: 3214197866134342861}
 --- !u!114 &8871083123836459876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -695,6 +698,23 @@ MonoBehaviour:
   interactionDistance: 2
   inventory: {fileID: 6047369254377593694}
   handPosition: {fileID: 4797455084279628629}
+  cameraPos: {fileID: 2020943303752947436}
+--- !u!114 &3214197866134342861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5740565089628344684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abe1832c795434346a4099832a31768c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  controller: {fileID: 8507991777945653577}
 --- !u!114 &6047369254377593694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -710,6 +730,21 @@ MonoBehaviour:
   <Items>k__BackingField: []
   _selectedSlotIndex: 0
   inventorySize: 4
+--- !u!114 &1347983251649556454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5740565089628344684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 488d81892219a0145888755a446a2807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!114 &5531052203066612199
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private InteractionController interactionController;
     [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private NetworkInteractionController networkInteractionController;
 
     private InputAction _interactAction;
     private InputAction _scrollAction;
@@ -16,6 +17,8 @@ public class PlayerInput : MonoBehaviour
 
     void Start()
     {
+        networkInteractionController = GetComponent<NetworkInteractionController>();
+
         _interactAction = InputSystem.actions.FindAction("Interact");
         _interactAction.performed += OnInteract;
         _scrollAction = InputSystem.actions.FindAction("Scroll");
@@ -36,7 +39,8 @@ public class PlayerInput : MonoBehaviour
 
     private void OnInteract(InputAction.CallbackContext context)
     {
-        interactionController.Interact();
+        //interactionController.Interact();
+        networkInteractionController.Interact();
     }
 
     private void OnScroll(InputAction.CallbackContext context)

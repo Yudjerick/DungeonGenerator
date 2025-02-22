@@ -8,6 +8,7 @@ public class InteractionController : MonoBehaviour
     [SerializeField] private float interactionDistance = 2f;
     [SerializeField] private Inventory inventory;
     [SerializeField] private Transform handPosition;
+    [SerializeField] private Transform cameraPos;
 
     private Collider _hoveredObject = null;
 
@@ -29,8 +30,7 @@ public class InteractionController : MonoBehaviour
 
     private void HandleHover()
     {
-        var camera = Camera.main;
-        var wasHit = Physics.Raycast(camera.transform.position, camera.transform.forward, out RaycastHit hitInfo, interactionDistance);
+        var wasHit = Physics.Raycast(cameraPos.position, cameraPos.forward, out RaycastHit hitInfo, interactionDistance);
         if(hitInfo.collider != _hoveredObject)
         {
             _hoveredObject?.GetComponent<Interactable>()?.OnHoverExit(this);
@@ -46,9 +46,8 @@ public class InteractionController : MonoBehaviour
 
     public void Interact()
     {
-        var camera = Camera.main;
-        var wasHit = Physics.Raycast(camera.transform.position, camera.transform.forward, out RaycastHit hitInfo, interactionDistance);
-        if(wasHit)
+        var wasHit = Physics.Raycast(cameraPos.position, cameraPos.forward, out RaycastHit hitInfo, interactionDistance);
+        if (wasHit)
         {
             hitInfo.collider.gameObject.GetComponent<Interactable>()?.Interact(this);
         }
@@ -83,15 +82,16 @@ public class InteractionController : MonoBehaviour
 
     public bool AddItemToInventory(InventoryItem item)
     {
+
         var success = inventory.AddItem(item);
         if (success)
         {
-            item.OnHoverExit(this);
-            item.gameObject.SetActive(false);
-            item.transform.parent = handPosition;
-            item.transform.localPosition = Vector3.zero;
-            item.GetComponent<Rigidbody>().isKinematic = true;
-            UpdateEquippedItem();
+            //item.OnHoverExit(this);
+            //item.gameObject.SetActive(false);
+            //item.transform.parent = handPosition;
+            //item.transform.localPosition = Vector3.zero;
+            //item.GetComponent<Rigidbody>().isKinematic = true;
+            //UpdateEquippedItem();
         }
         return success;
     }
