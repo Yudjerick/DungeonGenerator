@@ -50,7 +50,7 @@ public class PlayerInput : MonoBehaviour
 
     private void OnDrop(InputAction.CallbackContext context)
     {
-        interactionController.OnDrop();
+        networkInteractionController.OnDrop();
     }
 
     private void OnSprintButtonStateChanged(InputAction.CallbackContext context)

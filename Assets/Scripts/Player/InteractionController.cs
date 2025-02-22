@@ -1,13 +1,15 @@
 using Assets.Scripts.Items;
+using Mirror;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Progress;
 
 public class InteractionController : MonoBehaviour
 {
     [SerializeField] private float interactionDistance = 2f;
     [SerializeField] private Inventory inventory;
-    [SerializeField] private Transform handPosition;
+    [field: SerializeField] public Transform HandPosition { get; private set; }
     [SerializeField] private Transform cameraPos;
 
     private Collider _hoveredObject = null;
@@ -20,6 +22,7 @@ public class InteractionController : MonoBehaviour
        
 
         inventory.SlotIndexUpdatedEvent += UpdateEquippedItem;
+        inventory.InventoryUpdatedEvent += OnInventoryUpdated;
     }
     void Update()
     {
@@ -71,7 +74,7 @@ public class InteractionController : MonoBehaviour
         {
             _equippedItem = null;
             dropedItem.gameObject.SetActive(true);
-            dropedItem.transform.position = handPosition.position;
+            dropedItem.transform.position = HandPosition.position;
             dropedItem.transform.parent = null;
             dropedItem.GetComponent<Rigidbody>().isKinematic = false; //rewrite later
         }
@@ -82,16 +85,30 @@ public class InteractionController : MonoBehaviour
     {
 
         var success = inventory.AddItem(item);
-        if (success)
-        {
-            //item.OnHoverExit(this);
-            //item.gameObject.SetActive(false);
-            //item.transform.parent = handPosition;
-            //item.transform.localPosition = Vector3.zero;
-            //item.GetComponent<Rigidbody>().isKinematic = true;
-            //UpdateEquippedItem();
-        }
         return success;
+    }
+
+    private void OnInventoryUpdated() // think about it later
+    {
+        
+        foreach(InventoryItem item in inventory.Items) 
+        {
+            if(item != null)
+            {
+                print("AAAAAAA");
+                item.GetComponent<HandHoldable>().SetParentInteractionControllerObj(gameObject);
+                item.gameObject.SetActive(false);
+            }
+            
+        }
+        if (_equippedItem != null && inventory.Items[inventory.SelectedSlotIndex] == null)
+        {
+            _equippedItem.gameObject.SetActive(true);
+            _equippedItem.GetComponent<HandHoldable>().SetParentInteractionControllerObj(null);
+            _equippedItem.GetComponent<Rigidbody>().isKinematic = false;
+        }
+        _equippedItem = inventory.Items[inventory.SelectedSlotIndex];
+        _equippedItem?.gameObject.SetActive(true);
     }
 
     private void UpdateEquippedItem()

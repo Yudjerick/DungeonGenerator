@@ -19,6 +19,11 @@ public class NetworkInteractionController : NetworkBehaviour
         CmdScroll(scrollValue);
     }
 
+    public void OnDrop()
+    {
+        CmdDrop();
+    }
+
     [Command]
     private void CmdScroll(float scrollValue)
     {
@@ -30,6 +35,13 @@ public class NetworkInteractionController : NetworkBehaviour
     {
         controller.Interact();
     }
+
+    [Command]
+    public void CmdDrop()
+    {
+        controller.OnDrop();
+    }
+
     // Update is called once per frame
     void Update()
     {
