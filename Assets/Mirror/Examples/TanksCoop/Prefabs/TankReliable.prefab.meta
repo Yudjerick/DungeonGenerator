@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 4713c245817ce374782742097e8ac87c
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129321
+  packageName: Mirror
+  packageVersion: 93.0.1
+  assetPath: Assets/Mirror/Examples/TanksCoop/Prefabs/TankReliable.prefab
+  uploadId: 698109

@@ -12,14 +12,9 @@ public class NetworkInventorySync : NetworkBehaviour
 
     public readonly SyncList<GameObject> itemObjects = new SyncList<GameObject>();
 
-    public override void OnStartClient()
-    {
-        base.OnStartClient();
-        
-    }
     void Start()
-    { 
-
+    {
+        itemObjects.OnAdd += RpcUpdateClientInventory;
         _inventory = GetComponent<Inventory>();
         if(isServer)
         {
@@ -52,8 +47,8 @@ public class NetworkInventorySync : NetworkBehaviour
         //RpcUpdateClientInventory();
     }
 
-    [ClientRpc]
-    private void RpcUpdateClientInventory()
+    //[ClientRpc]
+    private void RpcUpdateClientInventory(int index)
     {
         if (isServer) 
         {
