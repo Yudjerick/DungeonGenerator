@@ -21,8 +21,6 @@ public class InteractionController : MonoBehaviour
 
         inventory.SlotIndexUpdatedEvent += UpdateEquippedItem;
     }
-
-    // Update is called once per frame
     void Update()
     {
         HandleHover();

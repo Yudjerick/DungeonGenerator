@@ -18,8 +18,8 @@ public class Inventory : MonoBehaviour
             {
                 return;
             }
-            value = _selectedSlotIndex;
-            InventoryUpdatedEvent?.Invoke();
+            _selectedSlotIndex = value;
+            SlotIndexUpdatedEvent?.Invoke();
         } 
     }
     [SerializeField] private int _selectedSlotIndex;

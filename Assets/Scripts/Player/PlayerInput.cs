@@ -45,7 +45,7 @@ public class PlayerInput : MonoBehaviour
 
     private void OnScroll(InputAction.CallbackContext context)
     {
-        interactionController.OnScroll(context.ReadValue<float>());
+        networkInteractionController.OnScroll(context.ReadValue<float>());
     }
 
     private void OnDrop(InputAction.CallbackContext context)

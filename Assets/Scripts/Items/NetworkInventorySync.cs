@@ -12,15 +12,33 @@ public class NetworkInventorySync : NetworkBehaviour
 
     public readonly SyncList<GameObject> itemObjects = new SyncList<GameObject>();
 
+    [SyncVar (hook = nameof(UpdateSlotIndexOnClientHook))] public int _selectedSlotIndex;
+
     void Start()
     {
-        itemObjects.OnAdd += RpcUpdateClientInventory;
+        itemObjects.OnAdd += UpdateClientInventory;
         _inventory = GetComponent<Inventory>();
         if(isServer)
         {
             _inventory.InventoryUpdatedEvent += OnInventoryUpdated;
+            _inventory.SlotIndexUpdatedEvent += OnSlotIndexUpdated;
         }
         
+    }
+
+    private void OnSlotIndexUpdated()
+    {
+        _selectedSlotIndex = _inventory.SelectedSlotIndex;
+    }
+
+    private void UpdateSlotIndexOnClientHook(int oldVal, int newVal)
+    {
+        if (isServer)
+        {
+            return;
+        }
+        print("Hook " + newVal);
+        _inventory.SelectedSlotIndex = newVal;
     }
 
     private void OnInventoryUpdated()
@@ -44,11 +62,9 @@ public class NetworkInventorySync : NetworkBehaviour
         }
         itemObjects.Clear();
         itemObjects.AddRange(newInventoryObjects);
-        //RpcUpdateClientInventory();
     }
 
-    //[ClientRpc]
-    private void RpcUpdateClientInventory(int index)
+    private void UpdateClientInventory(int index)
     {
         if (isServer) 
         {
@@ -65,11 +81,5 @@ public class NetworkInventorySync : NetworkBehaviour
             
         }
         _inventory.InventoryUpdatedEvent?.Invoke(); 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
