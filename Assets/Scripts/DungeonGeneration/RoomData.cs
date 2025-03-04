@@ -14,6 +14,8 @@ namespace DungeonGeneration
 
         [field: SerializeField] public int TransitionGroupId { get; set; } = 0;
 
+        [field: SerializeField] public bool RandomRotation { get; set; } = true;
+
         public List<Transition> Transitions => transitions;
         [ReadOnly]
         [SerializeField] private List<Transition> transitions = new List<Transition>();
@@ -42,7 +44,8 @@ namespace DungeonGeneration
                     doorPos.Uses++;
                 }
             }
-            if (!roomData.transitions.Where(x => x.NextRoom == this).Any())
+            print(roomData + " " + transitions);
+            if (!roomData.transitions.Where(x => x.NextRoom == this).Any()) 
             {
                 var transition = new Transition { NextRoom = this, Door = otherDoorPos };
                 roomData.transitions.Add(transition);
@@ -78,6 +81,10 @@ namespace DungeonGeneration
             doorPos = selectedDoor;
             otherDoorPos = selectedOtherDoor;
             return minDistance;
+        }
+        public virtual void Initialize(FloorGenerator parentGenerator)
+        {
+            transitions = new List<Transition>();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace DungeonGeneration
         {
             foreach (var floorGenerator in floorGenerators)
             {
-                floorGenerator.Initialize(this, floorGenerators.IndexOf(floorGenerator));
+                floorGenerator.Initialize(this, floorGenerators.IndexOf(floorGenerator), 0, 0);
             }
             foreach (var floorGenerator in floorGenerators)
             {

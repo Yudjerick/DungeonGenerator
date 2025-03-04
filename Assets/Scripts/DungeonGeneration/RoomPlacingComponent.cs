@@ -42,17 +42,21 @@ namespace DungeonGeneration
             return true;
         }
 
-        public RoomData PlaceRoom(int x, int z, RoomData room, int rotationsCount, FloorGenerator fg)
+        public RoomData PlaceRoom(int x, int z, RoomData roomRef, int rotationsCount, FloorGenerator fg)
         {
-            int width = room.Width;
-            int height = room.Height;
-            int depth = room.Depth;
+            int width = roomRef.Width;
+            int height = roomRef.Height;
+            int depth = roomRef.Depth;
             int xOffset = 0;
             int zOffset = 0;
+            if (!roomRef.RandomRotation) // move somewhere else later
+            {
+                rotationsCount = 0;
+            }
             if (rotationsCount % 2 != 0)
             {
-                depth = room.Width;
-                width = room.Depth;
+                depth = roomRef.Width;
+                width = roomRef.Depth;
             }
             if (rotationsCount == 2 || rotationsCount == 3)
             {
@@ -64,19 +68,18 @@ namespace DungeonGeneration
             }
             for (int i = 0; i < width; i++)
             {
-                for (int j = 0; j < height; j++)
+                for (int k = 0; k < depth; k++)
                 {
-                    for (int k = 0; k < depth; k++)
-                    {
 
-                        fg.SolidMap[x + i, z + k] = true;
-                    }
+                    fg.SolidMap[x + i, z + k] = true;
                 }
             }
-            var RoomDimensions = UnityEngine.Object.Instantiate(room, new Vector3((x + xOffset) * fg.GridCellSize,
-                fg.LevelY, (z + zOffset) * fg.GridCellSize), Quaternion.Euler(0, 90 * rotationsCount, 0), fg.Floor.transform);
-            fg.Rooms.Add(RoomDimensions);
-            return RoomDimensions;
+            var roomInstance = UnityEngine.Object.Instantiate(roomRef, new Vector3((fg.ClusterZeroX + x + xOffset) * fg.GridCellSize,
+                fg.LevelY, (fg.ClusterZeroZ + z + zOffset) * fg.GridCellSize), Quaternion.Euler(0, 90 * rotationsCount, 0), fg.Floor.transform);
+            roomInstance.Initialize(fg);
+            
+            fg.Rooms.Add(roomInstance);
+            return roomInstance;
         }
 
         public void PlaceAllRooms(int y, FloorGenerator fg)

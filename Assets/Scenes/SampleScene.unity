@@ -222,6 +222,8 @@ MonoBehaviour:
   - {fileID: 8076634085858172999, guid: 2072ed32ceb19494b836271294758d6e, type: 3}
   segmentPack: {fileID: 11400000, guid: 9fcd200346df5a645ad13ccdd3591898, type: 2}
   testCorridor: {fileID: 0}
+  <ClusterZeroX>k__BackingField: 0
+  <ClusterZeroZ>k__BackingField: 0
 --- !u!4 &33619237
 Transform:
   m_ObjectHideFlags: 0
@@ -390,6 +392,8 @@ MonoBehaviour:
   - {fileID: 1275677945628152649, guid: d8801f3c66fab8748b0e8322a12f34ad, type: 3}
   segmentPack: {fileID: 11400000, guid: a53600260885c16418673ac548f1aeea, type: 2}
   testCorridor: {fileID: 0}
+  <ClusterZeroX>k__BackingField: 0
+  <ClusterZeroZ>k__BackingField: 0
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,6 +681,72 @@ Transform:
   - {fileID: 951884062}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &786737816
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 786737819}
+  - component: {fileID: 786737818}
+  - component: {fileID: 786737817}
+  m_Layer: 0
+  m_Name: DungeonGenerator (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &786737817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786737816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430389721abe82b42babf31130e24f63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cellBlock: {fileID: 208784014145111196, guid: 60bed8894788a2443881e7b79621fc35,
+    type: 3}
+  gridCellSize: 1
+  height: 2
+  width: 18
+  depth: 18
+--- !u!114 &786737818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786737816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 800aed5397b37d4479daa2b211d41bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <floorGenerators>k__BackingField:
+  - {fileID: 1482669152}
+--- !u!4 &786737819
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786737816}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1975.0099, y: -7402.7, z: 5360.573}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1482669153}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &846968920
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,6 +814,8 @@ MonoBehaviour:
   - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
   segmentPack: {fileID: 11400000, guid: 9fcd200346df5a645ad13ccdd3591898, type: 2}
   testCorridor: {fileID: 0}
+  <ClusterZeroX>k__BackingField: 0
+  <ClusterZeroZ>k__BackingField: 0
 --- !u!1 &912523480
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,6 +863,8 @@ MonoBehaviour:
   - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
   segmentPack: {fileID: 11400000, guid: 9fcd200346df5a645ad13ccdd3591898, type: 2}
   testCorridor: {fileID: 0}
+  <ClusterZeroX>k__BackingField: 0
+  <ClusterZeroZ>k__BackingField: 0
 --- !u!4 &912523482
 Transform:
   m_ObjectHideFlags: 0
@@ -868,6 +942,8 @@ MonoBehaviour:
   - {fileID: 4497298909979175507, guid: 2c8d3de9130d99047be85a016928e21e, type: 3}
   segmentPack: {fileID: 11400000, guid: 9fcd200346df5a645ad13ccdd3591898, type: 2}
   testCorridor: {fileID: 0}
+  <ClusterZeroX>k__BackingField: 0
+  <ClusterZeroZ>k__BackingField: 0
 --- !u!1 &1274990604
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,6 +1003,8 @@ MonoBehaviour:
   - {fileID: 1275677945628152649, guid: d8801f3c66fab8748b0e8322a12f34ad, type: 3}
   segmentPack: {fileID: 11400000, guid: a53600260885c16418673ac548f1aeea, type: 2}
   testCorridor: {fileID: 0}
+  <ClusterZeroX>k__BackingField: 0
+  <ClusterZeroZ>k__BackingField: 0
 --- !u!4 &1274990606
 Transform:
   m_ObjectHideFlags: 0
@@ -1019,6 +1097,69 @@ MonoBehaviour:
   - {fileID: 8004593807692316964, guid: 040f9f3cb7424f04b82a0441e5c0f87d, type: 3}
   segmentPack: {fileID: 11400000, guid: a53600260885c16418673ac548f1aeea, type: 2}
   testCorridor: {fileID: 0}
+  <ClusterZeroX>k__BackingField: 0
+  <ClusterZeroZ>k__BackingField: 0
+--- !u!1 &1482669151
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1482669153}
+  - component: {fileID: 1482669152}
+  m_Layer: 0
+  m_Name: FloorGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1482669152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482669151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c655c697799e5042bbca7d267e8430c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gap: 2
+  gridCellSize: 1
+  dungeonWidth: 60
+  dungeonHeight: 30
+  dungeonDepth: 60
+  levelY: 10
+  loopCount: 0
+  minimalLoopLength: 4
+  roomRefs:
+  - {fileID: 5996491679188931101, guid: 640063f30b9c0194ba5c65d6b5b95aad, type: 3}
+  - {fileID: 8781849712297255680, guid: bdb581b0e2d04c0418f4a11df6eb1437, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  segmentPack: {fileID: 11400000, guid: 9fcd200346df5a645ad13ccdd3591898, type: 2}
+  testCorridor: {fileID: 0}
+  <ClusterZeroX>k__BackingField: 0
+  <ClusterZeroZ>k__BackingField: 0
+--- !u!4 &1482669153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482669151}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 786737819}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1584280289
 GameObject:
   m_ObjectHideFlags: 0
@@ -1185,11 +1326,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clientStarted: 0
   sceneId: 180522131
   _assetId: 0
   serverOnly: 0
-  visible: 0
+  visibility: 0
   hasSpawned: 0
 --- !u!114 &1741672889
 MonoBehaviour:
@@ -1338,7 +1478,7 @@ MonoBehaviour:
   MaxRetransmit: 40
   MaximizeSocketBuffers: 1
   ReliableMaxMessageSize: 297433
-  UnreliableMaxMessageSize: 1195
+  UnreliableMaxMessageSize: 1194
   debugLog: 0
   statisticsGUI: 0
   statisticsLog: 0
@@ -1373,10 +1513,9 @@ MonoBehaviour:
   headlessStartMode: 1
   editorAutoStart: 0
   sendRate: 60
-  autoStartServerBuild: 0
-  autoConnectClientBuild: 0
   offlineScene: 
   onlineScene: 
+  offlineSceneLoadDelay: 0
   transport: {fileID: 2084296228}
   networkAddress: localhost
   maxConnections: 100
@@ -1437,7 +1576,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2139936859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1454,8 +1593,8 @@ MonoBehaviour:
     type: 3}
   gridCellSize: 1
   height: 2
-  width: 5
-  depth: 6
+  width: 18
+  depth: 18
 --- !u!114 &2139936860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1496,6 +1635,7 @@ SceneRoots:
   - {fileID: 1835216200}
   - {fileID: 704747525}
   - {fileID: 2139936861}
+  - {fileID: 786737819}
   - {fileID: 608600755}
   - {fileID: 70028849}
   - {fileID: 2084296231}

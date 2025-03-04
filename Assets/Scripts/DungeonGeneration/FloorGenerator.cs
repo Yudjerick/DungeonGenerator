@@ -39,8 +39,13 @@ namespace DungeonGeneration
         public DungeonGenerator DungeonGenerator { get => _dungeonGenerator; set => _dungeonGenerator = value; }
         public int FloorIndex { get => _floorIndex; set => _floorIndex = value; }
 
-        public void Initialize(DungeonGenerator dungeonGenerator, int floorIndex)
+        [field: SerializeField]public int ClusterZeroX { get; set; }
+        [field: SerializeField] public int ClusterZeroZ { get; set; }
+
+        public void Initialize(DungeonGenerator dungeonGenerator, int floorIndex, int clusterZeroX, int clusterZeroZ)
         {
+            ClusterZeroX = clusterZeroX;
+            ClusterZeroZ = clusterZeroZ;
             FloorIndex = floorIndex;
             DungeonGenerator = dungeonGenerator;
             Floor = new GameObject("Floor");
@@ -76,10 +81,12 @@ namespace DungeonGeneration
                 {
                     if (!transition.PathBuilt)
                     {
-                        Vector3 start = transition.Door.Transform.position / GridCellSize;
+                        Vector3 start = transition.Door.Transform.position / GridCellSize
+                            - new Vector3(ClusterZeroX, 0, ClusterZeroZ);
                         start.y = 0;
                         Transition endTransition = transition.NextRoom.Transitions.Where(t => t.NextRoom == room).FirstOrDefault();
-                        Vector3 end = endTransition.Door.Transform.position / GridCellSize;
+                        Vector3 end = endTransition.Door.Transform.position / GridCellSize
+                            - new Vector3(ClusterZeroX, 0, ClusterZeroZ);
                         end.y = 0;
                         Pathfinder pathfinder = new Pathfinder(SolidMap, (int)Mathf.Round(start.x), (int)Mathf.Round(start.z), (int)Mathf.Round(end.x), (int)Mathf.Round(end.z));
 
@@ -128,7 +135,8 @@ namespace DungeonGeneration
                 {
                     if (_corridorMap[i, k] != null)
                     {
-                        Instantiate(segmentPack.GetSegment(_corridorMap[i, k]), new Vector3(i * gridCellSize, LevelY, k * gridCellSize), Quaternion.identity, corridor.transform);
+                        Instantiate(segmentPack.GetSegment(_corridorMap[i, k]), new Vector3((i + ClusterZeroX) * gridCellSize,
+                            LevelY, (k + ClusterZeroZ) * gridCellSize), Quaternion.identity, corridor.transform);
 
                     }
                 }
@@ -143,8 +151,8 @@ namespace DungeonGeneration
                 List<DoorData> unusedDoors = room.AvailableDoors.Where(d => !room.Transitions.Select(x => x.Door).Contains(d)).ToList();
                 foreach (DoorData unusedDoor in unusedDoors)
                 {
-                    int x = (int)Mathf.Round(unusedDoor.Transform.position.x / gridCellSize);
-                    int z = (int)Mathf.Round(unusedDoor.Transform.position.z / gridCellSize);
+                    int x = (int)Mathf.Round(unusedDoor.Transform.position.x / gridCellSize) - ClusterZeroX;
+                    int z = (int)Mathf.Round(unusedDoor.Transform.position.z / gridCellSize) - ClusterZeroZ;
                     if (_corridorMap[x, z] == null)
                     {
                         _corridorMap[x, z] = new List<CorridorDirection>();
