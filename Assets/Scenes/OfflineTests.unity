@@ -299,8 +299,8 @@ GameObject:
   - component: {fileID: 898136901}
   - component: {fileID: 898136900}
   - component: {fileID: 898136902}
-  - component: {fileID: 898136905}
   - component: {fileID: 898136904}
+  - component: {fileID: 898136905}
   m_Layer: 0
   m_Name: TestItem
   m_TagString: Untagged
@@ -438,7 +438,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &898136902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -478,13 +478,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 898136895}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce589214b535eff4f97747965dfb2769, type: 3}
+  m_Script: {fileID: 11500000, guid: cb803efbe62c34d7baece46c9ffebad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  _parent: {fileID: 0}
+  target: {fileID: 898136899}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  timelineOffset: 1
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &918855735
 GameObject:
   m_ObjectHideFlags: 0

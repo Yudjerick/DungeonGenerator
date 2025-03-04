@@ -95,8 +95,10 @@ public class InteractionController : MonoBehaviour
         {
             if(item != null)
             {
-                print("AAAAAAA");
-                item.GetComponent<HandHoldable>().SetParentInteractionControllerObj(gameObject);
+                //item.GetComponent<HandHoldable>().SetParentInteractionControllerObj(gameObject);
+                item.transform.parent = HandPosition;
+                item.GetComponent<Rigidbody>().isKinematic = true;
+                item.transform.localPosition = Vector3.zero;
                 item.gameObject.SetActive(false);
             }
             
@@ -104,7 +106,9 @@ public class InteractionController : MonoBehaviour
         if (_equippedItem != null && inventory.Items[inventory.SelectedSlotIndex] == null)
         {
             _equippedItem.gameObject.SetActive(true);
-            _equippedItem.GetComponent<HandHoldable>().SetParentInteractionControllerObj(null);
+            //_equippedItem.GetComponent<HandHoldable>().SetParentInteractionControllerObj(null);
+            _equippedItem.transform.parent = null;
+            
             _equippedItem.GetComponent<Rigidbody>().isKinematic = false;
         }
         _equippedItem = inventory.Items[inventory.SelectedSlotIndex];
