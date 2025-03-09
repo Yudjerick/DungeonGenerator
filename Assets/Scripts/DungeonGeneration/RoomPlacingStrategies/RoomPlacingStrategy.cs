@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 
 namespace DungeonGeneration
 {
-    public class RoomPlacingComponent
+    public abstract class RoomPlacingStrategy
     {
         public bool CanPlaceRoom(int x, int z, RoomData room, int rotationsCount, FloorGenerator floorGenerator)
         {
@@ -82,73 +82,6 @@ namespace DungeonGeneration
             return roomInstance;
         }
 
-        public void PlaceAllRooms(int y, FloorGenerator fg)
-        {
-            foreach (RoomData room in fg.RoomRefs)
-            {
-                int x = Random.Range(0, fg.DungeonWidth);
-                int z = Random.Range(0, fg.DungeonDepth);
-                int rotationsCount = Random.Range(0, 3);
-                int tryCount = 0;
-                bool roomSkiped = false;
-                while (!CanPlaceRoom(x, z, room, rotationsCount, fg))
-                {
-                    if (tryCount > 10000)
-                    {
-                        //print(x + " " + y + " " + z);
-                        //print("Skipping room");
-                        roomSkiped = true;
-                        break;
-                    }
-                    tryCount++;
-                    x = Random.Range(0, fg.DungeonWidth);
-                    z = Random.Range(0, fg.DungeonDepth);
-                }
-                if (!roomSkiped)
-                {
-                    PlaceRoom(x, z, room, rotationsCount, fg);
-                    foreach (var extraRoom in room.AssociatedRooms)
-                    {
-                        PlaceRoom(x, z, extraRoom.ExtraRoom, rotationsCount, fg.DungeonGenerator.floorGenerators[fg.FloorIndex + extraRoom.FloorOffset]);
-                    }
-                }
-
-            }
-        }
-
-        public void PlaceAllRoomsPush(int y, FloorGenerator fg)
-        {
-            foreach (RoomData room in fg.RoomRefs)
-            {
-                Vector3 randomDirection = Random.insideUnitCircle.normalized;
-                int centerX = fg.DungeonWidth / 2;
-                int centerZ = fg.DungeonDepth / 2;
-                int x = centerX;
-                int z = centerZ;
-                int rotationsCount = Random.Range(0, 3);
-                int tryCount = 1;
-                bool roomSkiped = false;
-                while (!CanPlaceRoom(x, z, room, rotationsCount, fg))
-                {
-                    if (tryCount > 10000)
-                    {
-                        roomSkiped = true;
-                        break;
-                    }
-                    tryCount++;
-                    x = centerX + (int)(randomDirection.x * tryCount);
-                    z = centerZ + (int)(randomDirection.y * tryCount);
-                }
-                if (!roomSkiped)
-                {
-                    PlaceRoom(x, z, room, rotationsCount, fg);
-                    foreach (var extraRoom in room.AssociatedRooms)
-                    {
-                        PlaceRoom(x, z, extraRoom.ExtraRoom, rotationsCount, fg.DungeonGenerator.floorGenerators[fg.FloorIndex + extraRoom.FloorOffset]);
-                    }
-                }
-
-            }
-        }
+        public abstract void PlaceAllRooms(int y, FloorGenerator fg);
     }
 }

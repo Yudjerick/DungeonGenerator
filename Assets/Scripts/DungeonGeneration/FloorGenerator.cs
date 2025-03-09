@@ -167,8 +167,8 @@ namespace DungeonGeneration
 
             //int seed = Random.Range(0, int.MaxValue);
             //Random.InitState(seed);
-            RoomPlacingComponent roomPlacing = new RoomPlacingComponent();
-            roomPlacing.PlaceAllRoomsPush(levelY, this);
+            RoomPlacingStrategy roomPlacing = new PushRoomPlacingStrategy();
+            roomPlacing.PlaceAllRooms(levelY, this);
             SetMinimalTransitions();
             AddLoops(loopCount);
             MakePathes();

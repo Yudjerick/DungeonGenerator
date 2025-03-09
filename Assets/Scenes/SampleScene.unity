@@ -1128,17 +1128,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c655c697799e5042bbca7d267e8430c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gap: 2
+  gap: 1
   gridCellSize: 1
-  dungeonWidth: 60
+  dungeonWidth: 100
   dungeonHeight: 30
-  dungeonDepth: 60
+  dungeonDepth: 100
   levelY: 10
-  loopCount: 0
+  loopCount: 1
   minimalLoopLength: 4
   roomRefs:
-  - {fileID: 5996491679188931101, guid: 640063f30b9c0194ba5c65d6b5b95aad, type: 3}
   - {fileID: 8781849712297255680, guid: bdb581b0e2d04c0418f4a11df6eb1437, type: 3}
+  - {fileID: 5996491679188931101, guid: 640063f30b9c0194ba5c65d6b5b95aad, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 5996491679188931101, guid: 640063f30b9c0194ba5c65d6b5b95aad, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
   - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
   - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
   segmentPack: {fileID: 11400000, guid: 9fcd200346df5a645ad13ccdd3591898, type: 2}
