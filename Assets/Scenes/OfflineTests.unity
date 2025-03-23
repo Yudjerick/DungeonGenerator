@@ -409,6 +409,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e02e2a7c53da864e97ad1858ee28d3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   <Name>k__BackingField: Test
   <InventoryPicture>k__BackingField: {fileID: 10901, guid: 0000000000000000f000000000000000,
     type: 0}

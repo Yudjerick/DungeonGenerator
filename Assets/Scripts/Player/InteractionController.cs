@@ -10,6 +10,8 @@ public class InteractionController : MonoBehaviour
     [SerializeField] private float interactionDistance = 2f;
     [SerializeField] private Inventory inventory;
     [field: SerializeField] public Transform HandPosition { get; private set; }
+    public Inventory Inventory { get => inventory; set => inventory = value; }
+
     [SerializeField] private Transform cameraPos;
 
     private Collider _hoveredObject = null;
@@ -79,7 +81,7 @@ public class InteractionController : MonoBehaviour
 
     public void OnUse()
     {
-        _equippedItem.CmdUse();
+        _equippedItem?.CmdUse();
     }
 
     public void OnDrop()
@@ -94,6 +96,7 @@ public class InteractionController : MonoBehaviour
             dropedItem.transform.parent = null;
             dropedItem.GetComponent<Rigidbody>().isKinematic = false; //rewrite later
             dropedItem.IsInteractable = true;
+            dropedItem.Player = null;
             print("Drop");
         }
 
@@ -103,8 +106,12 @@ public class InteractionController : MonoBehaviour
     {
 
         var success = inventory.AddItem(item);
-        item.IsInteractable = false;
-        print("Add");
+        if (success)
+        {
+            item.IsInteractable = false;
+            item.Player = gameObject;
+        }
+        
         return success;
     }
 
