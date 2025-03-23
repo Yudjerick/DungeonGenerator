@@ -77,6 +77,11 @@ public class InteractionController : MonoBehaviour
         }
     }
 
+    public void OnUse()
+    {
+        _equippedItem.CmdUse();
+    }
+
     public void OnDrop()
     {
 

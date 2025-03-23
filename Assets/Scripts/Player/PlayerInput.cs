@@ -14,6 +14,7 @@ public class PlayerInput : MonoBehaviour
     private InputAction _lookAction;
     private InputAction _sprintAction;
     private InputAction _jumpAction;
+    private InputAction _useAction;
 
     void Start()
     {
@@ -25,11 +26,13 @@ public class PlayerInput : MonoBehaviour
         _scrollAction.performed += OnScroll;
         _dropAction = InputSystem.actions.FindAction("Drop");
         _dropAction.performed += OnDrop;
+        _useAction = InputSystem.actions.FindAction("Use");
+        _useAction.performed += OnUse;
 
         _moveAction = InputSystem.actions.FindAction("Move");
         _lookAction = InputSystem.actions.FindAction("Look");
-        _sprintAction = InputSystem.actions.FindAction("Sprint");
 
+        _sprintAction = InputSystem.actions.FindAction("Sprint");
         _sprintAction.performed += OnSprintButtonStateChanged;
         _sprintAction.canceled += OnSprintButtonStateChanged;
 
@@ -41,6 +44,12 @@ public class PlayerInput : MonoBehaviour
     {
         //interactionController.Interact();
         networkInteractionController.Interact();
+    }
+
+    private void OnUse(InputAction.CallbackContext context)
+    {
+        print("AAA");
+        networkInteractionController.Use();
     }
 
     private void OnScroll(InputAction.CallbackContext context)
