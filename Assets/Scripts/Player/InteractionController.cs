@@ -19,7 +19,7 @@ public class InteractionController : MonoBehaviour
     void Start()
     {
         inventory = GetComponent<Inventory>();
-       
+
 
         inventory.SlotIndexUpdatedEvent += UpdateEquippedItem;
         inventory.InventoryUpdatedEvent += OnInventoryUpdated;
@@ -31,26 +31,24 @@ public class InteractionController : MonoBehaviour
 
     private void HandleHover()
     {
+        
         var wasHit = Physics.Raycast(cameraPos.position, cameraPos.forward, out RaycastHit hitInfo, interactionDistance);
-        if(hitInfo.collider != _hoveredObject)
+        if (hitInfo.collider != _hoveredObject)
         {
             _hoveredObject?.GetComponent<Interactable>()?.OnHoverExit(this);
             _hoveredObject = null;
             if (wasHit)
             {
-                if (!hitInfo.collider.CompareTag("Interactable"))
-                {
-                    return;
-                }
                 Interactable interactable = hitInfo.collider.gameObject.GetComponent<Interactable>();
                 if (interactable != null && interactable.IsInteractable)
                 {
-                    _hoveredObject = hitInfo.collider; 
-                    interactable.OnHoverEnter(this);
+                    hitInfo.collider.gameObject.GetComponent<Interactable>()?.OnHoverEnter(this);
                 }
+                
+                _hoveredObject = hitInfo.collider;
             }
         }
-        
+
     }
 
     public void Interact()
@@ -58,12 +56,8 @@ public class InteractionController : MonoBehaviour
         var wasHit = Physics.Raycast(cameraPos.position, cameraPos.forward, out RaycastHit hitInfo, interactionDistance);
         if (wasHit)
         {
-            if (!hitInfo.collider.CompareTag("Interactable"))
-            {
-                return;
-            }
             Interactable interactable = hitInfo.collider.gameObject.GetComponent<Interactable>();
-            if(interactable != null && interactable.IsInteractable)
+            if (interactable != null && interactable.IsInteractable)
             {
                 interactable.Interact(this);
             }
@@ -94,6 +88,8 @@ public class InteractionController : MonoBehaviour
             dropedItem.transform.position = HandPosition.position;
             dropedItem.transform.parent = null;
             dropedItem.GetComponent<Rigidbody>().isKinematic = false; //rewrite later
+            dropedItem.IsInteractable = true;
+            print("Drop");
         }
 
     }
@@ -102,31 +98,32 @@ public class InteractionController : MonoBehaviour
     {
 
         var success = inventory.AddItem(item);
+        item.IsInteractable = false;
+        print("Add");
         return success;
     }
 
     private void OnInventoryUpdated() // think about it later
     {
-        
-        foreach(InventoryItem item in inventory.Items) 
+
+        foreach (InventoryItem item in inventory.Items)
         {
-            if(item != null)
+            if (item != null)
             {
                 //item.GetComponent<HandHoldable>().SetParentInteractionControllerObj(gameObject);
                 item.transform.parent = HandPosition;
                 item.GetComponent<Rigidbody>().isKinematic = true;
-                item.IsInteractable = false;
                 item.transform.localPosition = Vector3.zero;
                 item.gameObject.SetActive(false);
             }
-            
+
         }
         if (_equippedItem != null && inventory.Items[inventory.SelectedSlotIndex] == null)
         {
             _equippedItem.gameObject.SetActive(true);
             //_equippedItem.GetComponent<HandHoldable>().SetParentInteractionControllerObj(null);
             _equippedItem.transform.parent = null;
-            _equippedItem.IsInteractable = true;
+
             _equippedItem.GetComponent<Rigidbody>().isKinematic = false;
         }
         _equippedItem = inventory.Items[inventory.SelectedSlotIndex];
@@ -143,7 +140,7 @@ public class InteractionController : MonoBehaviour
         _equippedItem?.gameObject.SetActive(false);
         _equippedItem = inventory.Items[inventory.SelectedSlotIndex];
         _equippedItem?.gameObject.SetActive(true);
-        
+
 
     }
 }
