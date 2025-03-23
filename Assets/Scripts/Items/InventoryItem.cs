@@ -50,7 +50,7 @@ namespace Assets.Scripts.Items
 
         protected virtual void UseOnServer()
         {
-
+            //_player.GetComponentInChildren<PlayerAnimationController>().SwingWeapon();
         }
 
         [ClientRpc]
@@ -61,6 +61,7 @@ namespace Assets.Scripts.Items
 
         protected virtual void UseOnClient()
         {
+            _player.GetComponentInChildren<PlayerAnimationController>().SwingWeapon();
             print("item used client");
         }
     }

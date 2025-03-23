@@ -7,6 +7,7 @@ public class PlayerAnimationController : NetworkBehaviour
 {
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Animator animator;
+    [SerializeField] private Animator HandIKAnimator;
     private bool _isRunning = false;
     private void Update()
     {
@@ -25,5 +26,10 @@ public class PlayerAnimationController : NetworkBehaviour
             
         }
         
+    }
+
+    public void SwingWeapon()
+    {
+        HandIKAnimator.SetTrigger("WeaponSwing"); 
     }
 }
