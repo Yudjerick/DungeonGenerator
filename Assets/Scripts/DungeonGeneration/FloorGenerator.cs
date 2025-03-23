@@ -73,6 +73,18 @@ namespace DungeonGeneration
             }
         }
 
+        public void MarkDoorTypes()
+        {
+            foreach (var room in Rooms)
+            {
+                foreach (var transition in room.Transitions)
+                {
+                    transition.Door.doorType = transition.NextRoom.DoorType;
+                }
+            }
+             
+        }
+
         public void MakePathes()
         {
             foreach (var room in Rooms)
@@ -171,6 +183,7 @@ namespace DungeonGeneration
             roomPlacing.PlaceAllRooms(levelY, this);
             SetMinimalTransitions();
             AddLoops(loopCount);
+            MarkDoorTypes();
             MakePathes();
             AddCorridorsToUnusedDoors();
             InstantiateCorridors();

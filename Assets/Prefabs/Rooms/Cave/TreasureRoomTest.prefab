@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4428938236585842419}
   - component: {fileID: 5155724627114927629}
   - component: {fileID: 7380269851909493219}
+  - component: {fileID: 8959558131998046929}
   m_Layer: 0
   m_Name: exit2
   m_TagString: Untagged
@@ -48,7 +49,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2297245099958798455}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -86,6 +87,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8959558131998046929
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2297245099958798455}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0000002, y: 1, z: 1.0000002}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3658286836497305022
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,6 +119,7 @@ GameObject:
   - component: {fileID: 5556035316649196078}
   - component: {fileID: 7274803738667777897}
   - component: {fileID: 8715182195901607474}
+  - component: {fileID: 1787584118552966255}
   m_Layer: 0
   m_Name: exit3
   m_TagString: Untagged
@@ -134,7 +157,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3658286836497305022}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -172,6 +195,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1787584118552966255
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3658286836497305022}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7366556252787940136
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +227,7 @@ GameObject:
   - component: {fileID: 8044606250606330570}
   - component: {fileID: 8781849712297255680}
   m_Layer: 0
-  m_Name: RoomCave3ex_2x5x4
+  m_Name: TreasureRoomTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,25 +267,17 @@ MonoBehaviour:
   <Width>k__BackingField: 5
   <Height>k__BackingField: 2
   <Depth>k__BackingField: 4
+  <TransitionGroupId>k__BackingField: 0
+  <RandomRotation>k__BackingField: 1
+  transitions: []
+  limitedDoorUse: 0
   <AvailableDoors>k__BackingField:
-  - <Transform>k__BackingField: {fileID: 5556035316649196078}
-    maxUses: 0
-    <Uses>k__BackingField: 0
-    <doorType>k__BackingField: 0
   - <Transform>k__BackingField: {fileID: 4267305248580033896}
     maxUses: 0
     <Uses>k__BackingField: 0
     <doorType>k__BackingField: 0
-  - <Transform>k__BackingField: {fileID: 4428938236585842419}
-    maxUses: 0
-    <Uses>k__BackingField: 0
-    <doorType>k__BackingField: 0
-  transitions: []
-  <TransitionGroupId>k__BackingField: 0
-  <RandomRotation>k__BackingField: 1
-  limitedDoorUse: 0
   <AssociatedRooms>k__BackingField: []
-  <DoorType>k__BackingField: 0
+  <DoorType>k__BackingField: 2
 --- !u!1 &8495597447144720319
 GameObject:
   m_ObjectHideFlags: 0

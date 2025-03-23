@@ -515,6 +515,72 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!1 &524796987
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 524796990}
+  - component: {fileID: 524796989}
+  - component: {fileID: 524796988}
+  m_Layer: 0
+  m_Name: DungeonGenerator (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &524796988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524796987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430389721abe82b42babf31130e24f63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cellBlock: {fileID: 208784014145111196, guid: 60bed8894788a2443881e7b79621fc35,
+    type: 3}
+  gridCellSize: 1
+  height: 2
+  width: 18
+  depth: 18
+--- !u!114 &524796989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524796987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 800aed5397b37d4479daa2b211d41bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <floorGenerators>k__BackingField:
+  - {fileID: 692907591}
+--- !u!4 &524796990
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524796987}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1975.0099, y: -7402.7, z: 5360.573}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 692907592}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &608600755
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -613,6 +679,78 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 608600755}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &692907590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 692907592}
+  - component: {fileID: 692907591}
+  m_Layer: 0
+  m_Name: FloorGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &692907591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692907590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c655c697799e5042bbca7d267e8430c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gap: 2
+  gridCellSize: 1
+  dungeonWidth: 60
+  dungeonHeight: 30
+  dungeonDepth: 60
+  levelY: 10
+  loopCount: 4
+  minimalLoopLength: 4
+  roomRefs:
+  - {fileID: 8781849712297255680, guid: bdb581b0e2d04c0418f4a11df6eb1437, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  segmentPack: {fileID: 11400000, guid: 9fcd200346df5a645ad13ccdd3591898, type: 2}
+  testCorridor: {fileID: 0}
+  <ClusterZeroX>k__BackingField: 0
+  <ClusterZeroZ>k__BackingField: 0
+--- !u!4 &692907592
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692907590}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 524796990}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &704747522
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,7 +836,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &786737817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1134,21 +1272,14 @@ MonoBehaviour:
   dungeonHeight: 30
   dungeonDepth: 100
   levelY: 10
-  loopCount: 1
+  loopCount: 0
   minimalLoopLength: 4
   roomRefs:
   - {fileID: 8781849712297255680, guid: bdb581b0e2d04c0418f4a11df6eb1437, type: 3}
-  - {fileID: 5996491679188931101, guid: 640063f30b9c0194ba5c65d6b5b95aad, type: 3}
-  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
-  - {fileID: 5996491679188931101, guid: 640063f30b9c0194ba5c65d6b5b95aad, type: 3}
   - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
   - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
   - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
-  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
-  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
-  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
-  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
-  - {fileID: 8781849712297255680, guid: 1072a3d1c3ac1004593a8cfbd0167452, type: 3}
+  - {fileID: 8781849712297255680, guid: 2189b6ff34a17a74b949c0006e6a7d30, type: 3}
   segmentPack: {fileID: 11400000, guid: 9fcd200346df5a645ad13ccdd3591898, type: 2}
   testCorridor: {fileID: 0}
   <ClusterZeroX>k__BackingField: 0
@@ -1643,6 +1774,7 @@ SceneRoots:
   - {fileID: 1835216200}
   - {fileID: 704747525}
   - {fileID: 2139936861}
+  - {fileID: 524796990}
   - {fileID: 786737819}
   - {fileID: 608600755}
   - {fileID: 70028849}

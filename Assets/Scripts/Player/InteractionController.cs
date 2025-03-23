@@ -38,8 +38,16 @@ public class InteractionController : MonoBehaviour
             _hoveredObject = null;
             if (wasHit)
             {
-                hitInfo.collider.gameObject.GetComponent<Interactable>()?.OnHoverEnter(this);
-                _hoveredObject = hitInfo.collider;
+                if (!hitInfo.collider.CompareTag("Interactable"))
+                {
+                    return;
+                }
+                Interactable interactable = hitInfo.collider.gameObject.GetComponent<Interactable>();
+                if (interactable != null && interactable.IsInteractable)
+                {
+                    _hoveredObject = hitInfo.collider; 
+                    interactable.OnHoverEnter(this);
+                }
             }
         }
         
@@ -50,7 +58,16 @@ public class InteractionController : MonoBehaviour
         var wasHit = Physics.Raycast(cameraPos.position, cameraPos.forward, out RaycastHit hitInfo, interactionDistance);
         if (wasHit)
         {
-            hitInfo.collider.gameObject.GetComponent<Interactable>()?.Interact(this);
+            if (!hitInfo.collider.CompareTag("Interactable"))
+            {
+                return;
+            }
+            Interactable interactable = hitInfo.collider.gameObject.GetComponent<Interactable>();
+            if(interactable != null && interactable.IsInteractable)
+            {
+                interactable.Interact(this);
+            }
+            
         }
     }
 
@@ -98,6 +115,7 @@ public class InteractionController : MonoBehaviour
                 //item.GetComponent<HandHoldable>().SetParentInteractionControllerObj(gameObject);
                 item.transform.parent = HandPosition;
                 item.GetComponent<Rigidbody>().isKinematic = true;
+                item.IsInteractable = false;
                 item.transform.localPosition = Vector3.zero;
                 item.gameObject.SetActive(false);
             }
@@ -108,7 +126,7 @@ public class InteractionController : MonoBehaviour
             _equippedItem.gameObject.SetActive(true);
             //_equippedItem.GetComponent<HandHoldable>().SetParentInteractionControllerObj(null);
             _equippedItem.transform.parent = null;
-            
+            _equippedItem.IsInteractable = true;
             _equippedItem.GetComponent<Rigidbody>().isKinematic = false;
         }
         _equippedItem = inventory.Items[inventory.SelectedSlotIndex];

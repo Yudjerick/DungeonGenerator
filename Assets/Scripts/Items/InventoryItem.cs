@@ -11,6 +11,8 @@ namespace Assets.Scripts.Items
     {
         [field: SerializeField] public string Name { get; private set; }
         [field: SerializeField] public Sprite InventoryPicture { get; private set; }
+        public bool IsInteractable { get => _isInteractable; set => _isInteractable = value; }
+        private bool _isInteractable = true;
 
         public Action OnHoverEnterEvent;
         public Action OnHoverExitEvent;

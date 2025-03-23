@@ -17,6 +17,6 @@ namespace DungeonGeneration
         public int Uses { get; set; } = 0;
 
         public bool ShowMaxUses { get; set; }
-        
+        [field: SerializeField] public DoorType doorType { get; set; } = DoorType.Default;
     }
 }

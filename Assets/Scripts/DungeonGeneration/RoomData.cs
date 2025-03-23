@@ -11,28 +11,15 @@ namespace DungeonGeneration
         [field: SerializeField] public int Width { get; set; }
         [field: SerializeField] public int Height { get; set; }
         [field: SerializeField] public int Depth { get; set; }
-
-        [field: SerializeField] public int TransitionGroupId { get; set; } = 0;
-
-        [field: SerializeField] public bool RandomRotation { get; set; } = true;
-
+        [field: SerializeField] public List<DoorData> AvailableDoors { get; set; }
         public List<Transition> Transitions => transitions;
         [ReadOnly]
         [SerializeField] private List<Transition> transitions = new List<Transition>();
-
-        [OnValueChanged("UpdateDoorDataInspectorView")][SerializeField] private bool limitedDoorUse = false; 
-        [field: SerializeField] public List<DoorData> AvailableDoors { get; set; }
-
+        [field: SerializeField] public int TransitionGroupId { get; set; } = 0;
+        [field: SerializeField] public bool RandomRotation { get; set; } = true;
+        [SerializeField] private bool limitedDoorUse = false; 
         [field: SerializeField] public List<ExtraRoomSpawningRequest> AssociatedRooms { get; set; }
-
-        private void UpdateDoorDataInspectorView()
-        {
-            foreach (DoorData doorData in AvailableDoors)
-            {
-                doorData.ShowMaxUses = limitedDoorUse;
-            }
-        }
-
+        [field: SerializeField] public virtual DoorType DoorType { get; set; } = DoorType.Default;
         public void AddBidirectionalTransition(RoomData roomData, DoorData doorPos, DoorData otherDoorPos)
         {
             if (!transitions.Where(x => x.NextRoom == roomData).Any())
@@ -55,7 +42,6 @@ namespace DungeonGeneration
                 }
             }
         }
-
         public float OptimalDoorDistance(RoomData other, out DoorData doorPos, out DoorData otherDoorPos)
         {
             float minDistance = float.MaxValue;
