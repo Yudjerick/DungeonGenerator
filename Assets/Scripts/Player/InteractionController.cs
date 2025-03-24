@@ -126,6 +126,7 @@ public class InteractionController : MonoBehaviour
                 item.transform.parent = HandPosition;
                 item.GetComponent<Rigidbody>().isKinematic = true;
                 item.transform.localPosition = Vector3.zero;
+                item.transform.localRotation = Quaternion.identity;
                 item.gameObject.SetActive(false);
             }
 
