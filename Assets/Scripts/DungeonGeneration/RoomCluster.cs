@@ -17,7 +17,11 @@ namespace DungeonGeneration
             clusterGenerator.DungeonWidth = Width;
             clusterGenerator.DungeonHeight = Height;
             clusterGenerator.DungeonDepth = Depth;
-            clusterGenerator.Initialize(parentGenerator.DungeonGenerator, parentGenerator.FloorIndex, (int)Math.Round(transform.position.x), (int)Math.Round(transform.position.z));
+            clusterGenerator.Initialize(
+                parentGenerator.DungeonGenerator,
+                parentGenerator.FloorIndex,
+                (int)Math.Round(transform.position.x / parentGenerator.GridCellSize),
+                (int)Math.Round(transform.position.z / parentGenerator.GridCellSize));
             clusterGenerator.LevelY = parentGenerator.LevelY;
 
             foreach(var door in AvailableDoors)
