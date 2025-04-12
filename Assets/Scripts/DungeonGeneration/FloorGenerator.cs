@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,17 @@ namespace DungeonGeneration
         [SerializeField] private int minimalLoopLength = 3;
         [SerializeField] private List<RoomData> roomRefs = new List<RoomData>();
         [SerializeField] private CorridorSegmentPack segmentPack;
-        [SerializeField] private GameObject testCorridor;
+        [Foldout("Initial Room")]
+        [SerializeField] private bool hasInitialRoom = false;
+        [Foldout("Initial Room")]
+        [SerializeField] private RoomData initialRoom;
+        [Foldout("Initial Room")]
+        [SerializeField] private int initialRoomX;
+        [Foldout("Initial Room")]
+        [SerializeField] private int initialRoomZ;
+        [Foldout("Initial Room")]
+        [SerializeField] private int initialRoomRotationCount;
+
         private List<CorridorDirection>[,] _corridorMap;
         private DungeonGenerator _dungeonGenerator;
         private int _floorIndex;
@@ -174,11 +185,23 @@ namespace DungeonGeneration
             }
         }
 
+        public void SpawnInitialRoom()
+        {
+            RoomPlacingStrategy roomPlacing = new RandomRoomPlacingStrategy();
+            roomPlacing.PlaceRoom(initialRoomX, initialRoomZ, initialRoom, initialRoomRotationCount, this);
+        }
+
         public void Generate()
         {
 
             //int seed = Random.Range(0, int.MaxValue);
             //Random.InitState(seed);
+
+            if(hasInitialRoom)
+            {
+                SpawnInitialRoom();
+            }
+
             RoomPlacingStrategy roomPlacing = new PushRoomPlacingStrategy();
             roomPlacing.PlaceAllRooms(levelY, this);
             SetMinimalTransitions();

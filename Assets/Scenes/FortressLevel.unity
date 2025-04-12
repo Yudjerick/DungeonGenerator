@@ -408,7 +408,7 @@ Transform:
   m_GameObject: {fileID: 524796987}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1975.0099, y: -7402.7, z: 5360.573}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -547,7 +547,7 @@ MonoBehaviour:
   dungeonWidth: 60
   dungeonHeight: 30
   dungeonDepth: 60
-  levelY: 10
+  levelY: 0
   loopCount: 0
   minimalLoopLength: 0
   roomRefs:
@@ -562,7 +562,12 @@ MonoBehaviour:
   - {fileID: 2993731838201729944, guid: f01093f0db7dca440b2f11f17daaf294, type: 3}
   - {fileID: 2993731838201729944, guid: f01093f0db7dca440b2f11f17daaf294, type: 3}
   segmentPack: {fileID: 11400000, guid: 1a21366094f0cbd48b7f2992bac72080, type: 2}
-  testCorridor: {fileID: 0}
+  hasInitialRoom: 1
+  initialRoom: {fileID: 1325527777471089685, guid: 7130fa0f2ce2feb43a7e31a108589292,
+    type: 3}
+  initialRoomX: 30
+  initialRoomZ: 30
+  initialRoomRotationCount: 0
   <ClusterZeroX>k__BackingField: 0
   <ClusterZeroZ>k__BackingField: 0
 --- !u!4 &692907592
