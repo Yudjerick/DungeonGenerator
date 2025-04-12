@@ -14,47 +14,83 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   corridorSegments:
   - directions: 02000000
-    segmentObject: {fileID: 7154974627510380389, guid: bc942f6f8decf2445891b4a896616dd6,
-      type: 3}
+    variants:
+    - segmentObject: {fileID: 7154974627510380389, guid: bc942f6f8decf2445891b4a896616dd6,
+        type: 3}
+      weight: 1
   - directions: 00000000
-    segmentObject: {fileID: 7154974627510380389, guid: bc942f6f8decf2445891b4a896616dd6,
-      type: 3}
+    variants:
+    - segmentObject: {fileID: 7154974627510380389, guid: bc942f6f8decf2445891b4a896616dd6,
+        type: 3}
+      weight: 1
   - directions: 03000000
-    segmentObject: {fileID: 7154974627510380389, guid: bc942f6f8decf2445891b4a896616dd6,
-      type: 3}
+    variants:
+    - segmentObject: {fileID: 7154974627510380389, guid: bc942f6f8decf2445891b4a896616dd6,
+        type: 3}
+      weight: 1
   - directions: 01000000
-    segmentObject: {fileID: 7154974627510380389, guid: bc942f6f8decf2445891b4a896616dd6,
-      type: 3}
+    variants:
+    - segmentObject: {fileID: 7154974627510380389, guid: bc942f6f8decf2445891b4a896616dd6,
+        type: 3}
+      weight: 1
   - directions: 0000000001000000
-    segmentObject: {fileID: 8484294265406938291, guid: 400f21f8cd95147418c32ceabee8575e,
-      type: 3}
+    variants:
+    - segmentObject: {fileID: 8484294265406938291, guid: 400f21f8cd95147418c32ceabee8575e,
+        type: 3}
+      weight: 1
+    - segmentObject: {fileID: 8484294265406938291, guid: 8b0e96f7dcb7b86498139982246e27e8,
+        type: 3}
+      weight: 1
   - directions: 0300000001000000
-    segmentObject: {fileID: 683850365349156481, guid: ec87984093c5c4946b8c37e13f91c81c,
-      type: 3}
+    variants:
+    - segmentObject: {fileID: 683850365349156481, guid: ec87984093c5c4946b8c37e13f91c81c,
+        type: 3}
+      weight: 1
   - directions: 0000000003000000
-    segmentObject: {fileID: 683850365349156481, guid: 74b2077de8c23964886bee2496e172af,
-      type: 3}
+    variants:
+    - segmentObject: {fileID: 683850365349156481, guid: 74b2077de8c23964886bee2496e172af,
+        type: 3}
+      weight: 1
   - directions: 0200000001000000
-    segmentObject: {fileID: 683850365349156481, guid: 384fd38e6259c9d43932f78b5cd36d0a,
-      type: 3}
+    variants:
+    - segmentObject: {fileID: 683850365349156481, guid: 384fd38e6259c9d43932f78b5cd36d0a,
+        type: 3}
+      weight: 1
   - directions: 0200000000000000
-    segmentObject: {fileID: 683850365349156481, guid: 631fb02e6d0fbfa49a7db4a2f677e306,
-      type: 3}
+    variants:
+    - segmentObject: {fileID: 683850365349156481, guid: 631fb02e6d0fbfa49a7db4a2f677e306,
+        type: 3}
+      weight: 1
   - directions: 0200000003000000
-    segmentObject: {fileID: 8484294265406938291, guid: 4aab87112624750499e1430d927dfae1,
-      type: 3}
+    variants:
+    - segmentObject: {fileID: 8484294265406938291, guid: 4aab87112624750499e1430d927dfae1,
+        type: 3}
+      weight: 1
+    - segmentObject: {fileID: 8484294265406938291, guid: 32cac366c67253041aedc9bbac11672b,
+        type: 3}
+      weight: 1
   - directions: 000000000100000003000000
-    segmentObject: {fileID: 2982919620596344167, guid: e19a9c13fa9ba6b45a9a6869952bb5e6,
-      type: 3}
+    variants:
+    - segmentObject: {fileID: 2982919620596344167, guid: e19a9c13fa9ba6b45a9a6869952bb5e6,
+        type: 3}
+      weight: 1
   - directions: 020000000100000003000000
-    segmentObject: {fileID: 2982919620596344167, guid: 6d465bef242faf347b27e06df0c13003,
-      type: 3}
+    variants:
+    - segmentObject: {fileID: 2982919620596344167, guid: 6d465bef242faf347b27e06df0c13003,
+        type: 3}
+      weight: 1
   - directions: 020000000000000001000000
-    segmentObject: {fileID: 2982919620596344167, guid: 4d228ab6c9fdae44191b4d85251f2fed,
-      type: 3}
+    variants:
+    - segmentObject: {fileID: 2982919620596344167, guid: 4d228ab6c9fdae44191b4d85251f2fed,
+        type: 3}
+      weight: 1
   - directions: 020000000000000003000000
-    segmentObject: {fileID: 2982919620596344167, guid: 53fd5baa7d2566442a82650c17e2c866,
-      type: 3}
+    variants:
+    - segmentObject: {fileID: 2982919620596344167, guid: 53fd5baa7d2566442a82650c17e2c866,
+        type: 3}
+      weight: 1
   - directions: 02000000000000000300000001000000
-    segmentObject: {fileID: 6913113824959867155, guid: 77304e415b3b7a747831b3a6fcf4b224,
-      type: 3}
+    variants:
+    - segmentObject: {fileID: 6913113824959867155, guid: 77304e415b3b7a747831b3a6fcf4b224,
+        type: 3}
+      weight: 1

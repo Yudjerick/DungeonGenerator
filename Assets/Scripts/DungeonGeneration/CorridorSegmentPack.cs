@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace DungeonGeneration
 {
@@ -9,17 +10,36 @@ namespace DungeonGeneration
     public class CorridorSegmentPack : ScriptableObject
     {
         [Serializable]
-        class CorridorSegment
+        class CorridorSegmentMap
         {
             public List<CorridorDirection> directions;
-            public GameObject segmentObject;
+            public List<CorridorVariant> variants;
         }
 
-        [SerializeField] private List<CorridorSegment> corridorSegments;
+        [Serializable]
+        class CorridorVariant
+        {
+            public GameObject segmentObject;
+            public float weight = 1f;
+        }
+
+
+        [SerializeField] private List<CorridorSegmentMap> corridorSegments;
 
         public GameObject GetSegment(List<CorridorDirection> keys)
         {
-            return corridorSegments.Where(c => keys.All(k => c.directions.Contains(k))).FirstOrDefault().segmentObject;
+            var map = corridorSegments.Where(c => keys.All(k => c.directions.Contains(k))).FirstOrDefault();
+            float weightSum = map.variants.Sum(k => k.weight);
+            float rand = Random.Range(0f, weightSum);
+            foreach(var variant in map.variants)
+            {
+                if(variant.weight >= rand)
+                {
+                    return variant.segmentObject;
+                }
+                rand -= variant.weight;
+            }
+            return null;
         }
 
         public static CorridorDirection Vector3ToCorridorDirection(Vector3 vector3)

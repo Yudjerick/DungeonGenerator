@@ -44,8 +44,6 @@ namespace DungeonGeneration
 
             PathfindingNode startNode = PathfindingNode.StartNode(_startX, _startZ,
                 Heuristic(_startX, _startZ, _endX, _endZ));
-            Debug.Log(_solidMap.GetLength(0) + " "+  _solidMap.GetLength(1));
-            Debug.Log(_startX + " "+_startZ);
             _searchMap[_startX, _startZ] = startNode;
             _explored.Add(startNode);
             _current = startNode;
