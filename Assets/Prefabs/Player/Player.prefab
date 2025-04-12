@@ -913,10 +913,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generator: {fileID: 0}
-  walkingSpeed: 2.5
-  sprintSpeed: 4
-  crouchSpeed: 0.7
-  jumpSpeed: 3
+  walkingSpeed: 3.5
+  sprintSpeed: 6
+  crouchSpeed: 2
+  jumpSpeed: 5
   jumpRequestMaxTime: 0.2
   feetPosition: {fileID: 1155139497787754174}
   groundCheckRadius: 0.05
