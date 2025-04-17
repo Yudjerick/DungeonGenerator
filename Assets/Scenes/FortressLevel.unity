@@ -399,6 +399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <floorGenerators>k__BackingField:
   - {fileID: 692907591}
+  - {fileID: 719871202}
 --- !u!4 &524796990
 Transform:
   m_ObjectHideFlags: 0
@@ -413,6 +414,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 692907592}
+  - {fileID: 719871201}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &608600755
@@ -542,7 +544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c655c697799e5042bbca7d267e8430c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gap: 2
+  gap: 1
   gridCellSize: 3
   dungeonWidth: 60
   dungeonHeight: 30
@@ -561,6 +563,7 @@ MonoBehaviour:
   - {fileID: 2993731838201729944, guid: f01093f0db7dca440b2f11f17daaf294, type: 3}
   - {fileID: 2993731838201729944, guid: f01093f0db7dca440b2f11f17daaf294, type: 3}
   - {fileID: 2993731838201729944, guid: f01093f0db7dca440b2f11f17daaf294, type: 3}
+  - {fileID: 1325527777471089685, guid: 826e79ef77563424eb958871908be7aa, type: 3}
   segmentPack: {fileID: 11400000, guid: 1a21366094f0cbd48b7f2992bac72080, type: 2}
   hasInitialRoom: 1
   initialRoom: {fileID: 1325527777471089685, guid: 7130fa0f2ce2feb43a7e31a108589292,
@@ -585,6 +588,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 524796990}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &719871200
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 719871201}
+  - component: {fileID: 719871202}
+  m_Layer: 0
+  m_Name: FloorGenerator (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &719871201
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719871200}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 524796990}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &719871202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719871200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c655c697799e5042bbca7d267e8430c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gap: 1
+  gridCellSize: 3
+  dungeonWidth: 60
+  dungeonHeight: 30
+  dungeonDepth: 60
+  levelY: -4
+  loopCount: 0
+  minimalLoopLength: 0
+  roomRefs:
+  - {fileID: 2993731838201729944, guid: f01093f0db7dca440b2f11f17daaf294, type: 3}
+  - {fileID: 2993731838201729944, guid: f01093f0db7dca440b2f11f17daaf294, type: 3}
+  - {fileID: 2993731838201729944, guid: f01093f0db7dca440b2f11f17daaf294, type: 3}
+  - {fileID: 2993731838201729944, guid: f01093f0db7dca440b2f11f17daaf294, type: 3}
+  - {fileID: 2993731838201729944, guid: f01093f0db7dca440b2f11f17daaf294, type: 3}
+  - {fileID: 2993731838201729944, guid: f01093f0db7dca440b2f11f17daaf294, type: 3}
+  segmentPack: {fileID: 11400000, guid: 1a21366094f0cbd48b7f2992bac72080, type: 2}
+  hasInitialRoom: 0
+  initialRoom: {fileID: 1325527777471089685, guid: 7130fa0f2ce2feb43a7e31a108589292,
+    type: 3}
+  initialRoomX: 30
+  initialRoomZ: 30
+  initialRoomRotationCount: 0
+  <ClusterZeroX>k__BackingField: 0
+  <ClusterZeroZ>k__BackingField: 0
 --- !u!1 &2084296227
 GameObject:
   m_ObjectHideFlags: 0

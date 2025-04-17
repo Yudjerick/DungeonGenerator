@@ -9,11 +9,8 @@ using UnityEngine;
 public class NetworkInventorySync : NetworkBehaviour
 {
     private Inventory _inventory;
-
     public readonly SyncList<GameObject> itemObjects = new SyncList<GameObject>();
-
     [SyncVar (hook = nameof(UpdateSlotIndexOnClientHook))] public int _selectedSlotIndex;
-
     void Start()
     {
         itemObjects.OnAdd += UpdateClientInventory;
@@ -25,22 +22,18 @@ public class NetworkInventorySync : NetworkBehaviour
         }
         
     }
-
     private void OnSlotIndexUpdated()
     {
         _selectedSlotIndex = _inventory.SelectedSlotIndex;
     }
-
     private void UpdateSlotIndexOnClientHook(int oldVal, int newVal)
     {
         if (isServer)
         {
             return;
         }
-        print("Hook " + newVal);
         _inventory.SelectedSlotIndex = newVal;
     }
-
     private void OnInventoryUpdated()
     {
         if (!isServer)
@@ -63,7 +56,6 @@ public class NetworkInventorySync : NetworkBehaviour
         itemObjects.Clear();
         itemObjects.AddRange(newInventoryObjects);
     }
-
     private void UpdateClientInventory(int index)
     {
         if (isServer) 

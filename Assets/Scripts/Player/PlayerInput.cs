@@ -42,7 +42,6 @@ public class PlayerInput : MonoBehaviour
 
     private void OnInteract(InputAction.CallbackContext context)
     {
-        //interactionController.Interact();
         networkInteractionController.Interact();
     }
 
