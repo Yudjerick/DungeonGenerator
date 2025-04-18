@@ -7,6 +7,8 @@ public class SteamLobbyListRequestManager : MonoBehaviour
     [SerializeField] private Transform lobbyListContentParent;
     [SerializeField] private LobbyListItem lobbyListItemPrefab;
 
+    [SerializeField] private string nameFilterString = "";
+
     protected Callback<LobbyMatchList_t> lobbyMatchListed;
 
     void Start()
@@ -33,7 +35,17 @@ public class SteamLobbyListRequestManager : MonoBehaviour
                 playerCount, lobbyId);
 
         }
+
+        var rect = lobbyListContentParent.GetComponent<RectTransform>();
+        float width = rect.sizeDelta.x;
+        rect.sizeDelta = new Vector2 (width, 120 * callback.m_nLobbiesMatching);
     }
+
+    public void SetNameFilter(string filter)
+    {
+        nameFilterString = filter;
+    }
+
     [Button]
     public void GetLobbyList()
     {
@@ -44,6 +56,9 @@ public class SteamLobbyListRequestManager : MonoBehaviour
         }
         SteamMatchmaking.AddRequestLobbyListStringFilter("GameName",
             "Multiplayer4", ELobbyComparison.k_ELobbyComparisonEqual);
+
+        SteamMatchmaking.AddRequestLobbyListStringFilter("ServerName", nameFilterString, ELobbyComparison.k_ELobbyComparisonEqualToOrGreaterThan);
+        
 
         SteamMatchmaking.RequestLobbyList();
     }
