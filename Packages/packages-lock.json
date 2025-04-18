@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.adrenak.univoice": {
+      "version": "3.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
     "com.heathen.steamworksfoundation": {
       "version": "https://github.com/heathen-engineering/Toolkit-for-Steamworks-Foundation.git?path=Unity/com.heathen.steamworksfoundation",
       "depth": 0,
