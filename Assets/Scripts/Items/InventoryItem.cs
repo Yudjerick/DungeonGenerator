@@ -14,9 +14,12 @@ namespace Assets.Scripts.Items
         [field: SerializeField] public string Name { get; private set; }
         [field: SerializeField] public Sprite InventoryPicture { get; private set; }
         public bool IsInteractable { get => _isInteractable; set => _isInteractable = value; }
+
         public GameObject Player { get => _player; set => _player = value; }
+        [field: SerializeField] public bool PreventDrop { get; private set; }
+
         [SyncVar] private bool _isInteractable = true;
-        [SyncVar] private GameObject _player;
+        [SerializeField][SyncVar(hook = nameof(PlayerSyncHook))] private GameObject _player;
         public Action OnHoverEnterEvent;
         public Action OnHoverExitEvent;
         private void Start()
@@ -34,6 +37,12 @@ namespace Assets.Scripts.Items
         {
             OnHoverExitEvent?.Invoke();
         }
+
+        public void PlayerSyncHook(GameObject oldVal, GameObject newVal)
+        {
+            _player = newVal;
+        }
+
         [Command(requiresAuthority = false)]
         public void CmdUse()
         {

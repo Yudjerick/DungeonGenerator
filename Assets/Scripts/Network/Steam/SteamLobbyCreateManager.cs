@@ -65,7 +65,7 @@ public class SteamLobbyCreateManager : MonoBehaviour
         }
         LobbyId = new CSteamID(callback.m_ulSteamIDLobby);
 
-        //NetworkManager.singleton.StartHost();
+        NetworkManager.singleton.StartHost();
         SteamMatchmaking.SetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), "ServerName", ServerName);
         SteamMatchmaking.SetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), "HostKey",
             SteamUser.GetSteamID().ToString());

@@ -36,26 +36,32 @@ public class Inventory : MonoBehaviour
             Items.Add(null);
         }
     }
-    public bool AddItem(InventoryItem item)
+    public bool AddItem(InventoryItem item, bool invokeEvents = true)
     {
         if (Items[SelectedSlotIndex] == null)
         {
             Items[SelectedSlotIndex] = item;
-            InventoryUpdatedEvent?.Invoke();
+            if (invokeEvents)
+            {
+                InventoryUpdatedEvent?.Invoke();
+            }
             return true;
         }
         var availableSlot = GetFirstAvailableSlotIndex();
         if(availableSlot != -1)
         {
             Items[availableSlot] = item;
-            InventoryUpdatedEvent?.Invoke();
+            if (invokeEvents)
+            {
+                InventoryUpdatedEvent?.Invoke();
+            }
             return true;
         }
         return false;
     }
     public InventoryItem DropItem()
     {
-        if (Items[SelectedSlotIndex] != null)
+        if (Items[SelectedSlotIndex] != null && !Items[SelectedSlotIndex].PreventDrop)
         {
             var dropedItem = Items[SelectedSlotIndex];
             Items[SelectedSlotIndex] = null;
