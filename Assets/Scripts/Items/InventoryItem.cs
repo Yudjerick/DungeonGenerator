@@ -61,7 +61,6 @@ namespace Assets.Scripts.Items
         protected virtual void UseOnClient()
         {
             _player.GetComponentInChildren<PlayerAnimationController>().SwingWeapon();
-            print("item used client");
         }
     }
 }

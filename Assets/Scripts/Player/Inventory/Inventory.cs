@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
@@ -36,6 +37,12 @@ public class Inventory : MonoBehaviour
             Items.Add(null);
         }
     }
+
+    [Button]
+    public void InvokeUpdateEvt()
+    {
+        InventoryUpdatedEvent?.Invoke();
+    }
     public bool AddItem(InventoryItem item, bool invokeEvents = true)
     {
         if (Items[SelectedSlotIndex] == null)
@@ -44,6 +51,7 @@ public class Inventory : MonoBehaviour
             if (invokeEvents)
             {
                 InventoryUpdatedEvent?.Invoke();
+                
             }
             return true;
         }
@@ -54,6 +62,7 @@ public class Inventory : MonoBehaviour
             if (invokeEvents)
             {
                 InventoryUpdatedEvent?.Invoke();
+
             }
             return true;
         }
@@ -63,10 +72,10 @@ public class Inventory : MonoBehaviour
     {
         if (Items[SelectedSlotIndex] != null && !Items[SelectedSlotIndex].PreventDrop)
         {
-            var dropedItem = Items[SelectedSlotIndex];
+            var droppedItem = Items[SelectedSlotIndex];
             Items[SelectedSlotIndex] = null;
             InventoryUpdatedEvent?.Invoke();
-            return dropedItem;
+            return droppedItem;
         }
         return null;
         

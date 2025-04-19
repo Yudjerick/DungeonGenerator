@@ -1,5 +1,6 @@
 using Assets.Scripts.Items;
 using Mirror;
+using NaughtyAttributes;
 using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,7 +23,12 @@ public class NetworkInventorySync : NetworkBehaviour
         }
         
     }
-    private void OnSlotIndexUpdated()
+
+    public override void OnStartClient()
+    {
+        UpdateClientInventory(0);
+    }
+    public void OnSlotIndexUpdated()
     {
         _selectedSlotIndex = _inventory.SelectedSlotIndex;
     }
@@ -34,7 +40,7 @@ public class NetworkInventorySync : NetworkBehaviour
         }
         _inventory.SelectedSlotIndex = newVal;
     }
-    private void OnInventoryUpdated()
+    public void OnInventoryUpdated()
     {
         if (!isServer)
         {

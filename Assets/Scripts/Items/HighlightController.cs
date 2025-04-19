@@ -35,7 +35,6 @@ public class HighlightController : MonoBehaviour
 
     private void Highlight()
     {
-        print("Highlight");
         _renderer.materials = _highlightedMaterials;
     }
 
