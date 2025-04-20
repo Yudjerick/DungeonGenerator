@@ -12,8 +12,8 @@ public class InventoryUI : MonoBehaviour
 
     private void Start()
     {
-        slots = new List<InventorySlot>();
-        UpdateUI();
+        //slots = new List<InventorySlot>();
+        //UpdateUI();
     }
     private void OnEnable()
     {

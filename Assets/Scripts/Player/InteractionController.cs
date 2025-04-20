@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEditor.Progress;
 
-public class InteractionController : MonoBehaviour
+public class InteractionController : NetworkBehaviour
 {
     [SerializeField] private float interactionDistance = 2f;
     [SerializeField] private Inventory inventory;
@@ -48,7 +48,7 @@ public class InteractionController : MonoBehaviour
         }
 
     }*/
-
+    [Command]
     public void Interact()
     {
         var wasHit = Physics.Raycast(cameraPos.position, cameraPos.forward, out RaycastHit hitInfo, interactionDistance);
@@ -62,6 +62,7 @@ public class InteractionController : MonoBehaviour
             
         }
     }
+    [Command]
     public void OnScroll(float scrollValue)
     {
         if (scrollValue > 0f)
@@ -73,11 +74,12 @@ public class InteractionController : MonoBehaviour
             inventory.RpcDecreaseSlotIndex();
         }
     }
-
+    [Command]
     public void OnUse()
     {
 
     }
+    [Command]
     public void OnDrop()
     {
 

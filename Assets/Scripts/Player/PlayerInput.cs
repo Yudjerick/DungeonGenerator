@@ -3,9 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
-    [SerializeField] private InteractionController interactionController;
     [SerializeField] private PlayerMovement playerMovement;
-    [SerializeField] private NetworkInteractionController networkInteractionController;
+    [SerializeField] private InteractionController interactionController;
 
     private InputAction _interactAction;
     private InputAction _scrollAction;
@@ -18,7 +17,7 @@ public class PlayerInput : MonoBehaviour
 
     void Start()
     {
-        networkInteractionController = GetComponent<NetworkInteractionController>();
+        interactionController = GetComponent<InteractionController>();
 
         _interactAction = InputSystem.actions.FindAction("Interact");
         _interactAction.performed += OnInteract;
@@ -42,23 +41,22 @@ public class PlayerInput : MonoBehaviour
 
     private void OnInteract(InputAction.CallbackContext context)
     {
-        networkInteractionController.Interact();
+        interactionController.Interact();
     }
 
     private void OnUse(InputAction.CallbackContext context)
     {
-        print("AAA");
-        networkInteractionController.Use();
+        interactionController.OnUse();
     }
 
     private void OnScroll(InputAction.CallbackContext context)
     {
-        networkInteractionController.OnScroll(context.ReadValue<float>());
+        interactionController.OnScroll(context.ReadValue<float>());
     }
 
     private void OnDrop(InputAction.CallbackContext context)
     {
-        networkInteractionController.OnDrop();
+        interactionController.OnDrop();
     }
 
     private void OnSprintButtonStateChanged(InputAction.CallbackContext context)

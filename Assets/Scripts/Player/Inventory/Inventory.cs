@@ -33,11 +33,12 @@ public class Inventory : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
-        Items = new List<InventoryItem>();
-        for (int i = 0; i < inventorySize; i++)
+        while (Items.Count < inventorySize)
         {
             Items.Add(null);
         }
+        InventoryUpdatedEvent?.Invoke();
+        //SlotIndexUpdatedEvent?.Invoke();
     }
     public bool PickUp(PickUpItem item)
     {
