@@ -83,26 +83,26 @@ public class Inventory : NetworkBehaviour
         InventoryUpdatedEvent?.Invoke();
     }
 
-    public bool IncreaseSlotIndex()
+    [ClientRpc]
+    public void RpcIncreaseSlotIndex()
     {
         if (_selectedSlotIndex == Items.Count - 1)
         {
-            return false;
+            return;
         }
         _selectedSlotIndex++;
         SlotIndexUpdatedEvent?.Invoke();
-        return true;
     }
 
-    public bool DecreaseSlotIndex()
+    [ClientRpc]
+    public void RpcDecreaseSlotIndex()
     {
         if (_selectedSlotIndex == 0)
         {
-            return false;
+            return;
         }
         _selectedSlotIndex--;
         SlotIndexUpdatedEvent?.Invoke();
-        return true;
     }
 
     public int GetItemCount()

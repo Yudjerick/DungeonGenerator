@@ -19,9 +19,14 @@ namespace Assets.Scripts.Items
 
         }
 
-        public virtual void OnUnEquip()
+        public virtual void UpdateShown()
         {
+            gameObject.SetActive(true);
+        }
 
+        public virtual void UpdateHidden()
+        {
+            gameObject.SetActive(false);
         }
     }
 }

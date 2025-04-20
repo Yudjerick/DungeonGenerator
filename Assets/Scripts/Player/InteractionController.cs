@@ -66,11 +66,11 @@ public class InteractionController : MonoBehaviour
     {
         if (scrollValue > 0f)
         {
-            inventory.IncreaseSlotIndex();
+            inventory.RpcIncreaseSlotIndex();
         }
         else
         {
-            inventory.DecreaseSlotIndex();
+            inventory.RpcDecreaseSlotIndex();
         }
     }
 
