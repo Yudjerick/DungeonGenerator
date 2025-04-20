@@ -9,58 +9,19 @@ using UnityEngine;
 
 namespace Assets.Scripts.Items
 {
-    public class InventoryItem: NetworkBehaviour, Interactable
+    public class InventoryItem: MonoBehaviour
     {
         [field: SerializeField] public string Name { get; private set; }
         [field: SerializeField] public Sprite InventoryPicture { get; private set; }
-        public bool IsInteractable { get => _isInteractable; set => _isInteractable = value; }
 
-        public GameObject Player { get => _player; set => _player = value; }
-        [field: SerializeField] public bool PreventDrop { get; private set; }
+        public virtual void OnEquip()
+        {
 
-        [SyncVar] private bool _isInteractable = true;
-        [SerializeField][SyncVar(hook = nameof(PlayerSyncHook))] private GameObject _player;
-        public Action OnHoverEnterEvent;
-        public Action OnHoverExitEvent;
-        private void Start()
-        {
-        }
-        public virtual bool Interact(InteractionController controller)
-        {
-            return controller.AddItemToInventory(this);
-        }
-        public void OnHoverEnter(InteractionController controller)
-        {
-            OnHoverEnterEvent?.Invoke();
-        }
-        public void OnHoverExit(InteractionController controller)
-        {
-            OnHoverExitEvent?.Invoke();
         }
 
-        public void PlayerSyncHook(GameObject oldVal, GameObject newVal)
+        public virtual void OnUnEquip()
         {
-            _player = newVal;
-        }
 
-        [Command(requiresAuthority = false)]
-        public void CmdUse()
-        {
-            UseOnServer();
-            RpcUse();
-        }
-        protected virtual void UseOnServer()
-        {
-            //_player.GetComponentInChildren<PlayerAnimationController>().SwingWeapon();
-        }
-        [ClientRpc]
-        protected void RpcUse()
-        {
-            UseOnClient();
-        }
-        protected virtual void UseOnClient()
-        {
-            _player.GetComponentInChildren<PlayerAnimationController>().SwingWeapon();
         }
     }
 }

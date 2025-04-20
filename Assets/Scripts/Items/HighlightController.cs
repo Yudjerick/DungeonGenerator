@@ -22,15 +22,15 @@ public class HighlightController : MonoBehaviour
 
     private void OnEnable()
     {
-        item = GetComponent<InventoryItem>();
-        item.OnHoverEnterEvent += Highlight;
-        item.OnHoverExitEvent += UnHighlight;
+        //item = GetComponent<InventoryItem>();
+        //item.OnHoverEnterEvent += Highlight;
+        //item.OnHoverExitEvent += UnHighlight;
     }
 
     private void OnDisable()
     {
-        item.OnHoverEnterEvent -= Highlight;
-        item.OnHoverExitEvent -= UnHighlight;
+        //item.OnHoverEnterEvent -= Highlight;
+        //item.OnHoverExitEvent -= UnHighlight;
     }
 
     private void Highlight()

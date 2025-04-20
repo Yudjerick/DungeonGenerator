@@ -1,4 +1,5 @@
 using Assets.Scripts.Items;
+using Mirror;
 using NaughtyAttributes;
 using System;
 using System.Collections;
@@ -7,9 +8,9 @@ using System.Linq;
 using UnityEngine;
 using static UnityEditor.Progress;
 
-public class Inventory : MonoBehaviour
+public class Inventory : NetworkBehaviour
 {
-    [field: SerializeField] public List<InventoryItem> Items { get; private set; }
+    public List<InventoryItem> Items;
     public int SelectedSlotIndex
     {
         get => _selectedSlotIndex; 
@@ -29,56 +30,47 @@ public class Inventory : MonoBehaviour
     public Action InventoryUpdatedEvent;
     public Action SlotIndexUpdatedEvent;
 
-    private void Start()
+    public override void OnStartClient()
     {
+        base.OnStartClient();
         Items = new List<InventoryItem>();
-        for(int i = 0; i < inventorySize; i++)
+        for (int i = 0; i < inventorySize; i++)
         {
             Items.Add(null);
         }
     }
 
-    [Button]
-    public void InvokeUpdateEvt()
-    {
-        InventoryUpdatedEvent?.Invoke();
-    }
-    public bool AddItem(InventoryItem item, bool invokeEvents = true)
+    [Server]
+    public bool AddItem(InventoryItem item)
     {
         if (Items[SelectedSlotIndex] == null)
         {
             Items[SelectedSlotIndex] = item;
-            if (invokeEvents)
-            {
-                InventoryUpdatedEvent?.Invoke();
-                
-            }
+            InventoryUpdatedEvent?.Invoke();
             return true;
         }
         var availableSlot = GetFirstAvailableSlotIndex();
         if(availableSlot != -1)
         {
             Items[availableSlot] = item;
-            if (invokeEvents)
-            {
-                InventoryUpdatedEvent?.Invoke();
-
-            }
+            InventoryUpdatedEvent?.Invoke();
             return true;
         }
         return false;
     }
-    public InventoryItem DropItem()
+
+    [Server]
+    public bool DropItem()
     {
-        if (Items[SelectedSlotIndex] != null && !Items[SelectedSlotIndex].PreventDrop)
+        if (Items[SelectedSlotIndex] != null && Items[SelectedSlotIndex] is DroppableInventoryItem)
         {
-            var droppedItem = Items[SelectedSlotIndex];
+            var droppedItem = (DroppableInventoryItem)Items[SelectedSlotIndex];
+            droppedItem.OnDrop();
             Items[SelectedSlotIndex] = null;
             InventoryUpdatedEvent?.Invoke();
-            return droppedItem;
+            return true;
         }
-        return null;
-        
+        return false;
     }
 
     public bool IncreaseSlotIndex()
@@ -87,7 +79,6 @@ public class Inventory : MonoBehaviour
         {
             return false;
         }
-
         _selectedSlotIndex++;
         SlotIndexUpdatedEvent?.Invoke();
         return true;

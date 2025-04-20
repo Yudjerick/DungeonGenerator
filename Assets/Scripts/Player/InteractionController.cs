@@ -21,17 +21,13 @@ public class InteractionController : MonoBehaviour
     void Start()
     {
         inventory = GetComponent<Inventory>();
-
-
-        inventory.SlotIndexUpdatedEvent += UpdateEquippedItem;
-        inventory.InventoryUpdatedEvent += OnInventoryUpdated;
     }
     void Update()
     {
-        HandleHover();
+        //HandleHover();
     }
 
-    private void HandleHover()
+    /*private void HandleHover()
     {
         
         var wasHit = Physics.Raycast(cameraPos.position, cameraPos.forward, out RaycastHit hitInfo, interactionDistance);
@@ -51,8 +47,9 @@ public class InteractionController : MonoBehaviour
             }
         }
 
-    }
+    }*/
 
+    [Server]
     public void Interact()
     {
         var wasHit = Physics.Raycast(cameraPos.position, cameraPos.forward, out RaycastHit hitInfo, interactionDistance);
@@ -67,6 +64,7 @@ public class InteractionController : MonoBehaviour
         }
     }
 
+    [Server]
     public void OnScroll(float scrollValue)
     {
         if (scrollValue > 0f)
@@ -79,81 +77,31 @@ public class InteractionController : MonoBehaviour
         }
     }
 
+    [Server]
     public void OnUse()
     {
-        _equippedItem?.CmdUse();
+
     }
 
+    [Server]
     public void OnDrop()
     {
 
-        var dropedItem = inventory.DropItem();
-        if (dropedItem != null)
-        {
-            _equippedItem = null;
-            dropedItem.gameObject.SetActive(true);
-            dropedItem.transform.position = HandPosition.position;
-            dropedItem.transform.parent = null;
-            dropedItem.GetComponent<Rigidbody>().isKinematic = false; //rewrite later
-            dropedItem.IsInteractable = true;
-            dropedItem.Player = null;
-            print("Drop");
-        }
-
+        inventory.DropItem();
     }
 
+    [Server]
     public bool AddItemToInventory(InventoryItem item)
     {
-
-        var success = inventory.AddItem(item);
-        if (success)
-        {
-            item.IsInteractable = false;
-            item.Player = gameObject;
-        }
-        
-        return success;
+        return inventory.AddItem(item);
     }
 
     private void OnInventoryUpdated() // think about it later
     {
-
-        foreach (InventoryItem item in inventory.Items)
-        {
-            if (item != null)
-            {
-                //item.GetComponent<HandHoldable>().SetParentInteractionControllerObj(gameObject);
-                item.transform.parent = HandPosition;
-                item.GetComponent<Rigidbody>().isKinematic = true;
-                item.transform.localPosition = Vector3.zero;
-                item.transform.localRotation = Quaternion.identity;
-                item.gameObject.SetActive(false);
-            }
-
-        }
-        if (_equippedItem != null && inventory.Items[inventory.SelectedSlotIndex] == null)
-        {
-            _equippedItem.gameObject.SetActive(true);
-            //_equippedItem.GetComponent<HandHoldable>().SetParentInteractionControllerObj(null);
-            _equippedItem.transform.parent = null;
-
-            _equippedItem.GetComponent<Rigidbody>().isKinematic = false;
-        }
-        _equippedItem = inventory.Items[inventory.SelectedSlotIndex];
-        _equippedItem?.gameObject.SetActive(true);
     }
 
     private void UpdateEquippedItem()
     {
-        print("Upd Equip");
-        if (inventory.Items[inventory.SelectedSlotIndex] == _equippedItem)
-        {
-            return;
-        }
-        _equippedItem?.gameObject.SetActive(false);
-        _equippedItem = inventory.Items[inventory.SelectedSlotIndex];
-        _equippedItem?.gameObject.SetActive(true);
-
 
     }
 }

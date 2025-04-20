@@ -642,10 +642,11 @@ GameObject:
   - component: {fileID: 898136897}
   - component: {fileID: 898136896}
   - component: {fileID: 898136901}
-  - component: {fileID: 898136900}
   - component: {fileID: 898136902}
   - component: {fileID: 898136904}
   - component: {fileID: 898136905}
+  - component: {fileID: 898136906}
+  - component: {fileID: 898136907}
   m_Layer: 0
   m_Name: TestItem
   m_TagString: Interactable
@@ -743,26 +744,6 @@ Transform:
   - {fileID: 1668250793}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &898136900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 898136895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e02e2a7c53da864e97ad1858ee28d3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  <Name>k__BackingField: Test
-  <InventoryPicture>k__BackingField: {fileID: 10901, guid: 0000000000000000f000000000000000,
-    type: 0}
-  <PreventDrop>k__BackingField: 0
-  _player: {fileID: 0}
 --- !u!54 &898136901
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -853,6 +834,36 @@ MonoBehaviour:
   rotationSensitivity: 0.01
   positionPrecision: 0.01
   scalePrecision: 0.01
+--- !u!114 &898136906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898136895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 595b8ab682f8d534d91157536a50892c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  inventoryItem: {fileID: 1668250797}
+--- !u!114 &898136907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898136895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63cd5f9af03313b4b9c492f735cda1c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: 
+  <InventoryPicture>k__BackingField: {fileID: 0}
 --- !u!1 &910330841
 GameObject:
   m_ObjectHideFlags: 0
@@ -1102,6 +1113,7 @@ GameObject:
   - component: {fileID: 1668250796}
   - component: {fileID: 1668250795}
   - component: {fileID: 1668250794}
+  - component: {fileID: 1668250797}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -1198,6 +1210,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1668250792}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1668250797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668250792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ceed1efb855f99419dab0977355d951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: fffff
+  <InventoryPicture>k__BackingField: {fileID: 10901, guid: 0000000000000000f000000000000000,
+    type: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

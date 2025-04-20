@@ -807,7 +807,7 @@ GameObject:
   - component: {fileID: 1934095798079072981}
   - component: {fileID: 5846539986699668720}
   - component: {fileID: 3553563277775003494}
-  - component: {fileID: 8617237781659230894}
+  - component: {fileID: 4609933279000110112}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1057,10 +1057,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7085f5f3cf3011941bd562cadd5aa539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Items>k__BackingField: []
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  Items: []
   _selectedSlotIndex: 0
   inventorySize: 4
---- !u!114 &8617237781659230894
+--- !u!114 &4609933279000110112
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1069,13 +1072,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5740565089628344684}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 420b1b8cbe9997e4f93eb0c77ea4d5da, type: 3}
+  m_Script: {fileID: 11500000, guid: d6f9ffca934e80040a5d203e8ee7434f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  _selectedSlotIndex: 0
+  rightHand: {fileID: 4797455084279628629}
 --- !u!1 &5921964517219742178
 GameObject:
   m_ObjectHideFlags: 0
