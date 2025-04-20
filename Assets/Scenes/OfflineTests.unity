@@ -642,11 +642,9 @@ GameObject:
   - component: {fileID: 898136897}
   - component: {fileID: 898136896}
   - component: {fileID: 898136901}
-  - component: {fileID: 898136902}
   - component: {fileID: 898136904}
   - component: {fileID: 898136905}
   - component: {fileID: 898136906}
-  - component: {fileID: 898136907}
   m_Layer: 0
   m_Name: TestItem
   m_TagString: Interactable
@@ -771,19 +769,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &898136902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 898136895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8553c39781924b346aa59faa7746fa11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highlightMaterial: {fileID: 2100000, guid: a2ec6e777e412784b83374a98a6947bf, type: 2}
 --- !u!114 &898136904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -849,21 +834,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  inventoryItem: {fileID: 1668250797}
---- !u!114 &898136907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 898136895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63cd5f9af03313b4b9c492f735cda1c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Name>k__BackingField: 
-  <InventoryPicture>k__BackingField: {fileID: 0}
+  <InventoryItem>k__BackingField: {fileID: 1668250797}
 --- !u!1 &910330841
 GameObject:
   m_ObjectHideFlags: 0

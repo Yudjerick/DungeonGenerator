@@ -49,7 +49,6 @@ public class InteractionController : MonoBehaviour
 
     }*/
 
-    [Server]
     public void Interact()
     {
         var wasHit = Physics.Raycast(cameraPos.position, cameraPos.forward, out RaycastHit hitInfo, interactionDistance);
@@ -63,8 +62,6 @@ public class InteractionController : MonoBehaviour
             
         }
     }
-
-    [Server]
     public void OnScroll(float scrollValue)
     {
         if (scrollValue > 0f)
@@ -77,31 +74,13 @@ public class InteractionController : MonoBehaviour
         }
     }
 
-    [Server]
     public void OnUse()
     {
 
     }
-
-    [Server]
     public void OnDrop()
     {
 
         inventory.DropItem();
-    }
-
-    [Server]
-    public bool AddItemToInventory(InventoryItem item)
-    {
-        return inventory.AddItem(item);
-    }
-
-    private void OnInventoryUpdated() // think about it later
-    {
-    }
-
-    private void UpdateEquippedItem()
-    {
-
     }
 }

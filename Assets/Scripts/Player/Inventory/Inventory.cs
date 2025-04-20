@@ -39,24 +39,27 @@ public class Inventory : NetworkBehaviour
             Items.Add(null);
         }
     }
-
-    [Server]
-    public bool AddItem(InventoryItem item)
+    public bool PickUp(PickUpItem item)
     {
         if (Items[SelectedSlotIndex] == null)
         {
-            Items[SelectedSlotIndex] = item;
-            InventoryUpdatedEvent?.Invoke();
+            RpcAddItem(item.gameObject, SelectedSlotIndex);
             return true;
         }
         var availableSlot = GetFirstAvailableSlotIndex();
         if(availableSlot != -1)
         {
-            Items[availableSlot] = item;
-            InventoryUpdatedEvent?.Invoke();
+            RpcAddItem(item.gameObject, availableSlot);
             return true;
         }
         return false;
+    }
+
+    [ClientRpc]
+    public void RpcAddItem(GameObject pickUpItem, int idx)
+    {
+        Items[idx] = pickUpItem.GetComponent<PickUpItem>().InventoryItem;
+        InventoryUpdatedEvent?.Invoke();
     }
 
     [Server]
@@ -64,13 +67,20 @@ public class Inventory : NetworkBehaviour
     {
         if (Items[SelectedSlotIndex] != null && Items[SelectedSlotIndex] is DroppableInventoryItem)
         {
-            var droppedItem = (DroppableInventoryItem)Items[SelectedSlotIndex];
-            droppedItem.OnDrop();
-            Items[SelectedSlotIndex] = null;
-            InventoryUpdatedEvent?.Invoke();
+            var pickUpItem = ((DroppableInventoryItem)Items[SelectedSlotIndex]).PickUp;
+            pickUpItem.OnDrop();
+            RpcDropItem();
             return true;
         }
         return false;
+    }
+
+    [ClientRpc]
+    public void RpcDropItem()
+    {
+        var droppedItem = (DroppableInventoryItem)Items[SelectedSlotIndex];
+        Items[SelectedSlotIndex] = null;
+        InventoryUpdatedEvent?.Invoke();
     }
 
     public bool IncreaseSlotIndex()
