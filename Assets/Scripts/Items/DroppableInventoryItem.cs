@@ -3,12 +3,21 @@ using UnityEngine;
 
 public class DroppableInventoryItem : InventoryItem
 {
-    public PickUpItem PickUp { get; private set; }
-    public void Init(PickUpItem pickUpItem, EquipPointsProvider provider)
+    [field: SerializeField] public PickUpItem PickUpItemRef { get; private set; }
+    [SerializeField] private Transform grabPoint;
+    public virtual void Init(EquipPointsProvider provider)
     {
-        PickUp = pickUpItem;
-        transform.SetParent(provider.rightHand);
-        transform.localPosition = Vector3.zero;
-        transform.localRotation = Quaternion.identity;
+        grabPoint.transform.parent = null;
+        transform.SetParent(grabPoint);
+        grabPoint.transform.parent = provider.rightHand;
+        grabPoint.localPosition = Vector3.zero;
+        grabPoint.localRotation = Quaternion.identity;
+        
+    }
+
+
+    public virtual void OnDrop()
+    {
+        Destroy(gameObject);
     }
 }

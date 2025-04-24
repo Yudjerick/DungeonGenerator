@@ -44,13 +44,13 @@ public class Inventory : NetworkBehaviour
     {
         if (Items[SelectedSlotIndex] == null)
         {
-            RpcAddItem(item.gameObject, SelectedSlotIndex);
+            //RpcAddItem(item.gameObject, SelectedSlotIndex);
             return true;
         }
         var availableSlot = GetFirstAvailableSlotIndex();
         if(availableSlot != -1)
         {
-            RpcAddItem(item.gameObject, availableSlot);
+            //RpcAddItem(item.gameObject, availableSlot);
             return true;
         }
         return false;
@@ -59,7 +59,13 @@ public class Inventory : NetworkBehaviour
     [ClientRpc]
     public void RpcAddItem(GameObject pickUpItem, int idx)
     {
-        Items[idx] = pickUpItem.GetComponent<PickUpItem>().InventoryItem;
+        Items[idx] = pickUpItem.GetComponent<PickUpItem>().InventoryItemRef;
+        InventoryUpdatedEvent?.Invoke();
+    }
+
+    public void AddItem(InventoryItem inventoryItem, int idx)
+    {
+        Items[idx] = inventoryItem;
         InventoryUpdatedEvent?.Invoke();
     }
 
@@ -68,8 +74,10 @@ public class Inventory : NetworkBehaviour
     {
         if (Items[SelectedSlotIndex] != null && Items[SelectedSlotIndex] is DroppableInventoryItem)
         {
-            var pickUpItem = ((DroppableInventoryItem)Items[SelectedSlotIndex]).PickUp;
-            pickUpItem.OnDrop();
+            var instance = Instantiate(((DroppableInventoryItem)Items[SelectedSlotIndex]).PickUpItemRef);
+            instance.transform.position = Items[SelectedSlotIndex].transform.position;
+            instance.transform.rotation = Items[SelectedSlotIndex].transform.rotation;
+            NetworkServer.Spawn(instance.gameObject);
             RpcDropItem();
             return true;
         }
@@ -79,7 +87,7 @@ public class Inventory : NetworkBehaviour
     [ClientRpc]
     public void RpcDropItem()
     {
-        var droppedItem = (DroppableInventoryItem)Items[SelectedSlotIndex];
+        ((DroppableInventoryItem)Items[SelectedSlotIndex]).OnDrop();
         Items[SelectedSlotIndex] = null;
         InventoryUpdatedEvent?.Invoke();
     }

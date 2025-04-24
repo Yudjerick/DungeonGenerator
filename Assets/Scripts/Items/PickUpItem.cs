@@ -7,38 +7,32 @@ using UnityEngine.InputSystem.XR;
 public class PickUpItem : NetworkBehaviour, Interactable
 {
     public bool IsInteractable { get => true; set => throw new System.NotImplementedException(); }
-    [field: SerializeField] public DroppableInventoryItem InventoryItem { get; private set; }
+    [field: SerializeField] public DroppableInventoryItem InventoryItemRef { get; private set; }
+
+    private InteractionController interactionController;
 
     [Server]
     public void Interact(InteractionController controller)
     {
         if (controller.Inventory.PickUp(this))
         {
+            interactionController = controller;
             RpcOnPickedUp(controller.gameObject);
+            
+            
+            
         }
     }
+
+   
 
     [ClientRpc]
     void RpcOnPickedUp(GameObject player)
     {
-        InventoryItem.Init(this, player.GetComponent<EquipPointsProvider>());
-        gameObject.SetActive(false);
-    }
-
-    public void OnDrop()
-    {
-        gameObject.SetActive(true);
-        RpcOnDropped();
-    }
-
-    [ClientRpc]
-    public void RpcOnDropped()
-    {
-        gameObject.SetActive(true);
-        transform.position = InventoryItem.transform.position;
-        transform.rotation = InventoryItem.transform.rotation;
-        InventoryItem.transform.SetParent(transform);
-        InventoryItem.gameObject.SetActive(false);
+        var instance = Instantiate(InventoryItemRef);
+        interactionController.Inventory.AddItem(instance, interactionController.Inventory.SelectedSlotIndex);
+        instance.Init(player.GetComponent<EquipPointsProvider>());
+        NetworkServer.Destroy(gameObject);
     }
 
     public void OnHoverEnter(InteractionController controller)
