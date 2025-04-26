@@ -922,6 +922,8 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  deadPlayer: {fileID: 2234372625122995232, guid: 6594e67b4c837174299e12f0d4da52cb,
+    type: 3}
   <MaxHealth>k__BackingField: 100
 --- !u!114 &3553563277775003494
 MonoBehaviour:
