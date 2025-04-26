@@ -12,6 +12,7 @@ public class PlayerHealth : NetworkBehaviour
     public float Health { get => _health; set => _health = value; }
 
     public Action<float,float> HealthChangedEvent;
+    public Action DieEvent;
 
     public override void OnStartServer()
     {
@@ -31,12 +32,24 @@ public class PlayerHealth : NetworkBehaviour
         }
     }
 
+    [Server]
+    public void TakeDamageServer(float damage)
+    {
+        Health -= damage;
+        if(Health <= 0)
+        {
+            _health = 0;
+            DieServer();
+        }
+    }
+
     public override void OnStartClient()
     {
+        if(isClientOnly)
         Invoke(nameof(CmdDie), 5f);
     }
 
-    public void Die()
+    public void DieTest()
     {
         CmdDie();
     }
@@ -44,9 +57,22 @@ public class PlayerHealth : NetworkBehaviour
     [Command]
     private void CmdDie()
     {
+        DieServer();
+    }
+
+    public void DieServer()
+    {
         NetworkConnectionToClient connection = connectionToClient;
+        print(AliveManager.instance);
+        AliveManager.instance.AlivePlayers.Remove(gameObject);
         GameObject newPlayer = Instantiate(deadPlayer, transform.position, transform.rotation);
+        AliveManager.instance.DeadPlayers.Add(newPlayer); 
         NetworkServer.ReplacePlayerForConnection(connection, newPlayer, ReplacePlayerOptions.Destroy);
+    }
+
+    private void OnDestroy()
+    {
+        DieEvent?.Invoke();
     }
 
     private void OnDamage(float oldHealth, float newHealth)

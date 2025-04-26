@@ -7,27 +7,30 @@ public class FTGNetworkManager : NetworkManager
 {
     [SerializeField] private List<GameObject> playerCharacters;
     [SerializeField] private int characterIndex;
+    [SerializeField] private AliveManager aliveManager;
 
     public override void OnStartServer()
     {
         base.OnStartServer();
-        
+        //FindAnyObjectByType<AliveManager>().Init();
         NetworkServer.RegisterHandler<CreateCharacterMessage>(OnCreateCharacter);
     }
+
+
 
     public override void OnServerConnect(NetworkConnectionToClient conn)
     {
         print("New client connected");
-        /*foreach (var inventorySync in FindObjectsOfType<NetworkInventorySync>())
-        {
-            inventorySync.OnInventoryUpdated();
-            inventorySync.OnSlotIndexUpdated();
-        }*/
+        
     }
 
     public override void OnClientConnect()
     {
         base.OnClientConnect();
+        if (AliveManager.instance == null)
+        {
+            aliveManager.Init();
+        }
 
         CreateCharacterMessage characterMessage = new CreateCharacterMessage
         {
@@ -46,6 +49,11 @@ public class FTGNetworkManager : NetworkManager
         GameObject gameobject = Instantiate(playerCharacters[characterIndex]);
 
         NetworkServer.AddPlayerForConnection(conn, gameobject);
+        if(AliveManager.instance == null)
+        {
+            aliveManager.Init();
+        }
+        aliveManager.AlivePlayers.Add(conn.identity.gameObject);
     }
 
     public struct CreateCharacterMessage : NetworkMessage

@@ -10,7 +10,7 @@ public class Bootstrap : NetworkBehaviour
     [SerializeField] private SeedInitializer seedInitializer;
     void Start()
     {
-
+        
     }
 
     public override void OnStartServer()
@@ -26,6 +26,10 @@ public class Bootstrap : NetworkBehaviour
 
     public void GenerateDungeon()
     {
+        if(seedInitializer == null)
+        {
+            return;
+        }
         seedInitializer.SetRandomInitialState();
         
         FindAnyObjectByType<DungeonGenerator>().Generate();
