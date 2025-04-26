@@ -15,7 +15,8 @@ public class PlayerInput : MonoBehaviour
     private InputAction _jumpAction;
     private InputAction _useAction;
 
-    void Start()
+
+    void OnEnable()
     {
         interactionController = GetComponent<InteractionController>();
 
@@ -37,6 +38,17 @@ public class PlayerInput : MonoBehaviour
 
         _jumpAction = InputSystem.actions.FindAction("Jump");
         _jumpAction.performed += OnJumpButtonPressed;
+    }
+
+    private void OnDisable()
+    {
+        _interactAction.performed -= OnInteract;
+        _scrollAction.performed -= OnScroll;
+        _dropAction.performed -= OnDrop;
+        _useAction.performed -= OnUse;
+        _sprintAction.performed -= OnSprintButtonStateChanged;
+        _sprintAction.canceled -= OnSprintButtonStateChanged;
+        _jumpAction.performed -= OnJumpButtonPressed;
     }
 
     private void OnInteract(InputAction.CallbackContext context)

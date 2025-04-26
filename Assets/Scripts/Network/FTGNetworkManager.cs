@@ -1,6 +1,7 @@
 using Mirror;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using UnityEngine;
 
 public class FTGNetworkManager : NetworkManager
@@ -46,14 +47,17 @@ public class FTGNetworkManager : NetworkManager
     void OnCreateCharacter(NetworkConnectionToClient conn, CreateCharacterMessage message)
     {
 
-        GameObject gameobject = Instantiate(playerCharacters[characterIndex]);
+        GameObject player = Instantiate(playerCharacters[characterIndex]);
 
-        NetworkServer.AddPlayerForConnection(conn, gameobject);
+        NetworkServer.AddPlayerForConnection(conn, player);
         if(AliveManager.instance == null)
         {
             aliveManager.Init();
         }
-        aliveManager.AlivePlayers.Add(conn.identity.gameObject);
+        var listBuff = aliveManager.AlivePlayers.Select(x => x).ToList();
+        listBuff.Add(player);
+        aliveManager.AlivePlayers.Clear();
+        aliveManager.AlivePlayers.AddRange(listBuff);
     }
 
     public struct CreateCharacterMessage : NetworkMessage

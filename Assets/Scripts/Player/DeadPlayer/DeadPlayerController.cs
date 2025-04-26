@@ -8,19 +8,34 @@ public class DeadPlayerController : NetworkBehaviour
     [SerializeField] private GameObject observedPlayer;
     [SerializeField] private PlayerHealth observedPlayerHealth;
 
-
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isLocalPlayer)
         {
+            print("AAAAAAAAAAAAAAAA");
             NextPlayerView();
         }
     }
 
+    
+
+   /*[ClientRpc]
+    public void RpcInit()
+    {
+        if (!isOwned)
+        {
+            Destroy(camera.gameObject);
+        }
+    }*/
+
     public void NextPlayerView()
     {
+        
         var players = AliveManager.instance.AlivePlayers;
+        print(players.Count);
+        print(players[0]);
         var idx = AliveManager.instance.AlivePlayers.IndexOf(observedPlayer);
+        print(idx);
         if (observedPlayerHealth != null)
         {
             observedPlayerHealth.DieEvent -= OnObservedDie;
@@ -61,5 +76,9 @@ public class DeadPlayerController : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
+        if(!isLocalPlayer)
+        {
+            Destroy(camera.gameObject);
+        }
     }
 }
