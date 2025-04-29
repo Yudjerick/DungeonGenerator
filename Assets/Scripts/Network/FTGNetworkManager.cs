@@ -4,53 +4,33 @@ using System.Diagnostics;
 using System.Linq;
 using UnityEngine;
 
-public class FTGNetworkManager : NetworkManager
+public class FTGNetworkManager : NetworkRoomManager
 {
     [SerializeField] private List<GameObject> playerCharacters;
     [SerializeField] private int characterIndex;
     [SerializeField] private AliveManager aliveManager;
-
-    public override void OnStartServer()
-    {
-        base.OnStartServer();
-        //FindAnyObjectByType<AliveManager>().Init();
-        NetworkServer.RegisterHandler<CreateCharacterMessage>(OnCreateCharacter);
-    }
-
-
+    [SerializeField] private AliveManager aliveManagerRef;
 
     public override void OnServerConnect(NetworkConnectionToClient conn)
     {
+        base.OnServerConnect(conn);
         print("New client connected");
         
     }
 
-    public override void OnClientConnect()
+    public override void OnRoomServerPlayersReady()
     {
-        base.OnClientConnect();
-        if (AliveManager.instance == null)
-        {
-            aliveManager.Init();
-        }
-
-        CreateCharacterMessage characterMessage = new CreateCharacterMessage
-        {
-            race = Race.Elvish,
-            name = "Joe Gaba Gaba",
-            hairColor = Color.red,
-            eyeColor = Color.green
-        };
-
-        NetworkClient.Send(characterMessage);
+        aliveManager = Instantiate(aliveManagerRef);
+        NetworkServer.Spawn(aliveManager.gameObject);
+        base.OnRoomServerPlayersReady();
     }
 
-    void OnCreateCharacter(NetworkConnectionToClient conn, CreateCharacterMessage message)
+
+    public override GameObject OnRoomServerCreateGamePlayer(NetworkConnectionToClient conn, GameObject roomPlayer)
     {
-
-        GameObject player = Instantiate(playerCharacters[characterIndex]);
-
-        NetworkServer.AddPlayerForConnection(conn, player);
-        if(AliveManager.instance == null)
+        print("OnRoomServerCreateGamePlayer");
+        GameObject player = Instantiate(playerPrefab);
+        if (AliveManager.instance == null)
         {
             aliveManager.Init();
         }
@@ -58,21 +38,12 @@ public class FTGNetworkManager : NetworkManager
         listBuff.Add(player);
         aliveManager.AlivePlayers.Clear();
         aliveManager.AlivePlayers.AddRange(listBuff);
+
+        return player;
     }
 
-    public struct CreateCharacterMessage : NetworkMessage
+    public override void OnRoomServerAddPlayer(NetworkConnectionToClient conn)
     {
-        public Race race;
-        public string name;
-        public Color hairColor;
-        public Color eyeColor;
-    }
-
-    public enum Race
-    {
-        None,
-        Elvish,
-        Dwarvish,
-        Human
+        
     }
 }

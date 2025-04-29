@@ -8,6 +8,10 @@ public class AliveManager : NetworkBehaviour
     public readonly SyncList<GameObject> AlivePlayers = new SyncList<GameObject>();
     public readonly SyncList<GameObject> DeadPlayers = new SyncList<GameObject>();
 
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
 
     public void Init()

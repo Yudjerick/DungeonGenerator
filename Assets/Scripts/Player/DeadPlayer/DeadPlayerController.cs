@@ -32,10 +32,11 @@ public class DeadPlayerController : NetworkBehaviour
     {
         
         var players = AliveManager.instance.AlivePlayers;
-        print(players.Count);
-        print(players[0]);
+        if(players.Count < 0 )
+        {
+            return;
+        }
         var idx = AliveManager.instance.AlivePlayers.IndexOf(observedPlayer);
-        print(idx);
         if (observedPlayerHealth != null)
         {
             observedPlayerHealth.DieEvent -= OnObservedDie;

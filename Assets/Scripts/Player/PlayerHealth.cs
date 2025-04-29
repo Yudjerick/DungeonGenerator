@@ -32,6 +32,12 @@ public class PlayerHealth : NetworkBehaviour
         }
     }
 
+    [Command]
+    public void CmdTakeDamage(float damage)
+    {
+        TakeDamageServer(damage);
+    }
+
     [Server]
     public void TakeDamageServer(float damage)
     {
@@ -41,17 +47,6 @@ public class PlayerHealth : NetworkBehaviour
             _health = 0;
             DieServer();
         }
-    }
-
-    public override void OnStartClient()
-    {
-        if(isClientOnly)
-        Invoke(nameof(CmdDie), 5f);
-    }
-
-    public void DieTest()
-    {
-        CmdDie();
     }
 
     [Command]
@@ -70,10 +65,10 @@ public class PlayerHealth : NetworkBehaviour
         NetworkServer.ReplacePlayerForConnection(connection, newPlayer, ReplacePlayerOptions.Destroy);
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         DieEvent?.Invoke();
-    }
+    } 
 
     private void OnDamage(float oldHealth, float newHealth)
     {
