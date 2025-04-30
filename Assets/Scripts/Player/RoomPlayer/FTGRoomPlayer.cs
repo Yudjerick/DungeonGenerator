@@ -1,17 +1,70 @@
 using Mirror;
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FTGRoomPlayer : NetworkRoomPlayer
 {
-    
+    [SerializeField] private List<GameObject> playerPrefabs;
+
+    [SyncVar(hook = nameof(SelecetedPlayerIdxHook))] public int selectedPlayerIdx;
+
+    [SyncVar(hook = nameof(ReadyToBeginHook))] public new bool readyToBegin;
+
+    public Action UpdatedEvent;
+
+    public List<GameObject> PlayerPrefabs { get => playerPrefabs; set => playerPrefabs = value; }
+    public int SelectedPlayerIdx { get => selectedPlayerIdx; set => selectedPlayerIdx = value; }
+
     void Start()
     {
-        
+        transform.SetParent(GameObject.Find("ParentPanel").transform);
+       
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ToggleReady()
     {
-        
+        CmdToggleReady();
     }
+
+    [Command]
+    public void CmdToggleReady()
+    {
+        readyToBegin = !readyToBegin;
+    }
+
+    private void ReadyToBeginHook(bool oldVal, bool newVal)
+    {
+        UpdatedEvent?.Invoke();
+    }
+
+    public void SwitchPlayer(bool inverseDirection)
+    {
+        CmdSwitchPlayer(inverseDirection);
+    }
+
+    [Command]
+    private void CmdSwitchPlayer(bool inverseDirection)
+    {
+        var buff = selectedPlayerIdx;
+        var modification = inverseDirection ? 1 : -1;
+        buff += modification;
+        if (buff == playerPrefabs.Count)
+        {
+            buff = 0;
+        }
+        else if (buff == -1)
+        {
+            buff = playerPrefabs.Count - 1;
+        }
+        selectedPlayerIdx = buff;
+    }
+
+    private void SelecetedPlayerIdxHook(int oldVal, int newVal)
+    {
+        UpdatedEvent?.Invoke();
+    }
+
+   
 }

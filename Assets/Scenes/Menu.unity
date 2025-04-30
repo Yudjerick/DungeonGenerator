@@ -2301,8 +2301,9 @@ MonoBehaviour:
   - {fileID: 5532673312124572167, guid: 1b33888225e44e54781315ca360df1ff, type: 3}
   - {fileID: 2234372625122995232, guid: 6594e67b4c837174299e12f0d4da52cb, type: 3}
   - {fileID: 8279282117520221961, guid: 0f52ef1e0de00fe4f9c482dcbb31fc77, type: 3}
+  - {fileID: 4870574523370503529, guid: f048be06148a01845bbeb0d8a6709311, type: 3}
   - {fileID: 8227865037423629846, guid: f628db0f7714c5844833d2decb29f738, type: 3}
-  - {fileID: 7683353369834439501, guid: 12e50cb1fd8546f46a22397bce55c9d5, type: 3}
+  - {fileID: 5740565089628344684, guid: 803711c222dab9449aa54f7892b22e19, type: 3}
   exceptionsDisconnect: 1
   snapshotSettings:
     bufferTimeMultiplier: 2
@@ -2318,9 +2319,9 @@ MonoBehaviour:
   evaluationMethod: 0
   evaluationInterval: 3
   timeInterpolationGui: 0
-  showRoomGUI: 1
+  showRoomGUI: 0
   minPlayers: 1
-  roomPlayerPrefab: {fileID: 5259246374710962383, guid: 12e50cb1fd8546f46a22397bce55c9d5,
+  roomPlayerPrefab: {fileID: 4773713775618439992, guid: f048be06148a01845bbeb0d8a6709311,
     type: 3}
   RoomScene: Assets/Scenes/Lobby.unity
   GameplayScene: Assets/Scenes/OfflineTests.unity
