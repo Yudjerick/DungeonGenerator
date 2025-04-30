@@ -30,6 +30,7 @@ public class PickUpItem : NetworkBehaviour, Interactable
     void RpcOnPickedUp(GameObject player)
     {
         var instance = Instantiate(InventoryItemRef);
+        interactionController = player.GetComponent<InteractionController>();
         interactionController.Inventory.AddItem(instance, interactionController.Inventory.SelectedSlotIndex);
         instance.Init(player.GetComponent<EquipPointsProvider>());
         NetworkServer.Destroy(gameObject);

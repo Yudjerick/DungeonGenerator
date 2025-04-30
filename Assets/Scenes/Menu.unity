@@ -2198,6 +2198,7 @@ GameObject:
   - component: {fileID: 875827064}
   - component: {fileID: 875827059}
   - component: {fileID: 875827063}
+  - component: {fileID: 875827065}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -2285,7 +2286,7 @@ MonoBehaviour:
   offlineScene: Assets/Scenes/Menu.unity
   onlineScene: Assets/Scenes/Lobby.unity
   offlineSceneLoadDelay: 0
-  transport: {fileID: 875827063}
+  transport: {fileID: 875827059}
   networkAddress: localhost
   maxConnections: 100
   disconnectInactiveConnections: 0
@@ -2332,6 +2333,20 @@ MonoBehaviour:
   aliveManager: {fileID: 0}
   aliveManagerRef: {fileID: 2804610793256774062, guid: 373a7a9c9e59fd24b92239becb7a0633,
     type: 3}
+--- !u!114 &875827065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875827058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetX: 0
+  offsetY: 0
 --- !u!1 &961739749
 GameObject:
   m_ObjectHideFlags: 0

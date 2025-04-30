@@ -11,13 +11,6 @@ public class FTGNetworkManager : NetworkRoomManager
     [SerializeField] private AliveManager aliveManager;
     [SerializeField] private AliveManager aliveManagerRef;
 
-    public override void OnServerConnect(NetworkConnectionToClient conn)
-    {
-        base.OnServerConnect(conn);
-        print("New client connected");
-        
-    }
-
     public override void OnRoomServerPlayersReady()
     {
         aliveManager = Instantiate(aliveManagerRef);
@@ -30,20 +23,11 @@ public class FTGNetworkManager : NetworkRoomManager
     {
         print("OnRoomServerCreateGamePlayer");
         GameObject player = Instantiate(playerPrefab);
-        if (AliveManager.instance == null)
-        {
-            aliveManager.Init();
-        }
         var listBuff = aliveManager.AlivePlayers.Select(x => x).ToList();
         listBuff.Add(player);
         aliveManager.AlivePlayers.Clear();
         aliveManager.AlivePlayers.AddRange(listBuff);
 
         return player;
-    }
-
-    public override void OnRoomServerAddPlayer(NetworkConnectionToClient conn)
-    {
-        
     }
 }

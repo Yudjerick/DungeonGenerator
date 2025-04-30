@@ -12,7 +12,6 @@ public class DeadPlayerController : NetworkBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && isLocalPlayer)
         {
-            print("AAAAAAAAAAAAAAAA");
             NextPlayerView();
         }
     }

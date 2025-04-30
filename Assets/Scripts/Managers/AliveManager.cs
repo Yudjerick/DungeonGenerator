@@ -11,6 +11,7 @@ public class AliveManager : NetworkBehaviour
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
+        Init();
     }
 
 
