@@ -59,9 +59,9 @@ public class PlayerHealth : NetworkBehaviour
     {
         NetworkConnectionToClient connection = connectionToClient;
         print(AliveManager.instance);
-        AliveManager.instance.AlivePlayers.Remove(gameObject);
+        AliveManager.instance.SetPlayerDead(gameObject);
         GameObject newPlayer = Instantiate(deadPlayer, transform.position, transform.rotation);
-        AliveManager.instance.DeadPlayers.Add(newPlayer); 
+        //AliveManager.instance.DeadPlayers.Add(newPlayer); 
         NetworkServer.ReplacePlayerForConnection(connection, newPlayer, ReplacePlayerOptions.Destroy);
     }
 

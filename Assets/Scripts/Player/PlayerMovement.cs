@@ -48,7 +48,6 @@ public class PlayerMovement : MonoBehaviour
         // Lock cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        Invoke("SetPos", 1f);
 
         _moveSpeed = walkingSpeed;
         _groundCheckOverlapColliders = new Collider[_maxGroundCheckOverlapColliders];
@@ -139,6 +138,5 @@ public class PlayerMovement : MonoBehaviour
     {
         print("SetPos");
         transform.position = FindAnyObjectByType<NetworkStartPosition>().transform.position;
-
     }
 }
