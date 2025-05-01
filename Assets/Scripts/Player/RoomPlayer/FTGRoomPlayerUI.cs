@@ -22,7 +22,7 @@ public class FTGRoomPlayerUI : MonoBehaviour
     private void UpdateUI()
     {
         classText.text = model.PlayerPrefabs[model.SelectedPlayerIdx].name;
-        readyButtonImg.color = model.readyToBegin ? Color.white : Color.green;
+        readyButtonImg.color = model.readyToBegin ? Color.green : Color.white;
     }
     private void Start()
     {

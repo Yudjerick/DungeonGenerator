@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class FTGNetworkManager : NetworkRoomManager
 {
-    [SerializeField] private List<GameObject> playerCharacters;
-    [SerializeField] private int characterIndex;
     [SerializeField] private AliveManager aliveManager;
     [SerializeField] private AliveManager aliveManagerRef;
 
@@ -22,7 +20,8 @@ public class FTGNetworkManager : NetworkRoomManager
     public override GameObject OnRoomServerCreateGamePlayer(NetworkConnectionToClient conn, GameObject roomPlayer)
     {
         print("OnRoomServerCreateGamePlayer");
-        GameObject player = Instantiate(playerPrefab);
+        FTGRoomPlayer fTGRoomPlayer = roomPlayer.GetComponent<FTGRoomPlayer>();
+        GameObject player = Instantiate(fTGRoomPlayer.GetPlayerPrefab());
         var listBuff = aliveManager.AlivePlayers.Select(x => x).ToList();
         listBuff.Add(player);
         aliveManager.AlivePlayers.Clear();

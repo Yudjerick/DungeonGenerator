@@ -10,33 +10,31 @@ public class FTGRoomPlayer : NetworkRoomPlayer
 
     [SyncVar(hook = nameof(SelecetedPlayerIdxHook))] public int selectedPlayerIdx;
 
-    [SyncVar(hook = nameof(ReadyToBeginHook))] public new bool readyToBegin;
+    //[SyncVar(hook = nameof(ReadyToBeginHook))] public new bool readyToBegin;
 
     public Action UpdatedEvent;
 
     public List<GameObject> PlayerPrefabs { get => playerPrefabs; set => playerPrefabs = value; }
     public int SelectedPlayerIdx { get => selectedPlayerIdx; set => selectedPlayerIdx = value; }
 
-    void Start()
+
+    public override void OnStartClient()
     {
-        transform.SetParent(GameObject.Find("ParentPanel").transform);
-       
+        base.OnStartClient();
+        transform.GetChild(0).SetParent(GameObject.Find("ParentPanel").transform);
     }
 
     public void ToggleReady()
     {
-        CmdToggleReady();
+
+        CmdChangeReadyState(!readyToBegin);
     }
 
-    [Command]
-    public void CmdToggleReady()
-    {
-        readyToBegin = !readyToBegin;
-    }
 
-    private void ReadyToBeginHook(bool oldVal, bool newVal)
+    public override void ReadyStateChanged(bool oldReadyState, bool newReadyState)
     {
         UpdatedEvent?.Invoke();
+        base.ReadyStateChanged(oldReadyState, newReadyState);
     }
 
     public void SwitchPlayer(bool inverseDirection)
@@ -66,5 +64,9 @@ public class FTGRoomPlayer : NetworkRoomPlayer
         UpdatedEvent?.Invoke();
     }
 
+    public GameObject GetPlayerPrefab()
+    {
+        return playerPrefabs[selectedPlayerIdx];
+    }
    
 }
