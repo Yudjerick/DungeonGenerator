@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void HandleMovement(Vector2 movementInput, Vector2 lookInput)
     {
-       //var movement = _moveAction.ReadValue<Vector2>();
+        //var movement = _moveAction.ReadValue<Vector2>();
         rb.linearVelocity = (transform.right * movementInput.x + transform.forward * movementInput.y) * _moveSpeed + rb.linearVelocity.y * Vector3.up;
 
         // Player and Camera rotation

@@ -12,11 +12,19 @@ public class AliveManager : NetworkBehaviour
     {
         DontDestroyOnLoad(gameObject);
         Init();
+        DeadPlayers.OnAdd = OnAddDeadPlayer;
     }
-
 
     public void Init()
     {
         instance = this;
+    }
+
+    private void OnAddDeadPlayer(int idx)
+    {
+        if(AlivePlayers.Count == 0)
+        {
+            print("All players dead");
+        }
     }
 }

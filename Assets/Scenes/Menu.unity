@@ -2302,7 +2302,6 @@ MonoBehaviour:
   - {fileID: 2234372625122995232, guid: 6594e67b4c837174299e12f0d4da52cb, type: 3}
   - {fileID: 8279282117520221961, guid: 0f52ef1e0de00fe4f9c482dcbb31fc77, type: 3}
   - {fileID: 5473240120806108344, guid: f048be06148a01845bbeb0d8a6709311, type: 3}
-  - {fileID: 5740565089628344684, guid: cb93ba2b5094d0f4d96b8a4fe7814710, type: 3}
   - {fileID: 8227865037423629846, guid: f628db0f7714c5844833d2decb29f738, type: 3}
   - {fileID: 562954940716793487, guid: f58add8a324b32c4a8865b7a4a5eccbb, type: 3}
   - {fileID: 5740565089628344684, guid: 803711c222dab9449aa54f7892b22e19, type: 3}
@@ -2326,7 +2325,7 @@ MonoBehaviour:
   roomPlayerPrefab: {fileID: 7244573860032163855, guid: f048be06148a01845bbeb0d8a6709311,
     type: 3}
   RoomScene: Assets/Scenes/Lobby.unity
-  GameplayScene: Assets/Scenes/OfflineTests.unity
+  GameplayScene: Assets/Scenes/Ship.unity
   _allPlayersReady: 0
   clientIndex: 0
   aliveManager: {fileID: 0}
