@@ -9,6 +9,8 @@ public class FTGNetworkManager : NetworkRoomManager
     [SerializeField] private AliveManager aliveManager;
     [SerializeField] private AliveManager aliveManagerRef;
 
+    private Dictionary<NetworkConnectionToClient, GameObject> _choosenGamePlayers = new Dictionary<NetworkConnectionToClient, GameObject>();
+
     public override void OnRoomServerPlayersReady()
     {
         aliveManager = Instantiate(aliveManagerRef);
@@ -21,7 +23,9 @@ public class FTGNetworkManager : NetworkRoomManager
     {
         FTGRoomPlayer fTGRoomPlayer = roomPlayer.GetComponent<FTGRoomPlayer>();
         var startPos = GetStartPosition();
-        GameObject player = Instantiate(fTGRoomPlayer.GetPlayerPrefab(), startPos.position, startPos.rotation);
+        var playerRef = fTGRoomPlayer.GetPlayerPrefab();
+        _choosenGamePlayers[conn] = playerRef;
+        GameObject player = Instantiate(playerRef, startPos.position, startPos.rotation);
         var listBuff = aliveManager.AlivePlayers.Select(x => x).ToList();
         listBuff.Add(player);
         aliveManager.AlivePlayers.Clear();
@@ -64,7 +68,7 @@ public class FTGNetworkManager : NetworkRoomManager
     public override void OnRoomServerAddPlayer(NetworkConnectionToClient conn)
     {
         var startPos = GetStartPosition();
-        GameObject player = Instantiate(playerPrefab, startPos.position, startPos.rotation);
+        GameObject player = Instantiate(_choosenGamePlayers[conn], startPos.position, startPos.rotation);
         
         NetworkServer.AddPlayerForConnection(conn, player);
         var listBuff = aliveManager.AlivePlayers.Select(x => x).ToList();

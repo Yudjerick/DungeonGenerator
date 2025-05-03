@@ -14,7 +14,7 @@ public class PickUpItem : NetworkBehaviour, Interactable
     [Server]
     public void Interact(InteractionController controller)
     {
-        if (controller.Inventory.PickUp(this))
+        if (controller.Inventory.CheckCanPickUp(this))
         {
             interactionController = controller;
             RpcOnPickedUp(controller.gameObject);

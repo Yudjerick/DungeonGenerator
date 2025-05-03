@@ -717,7 +717,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.35, y: 1.35, z: 1.35}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2020943303752947436}
@@ -836,7 +836,7 @@ MonoBehaviour:
   groundCheckRadius: 0.05
   playerCamera: {fileID: 1346016773369037229}
   lookSpeed: 0.1
-  lookYLimit: 45
+  lookYLimit: 80
   canMove: 1
 --- !u!114 &8507991777945653577
 MonoBehaviour:
@@ -1016,8 +1016,8 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 0.44234243, g: 0.6679245, b: 0.44399977, a: 1}
-  m_Intensity: 1
-  m_Range: 8
+  m_Intensity: 3
+  m_Range: 12
   m_SpotAngle: 120.36255
   m_InnerSpotAngle: 87.520294
   m_CookieSize: 10

@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ship.unity
     guid: e82d12eeee275634a83c428c45aacfa7
+  - enabled: 1
+    path: Assets/Scenes/FortressLevel.unity
+    guid: e17b05f2ea3ced340ae3f09934767e76
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: a3289ec4128cfc44ba68fdfe6c7857fb,
       type: 3}

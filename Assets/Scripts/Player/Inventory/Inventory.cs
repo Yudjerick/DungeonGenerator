@@ -38,37 +38,25 @@ public class Inventory : NetworkBehaviour
             Items.Add(null);
         }
         InventoryUpdatedEvent?.Invoke();
-        //SlotIndexUpdatedEvent?.Invoke();
     }
-    public bool PickUp(PickUpItem item)
+    public bool CheckCanPickUp(PickUpItem item)
     {
         if (Items[SelectedSlotIndex] == null)
         {
-            //RpcAddItem(item.gameObject, SelectedSlotIndex);
             return true;
         }
         var availableSlot = GetFirstAvailableSlotIndex();
         if(availableSlot != -1)
         {
-            //RpcAddItem(item.gameObject, availableSlot);
             return true;
         }
         return false;
     }
-
-    [ClientRpc]
-    public void RpcAddItem(GameObject pickUpItem, int idx)
-    {
-        Items[idx] = pickUpItem.GetComponent<PickUpItem>().InventoryItemRef;
-        InventoryUpdatedEvent?.Invoke();
-    }
-
     public void AddItem(InventoryItem inventoryItem, int idx)
     {
         Items[idx] = inventoryItem;
         InventoryUpdatedEvent?.Invoke();
     }
-
     [Server]
     public bool DropItem()
     {
@@ -76,14 +64,13 @@ public class Inventory : NetworkBehaviour
         {
             var instance = Instantiate(((DroppableInventoryItem)Items[SelectedSlotIndex]).PickUpItemRef);
             instance.transform.position = Items[SelectedSlotIndex].transform.position;
-            instance.transform.rotation = Items[SelectedSlotIndex].transform.rotation;
+            instance.transform.rotation = Items[SelectedSlotIndex].transform.rotation; 
             NetworkServer.Spawn(instance.gameObject);
             RpcDropItem();
             return true;
         }
         return false;
     }
-
     [ClientRpc]
     public void RpcDropItem()
     {
@@ -91,7 +78,6 @@ public class Inventory : NetworkBehaviour
         Items[SelectedSlotIndex] = null;
         InventoryUpdatedEvent?.Invoke();
     }
-
     [ClientRpc]
     public void RpcIncreaseSlotIndex()
     {
@@ -102,7 +88,6 @@ public class Inventory : NetworkBehaviour
         _selectedSlotIndex++;
         SlotIndexUpdatedEvent?.Invoke();
     }
-
     [ClientRpc]
     public void RpcDecreaseSlotIndex()
     {
@@ -113,12 +98,10 @@ public class Inventory : NetworkBehaviour
         _selectedSlotIndex--;
         SlotIndexUpdatedEvent?.Invoke();
     }
-
     public int GetItemCount()
     {
         return Items.Select(x => x != null).Count();
     }
-
     public int GetFirstAvailableSlotIndex()
     {
         for(int i  = 0; i < Items.Count; i++) 
