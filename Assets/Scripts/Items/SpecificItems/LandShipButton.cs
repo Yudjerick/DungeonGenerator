@@ -8,12 +8,11 @@ public class LandShipButton : MonoBehaviour, Interactable
     private bool _isInteractable = true;
 
     [Scene]
-    [SerializeField]
-    private string sceneToLoad;
+    public string SceneToLoad;
 
     public void Interact(InteractionController controller)
     {
-        NetworkManager.singleton.ServerChangeScene(sceneToLoad);
+        NetworkManager.singleton.ServerChangeScene(SceneToLoad);
     }
 
     public void OnHoverEnter(InteractionController controller)
