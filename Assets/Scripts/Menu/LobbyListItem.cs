@@ -1,4 +1,3 @@
-using Edgegap;
 using Steamworks;
 using TMPro;
 using UnityEngine;

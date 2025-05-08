@@ -1,9 +1,6 @@
 using Assets.Scripts.Items;
 using Mirror;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using static UnityEditor.Progress;
 
 public class InteractionController : NetworkBehaviour
 {

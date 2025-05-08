@@ -1,6 +1,5 @@
 using Mirror;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 /// <summary>
 /// Represents item's picking up functionslity. 
 /// </summary>
