@@ -185,6 +185,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LanternCeiling (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1239080772644432762, guid: 28939f79aed95314ba3a722e8aad759c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6059088368469406891, guid: 28939f79aed95314ba3a722e8aad759c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -233,6 +238,11 @@ PrefabInstance:
     - target: {fileID: 6059088368469406891, guid: 28939f79aed95314ba3a722e8aad759c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940786261900813828, guid: 28939f79aed95314ba3a722e8aad759c,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -543,6 +553,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LanternCeiling
       objectReference: {fileID: 0}
+    - target: {fileID: 1239080772644432762, guid: 28939f79aed95314ba3a722e8aad759c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1598654166808463027, guid: 28939f79aed95314ba3a722e8aad759c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -606,6 +621,11 @@ PrefabInstance:
     - target: {fileID: 6059088368469406891, guid: 28939f79aed95314ba3a722e8aad759c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940786261900813828, guid: 28939f79aed95314ba3a722e8aad759c,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
