@@ -15,10 +15,9 @@ public class EnemyMoveComponent : MonoBehaviour
         
         _agent = GetComponent<NavMeshAgent>();
         _agent.enabled = false;
-        _player = GameObject.FindWithTag("Player");
         _rb = GetComponent<Rigidbody>();
-        transform.position = _player.transform.position;
         _agent.enabled = true;
+        _player = GameObject.FindGameObjectWithTag("Player");
         
     }
 

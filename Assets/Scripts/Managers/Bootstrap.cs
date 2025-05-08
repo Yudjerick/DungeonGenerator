@@ -8,6 +8,7 @@ using UnityEngine;
 public class Bootstrap : NetworkBehaviour
 {
     [SerializeField] private SeedInitializer seedInitializer;
+    [SerializeField] private SpawnManager spawnManager;
     void Start()
     {
         
@@ -20,8 +21,10 @@ public class Bootstrap : NetworkBehaviour
 
     public override void OnStartClient()
     {
+        SpawnManager.instance = spawnManager;
         print("OnStartClient");
         GenerateDungeon();
+        spawnManager.SpawnEnemies();
     }
 
     public void GenerateDungeon()

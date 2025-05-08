@@ -7,6 +7,7 @@ public class NetworkSpawner : NetworkBehaviour
 {
     [SerializeField] private GameObject spawnObj;
     [SerializeField] private float delay = 3f;
+    [SerializeField] Transform pos;
 
     public override void OnStartServer()
     {

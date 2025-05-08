@@ -7,6 +7,7 @@ using UnityEngine;
 public class NavMeshBaker : MonoBehaviour
 {
     [SerializeField] private NavMeshSurface surface;
+    [SerializeField] GameObject enemy;
     public GameObject Enemy;
 
     [Button]

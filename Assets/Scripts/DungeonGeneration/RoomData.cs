@@ -20,6 +20,8 @@ namespace DungeonGeneration
         [SerializeField] private bool limitedDoorUse = false; 
         [field: SerializeField] public List<ExtraRoomSpawningRequest> AssociatedRooms { get; set; }
         [field: SerializeField] public virtual DoorType DoorType { get; set; } = DoorType.Default;
+
+        [SerializeField] private List<Transform> enemiesSpawnPoints = new List<Transform>();
         public void AddBidirectionalTransition(RoomData roomData, DoorData doorPos, DoorData otherDoorPos)
         {
             if (!transitions.Where(x => x.NextRoom == roomData).Any())
@@ -71,6 +73,7 @@ namespace DungeonGeneration
         public virtual void Initialize(FloorGenerator parentGenerator)
         {
             transitions = new List<Transition>();
+            SpawnManager.instance.enemyPositions.AddRange(enemiesSpawnPoints);
         }
     }
 }

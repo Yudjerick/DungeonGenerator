@@ -138,7 +138,7 @@ public class ProceduralWalkingIK : MonoBehaviour
             {
                 stepProgress = 1f;
                 isLeftFootMoving = false;
-                leftFootBodyOffset = body.InverseTransformPoint(leftFootTargetPosition);
+                //leftFootBodyOffset = body.InverseTransformPoint(leftFootTargetPosition);
             }
 
             // Параболическая траектория для шага
@@ -154,7 +154,7 @@ public class ProceduralWalkingIK : MonoBehaviour
             {
                 stepProgress = 1f;
                 isRightFootMoving = false;
-                rightFootBodyOffset = body.InverseTransformPoint(rightFootTargetPosition);
+                //rightFootBodyOffset = body.InverseTransformPoint(rightFootTargetPosition);
             }
 
             // Параболическая траектория для шага

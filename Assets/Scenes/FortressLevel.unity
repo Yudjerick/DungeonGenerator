@@ -246,6 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   surface: {fileID: 70028848}
+  enemy: {fileID: 0}
   Enemy: {fileID: 8279282117520221961, guid: 0f52ef1e0de00fe4f9c482dcbb31fc77, type: 3}
 --- !u!1 &74338187
 GameObject:
@@ -741,6 +742,12 @@ Transform:
   - {fileID: 719871201}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &536431809 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5532673312124572167, guid: 1b33888225e44e54781315ca360df1ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 608600755}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &608600755
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -749,6 +756,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 554228904665160395, guid: 1b33888225e44e54781315ca360df1ff,
+        type: 3}
+      propertyPath: spawnManager
+      value: 
+      objectReference: {fileID: 608600759}
     - target: {fileID: 554228904665160395, guid: 1b33888225e44e54781315ca360df1ff,
         type: 3}
       propertyPath: seedInitializer
@@ -831,7 +843,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 21644814}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5532673312124572167, guid: 1b33888225e44e54781315ca360df1ff,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 608600759}
   m_SourcePrefab: {fileID: 100100000, guid: 1b33888225e44e54781315ca360df1ff, type: 3}
 --- !u!4 &608600756 stripped
 Transform:
@@ -839,6 +855,20 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 608600755}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &608600759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536431809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10ba6f12e620d1144b74282a1853668a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyRef: {fileID: 225945990407909027, guid: 6a3ec9595dc39184ba9f5ac63647e8e8, type: 3}
+  enemyPositions: []
 --- !u!1 &692907590
 GameObject:
   m_ObjectHideFlags: 0
