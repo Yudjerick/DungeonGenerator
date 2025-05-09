@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -21,7 +22,7 @@ namespace DungeonGeneration
         [field: SerializeField] public List<ExtraRoomSpawningRequest> AssociatedRooms { get; set; }
         [field: SerializeField] public virtual DoorType DoorType { get; set; } = DoorType.Default;
 
-        [SerializeField] private List<Transform> enemiesSpawnPoints = new List<Transform>();
+        [SerializeField] private List<SpawnPoint> enemiesSpawnPoints = new List<SpawnPoint>();
         public void AddBidirectionalTransition(RoomData roomData, DoorData doorPos, DoorData otherDoorPos)
         {
             if (!transitions.Where(x => x.NextRoom == roomData).Any())
@@ -74,6 +75,13 @@ namespace DungeonGeneration
         {
             transitions = new List<Transition>();
             SpawnManager.instance.enemyPositions.AddRange(enemiesSpawnPoints);
+        }
+
+        [Serializable]
+        public struct SpawnPoint
+        {
+            public Transform transform;
+            public SpawnPool pool;
         }
     }
 }

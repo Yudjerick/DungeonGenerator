@@ -1,21 +1,23 @@
 
 using Mirror;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static DungeonGeneration.RoomData;
 
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] GameObject enemyRef;
     public static SpawnManager instance;
 
-    public List<Transform> enemyPositions = new List<Transform>();
+    public List<SpawnPoint> enemyPositions = new List<SpawnPoint>();
 
     [Server]
     public void SpawnEnemies()
     {
-        foreach (Transform t in enemyPositions) 
+        foreach (SpawnPoint t in enemyPositions) 
         {
-            var enemy = Instantiate(enemyRef, t.position, t.rotation);
+            var enemy = Instantiate(t.pool.GetItem(), t.transform.position, t.transform.rotation);
             NetworkServer.Spawn(enemy);
         }
     }
