@@ -9,7 +9,9 @@ using UnityEngine;
 
 public class Inventory : NetworkBehaviour
 {
+    [Mirror.ReadOnly]
     public List<InventoryItem> Items;
+    [SerializeField] private List<InventoryItem> initialItemsRefs;
     public int SelectedSlotIndex
     {
         get => _selectedSlotIndex; 
@@ -32,6 +34,15 @@ public class Inventory : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
+        foreach (var itemRef in initialItemsRefs)
+        {
+            var itemInstance = Instantiate(itemRef);
+            Items.Add(itemInstance);
+            if(itemInstance is DroppableInventoryItem)
+            {
+                ((DroppableInventoryItem)itemInstance).Init(GetComponent<EquipPointsProvider>());
+            }
+        }
         while (Items.Count < inventorySize)
         {
             Items.Add(null);

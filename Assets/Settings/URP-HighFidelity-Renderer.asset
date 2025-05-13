@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fog
   m_EditorClassIdentifier: 
   m_Active: 1
-  injectionPoint: 600
+  injectionPoint: 550
   fetchColorBuffer: 1
   requirements: 0
   passMaterial: {fileID: 2100000, guid: 138ab9c6f5b387143ac4c261fc6a5eed, type: 2}
@@ -33,7 +33,7 @@ MonoBehaviour:
   m_Name: Outline
   m_EditorClassIdentifier: 
   m_Active: 1
-  injectionPoint: 600
+  injectionPoint: 450
   fetchColorBuffer: 1
   requirements: 0
   passMaterial: {fileID: 2100000, guid: c04b9efdc88c222459bc814d83cb3da3, type: 2}

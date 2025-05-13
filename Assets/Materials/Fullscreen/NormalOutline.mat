@@ -102,7 +102,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _NormalPixelDistance: 1
+    - _NormalPixelDistance: 1.2
     - _NormalThreshold: 0.36
     - _OcclusionStrength: 1
     - _Parallax: 0.005

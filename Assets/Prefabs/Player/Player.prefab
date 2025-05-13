@@ -940,10 +940,8 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  Items:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  Items: []
+  initialItemsRefs: []
   _selectedSlotIndex: 0
   inventorySize: 4
 --- !u!114 &4609933279000110112

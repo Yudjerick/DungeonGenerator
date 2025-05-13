@@ -501,6 +501,7 @@ MonoBehaviour:
   spawnObj: {fileID: 8227865037423629846, guid: f628db0f7714c5844833d2decb29f738,
     type: 3}
   delay: 3
+  pos: {fileID: 0}
 --- !u!114 &622281002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,6 +695,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton
       objectReference: {fileID: 0}
+    - target: {fileID: 225945990407909027, guid: 6a3ec9595dc39184ba9f5ac63647e8e8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3548770527328921702, guid: 6a3ec9595dc39184ba9f5ac63647e8e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -743,6 +749,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8820681329659625980, guid: 6a3ec9595dc39184ba9f5ac63647e8e8,
+        type: 3}
+      propertyPath: sceneId
+      value: 2367571660
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1149,6 +1160,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   seedInitializer: {fileID: 0}
+  spawnManager: {fileID: 0}
 --- !u!4 &2101502767
 Transform:
   m_ObjectHideFlags: 0
