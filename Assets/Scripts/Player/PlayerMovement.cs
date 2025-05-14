@@ -27,7 +27,8 @@ public class PlayerMovement : MonoBehaviour
     private Collider[] _groundCheckOverlapColliders;
     private Collider _playerCollider;
 
-    [SerializeField] private Camera playerCamera;
+    [SerializeField] private Transform playerCamera;
+    [SerializeField] private Transform handsIKPivot;
     [SerializeField] private float lookSpeed = 0.1f;
     [SerializeField] private float lookYLimit = 45.0f;
 
@@ -66,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
             _rotationY += -lookInput.y * lookSpeed;
             _rotationY = Mathf.Clamp(_rotationY, -lookYLimit, lookYLimit);
             playerCamera.transform.localRotation = Quaternion.Euler(_rotationY, 0, 0);
+            handsIKPivot.localRotation = playerCamera.localRotation;
             transform.rotation *= Quaternion.Euler(0, lookInput.x * lookSpeed, 0);
         }
 
