@@ -1,4 +1,4 @@
-﻿using Mirror;
+﻿ using Mirror;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +13,18 @@ namespace Assets.Scripts.Items
     {
         [field: SerializeField] public string Name { get; private set; }
         [field: SerializeField] public Sprite InventoryPicture { get; private set; }
-
-        public virtual void OnEquip()
+        [SerializeField] protected Transform grabPoint;
+        [field: SerializeField] public OnUseAbility Ability { get; private set; }
+        public virtual void Init(EquipPointsProvider provider)
         {
+            grabPoint.transform.parent = null;
+            transform.SetParent(grabPoint);
+            grabPoint.transform.parent = provider.rightHand;
+            grabPoint.localPosition = Vector3.zero;
+            grabPoint.localRotation = Quaternion.identity;
 
         }
+        public virtual void OnEquip(){ }
 
         public virtual void UpdateShown()
         {

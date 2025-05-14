@@ -72,10 +72,41 @@ public class InteractionController : NetworkBehaviour
         }
     }
     [Command]
-    public void OnUse()
+    public void OnUse(bool buttonState)
     {
-
+        var item = Inventory.Items[Inventory.SelectedSlotIndex];
+        if (item != null && item.Ability != null)
+        {
+            if (buttonState)
+            {
+                item.Ability.OnUseButtonDownServer();
+                
+            }
+            else
+            {
+                item.Ability.OnUseButtonUpServer();
+            }
+            RpcUse(buttonState);
+        }
     }
+    [ClientRpc]
+    private void RpcUse(bool buttonState)
+    {
+        var item = Inventory.Items[Inventory.SelectedSlotIndex];
+        if (item != null && item.Ability != null)
+        {
+            if (buttonState)
+            {
+                item.Ability.OnUseButtonDownCLient();
+            }
+            else
+            {
+                item.Ability.OnUseButtonUpClient();
+            }
+        }
+    }
+
+
     [Command]
     public void OnDrop()
     {

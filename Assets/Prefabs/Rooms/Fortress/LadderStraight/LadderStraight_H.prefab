@@ -150,6 +150,7 @@ MonoBehaviour:
       type: 3}
     <FloorOffset>k__BackingField: 1
   <DoorType>k__BackingField: 0
+  enemiesSpawnPoints: []
 --- !u!1001 &4366051459717266163
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -217,7 +218,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: 8bfcb0d491903404191e23242bd1ec97, type: 2}
+      objectReference: {fileID: 2100000, guid: c0ec13018954c4a4387aeb685bb9ba2b, type: 2}
     - target: {fileID: -7511558181221131132, guid: 4031ec3f788d54f4ba60bd95e451fb2d,
         type: 3}
       propertyPath: 'm_Materials.Array.data[2]'

@@ -96,6 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8924187370008246299}
   - component: {fileID: 2382494545753446380}
+  - component: {fileID: 5085776876315647382}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -135,9 +136,22 @@ MonoBehaviour:
   <Name>k__BackingField: Sword
   <InventoryPicture>k__BackingField: {fileID: 10913, guid: 0000000000000000f000000000000000,
     type: 0}
+  grabPoint: {fileID: 4239057530533141489}
+  <Ability>k__BackingField: {fileID: 5085776876315647382}
   <PickUpItemRef>k__BackingField: {fileID: 6459801433676373726, guid: b3052f2804bd1db45bca23df88b5810d,
     type: 3}
-  grabPoint: {fileID: 4239057530533141489}
+--- !u!114 &5085776876315647382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3813219797288854585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cf5883a818ce6044924a111bcca8032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7626734419127939424
 GameObject:
   m_ObjectHideFlags: 0

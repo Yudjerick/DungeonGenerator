@@ -28,8 +28,13 @@ public class PlayerAnimationController : NetworkBehaviour
         
     }
 
-    public void SwingWeapon()
+    public void SwordUp()
     {
-        HandIKAnimator.SetTrigger("WeaponSwing"); 
+        HandIKAnimator.SetTrigger("SwordUp"); 
+    }
+
+    public void SwordDown()
+    {
+        HandIKAnimator.SetTrigger("SwordDown");
     }
 }

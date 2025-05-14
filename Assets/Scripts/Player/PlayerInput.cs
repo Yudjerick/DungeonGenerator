@@ -28,6 +28,7 @@ public class PlayerInput : MonoBehaviour
         _dropAction.performed += OnDrop;
         _useAction = InputSystem.actions.FindAction("Use");
         _useAction.performed += OnUse;
+        _useAction.canceled += OnUse;
 
         _moveAction = InputSystem.actions.FindAction("Move");
         _lookAction = InputSystem.actions.FindAction("Look");
@@ -46,6 +47,7 @@ public class PlayerInput : MonoBehaviour
         _scrollAction.performed -= OnScroll;
         _dropAction.performed -= OnDrop;
         _useAction.performed -= OnUse;
+        _useAction.canceled -= OnUse;
         _sprintAction.performed -= OnSprintButtonStateChanged;
         _sprintAction.canceled -= OnSprintButtonStateChanged;
         _jumpAction.performed -= OnJumpButtonPressed;
@@ -58,7 +60,7 @@ public class PlayerInput : MonoBehaviour
 
     private void OnUse(InputAction.CallbackContext context)
     {
-        interactionController.OnUse();
+        interactionController.OnUse(context.performed);
     }
 
     private void OnScroll(InputAction.CallbackContext context)
