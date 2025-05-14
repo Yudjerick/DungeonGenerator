@@ -459,7 +459,7 @@ MonoBehaviour:
   readyToBegin: 0
   index: 0
   playerPrefabs:
-  - {fileID: 5740565089628344684, guid: cb93ba2b5094d0f4d96b8a4fe7814710, type: 3}
+  - {fileID: 5740565089628344684, guid: f06a0300d6749834182df422eedeebcb, type: 3}
   - {fileID: 5740565089628344684, guid: 803711c222dab9449aa54f7892b22e19, type: 3}
   - {fileID: 5740565089628344684, guid: c9fdcb06252372549b3ae6a5ee83e513, type: 3}
   selectedPlayerIdx: 0
