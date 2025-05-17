@@ -1,53 +1,38 @@
 using Mirror;
 using NaughtyAttributes;
+using Steamworks;
 using System;
+using TMPro;
 using UnityEngine;
 
-public class PlayerHealth : NetworkBehaviour
+public class PlayerHealth : BaseHealth
 {
     [SerializeField] private GameObject deadPlayer;
-    [field: SerializeField] public float MaxHealth { get; private set; }
-
-    [SyncVar(hook = nameof(HealthChangedHook))] private float _health; 
-    public float Health { get => _health; set => _health = value; }
-
-    public Action<float,float> HealthChangedEvent;
     public Action DieEvent;
+
+    [SyncVar(hook = nameof(NameChangedHook))] public string playerName;
+    [SerializeField]
+    private TMP_Text playerNameText;
 
     public override void OnStartServer()
     {
-        Health = MaxHealth;
-    }
-
-    private void HealthChangedHook(float oldHealth, float newHealth)
-    {
-        HealthChangedEvent?.Invoke(oldHealth, newHealth);
-        if(oldHealth < newHealth)
+        base.OnStartServer();
+        if (SteamManager.Initialized)
         {
-            OnHeal(oldHealth, newHealth);
+            playerName = SteamFriends.GetPersonaName();
         }
-        else if(oldHealth > newHealth)
+        else
         {
-            OnDamage(oldHealth, newHealth);
+            playerName = "Player" + connectionToClient.connectionId;
         }
     }
 
-    [Command]
-    public void CmdTakeDamage(float damage)
+    private void NameChangedHook(string oldName, string newName)
     {
-        TakeDamageServer(damage);
+        playerNameText.text = newName;
     }
 
-    [Server]
-    public void TakeDamageServer(float damage)
-    {
-        Health -= damage;
-        if(Health <= 0)
-        {
-            _health = 0;
-            DieServer();
-        }
-    }
+    
 
     [Command]
     private void CmdDie()
@@ -55,7 +40,7 @@ public class PlayerHealth : NetworkBehaviour
         DieServer();
     }
 
-    public void DieServer()
+    public override void DieServer()
     {
         NetworkConnectionToClient connection = connectionToClient;
         print(AliveManager.instance);
@@ -70,13 +55,5 @@ public class PlayerHealth : NetworkBehaviour
         DieEvent?.Invoke();
     } 
 
-    private void OnDamage(float oldHealth, float newHealth)
-    {
-
-    }
-
-    private void OnHeal(float oldHealth, float newHealth)
-    {
-
-    }
+    
 }

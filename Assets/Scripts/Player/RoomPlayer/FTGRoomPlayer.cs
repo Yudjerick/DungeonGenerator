@@ -1,4 +1,5 @@
 using Mirror;
+using Steamworks;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class FTGRoomPlayer : NetworkRoomPlayer
 
     [SyncVar(hook = nameof(SelecetedPlayerIdxHook))] public int selectedPlayerIdx;
 
-    //[SyncVar(hook = nameof(ReadyToBeginHook))] public new bool readyToBegin;
+    [SyncVar] public string playerName;
 
     public Action UpdatedEvent;
 
@@ -21,6 +22,20 @@ public class FTGRoomPlayer : NetworkRoomPlayer
     {
         base.OnStartClient();
         transform.GetChild(0).SetParent(GameObject.Find("ParentPanel").transform);
+
+        
+    }
+
+    public override void OnStartServer()
+    {
+        if (SteamManager.Initialized)
+        {
+            playerName = SteamFriends.GetPersonaName();
+        }
+        else
+        {
+            playerName = "Player" + connectionToClient.connectionId;
+        }
     }
 
     public void ToggleReady()

@@ -16,15 +16,15 @@ RenderSettings:
   serializedVersion: 10
   m_Fog: 0
   m_FogColor: {r: 0.23639011, g: 0.30662128, b: 0.4490565, a: 1}
-  m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogMode: 2
+  m_FogDensity: 0.09
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
+  m_AmbientSkyColor: {r: 0.0524386, g: 0.05660379, b: 0.054237273, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 0
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -904,23 +904,26 @@ MonoBehaviour:
   dungeonHeight: 30
   dungeonDepth: 60
   levelY: 0
-  loopCount: 0
-  minimalLoopLength: 0
+  loopCount: 3
+  minimalLoopLength: 3
   roomRefs:
   - {fileID: 2993731838201729944, guid: f01093f0db7dca440b2f11f17daaf294, type: 3}
   - {fileID: 2993731838201729944, guid: f01093f0db7dca440b2f11f17daaf294, type: 3}
   - {fileID: 2993731838201729944, guid: f01093f0db7dca440b2f11f17daaf294, type: 3}
+  - {fileID: 1325527777471089685, guid: 826e79ef77563424eb958871908be7aa, type: 3}
   - {fileID: 8731233105519557903, guid: e9b9859acff20e84aab4b268d1694016, type: 3}
   - {fileID: 2993731838201729944, guid: f01093f0db7dca440b2f11f17daaf294, type: 3}
   - {fileID: 7737275942734137565, guid: c352e73aadc8b8e40bb37543c2ce4eb0, type: 3}
-  - {fileID: 2993731838201729944, guid: f01093f0db7dca440b2f11f17daaf294, type: 3}
-  - {fileID: 2993731838201729944, guid: f01093f0db7dca440b2f11f17daaf294, type: 3}
   - {fileID: 2993731838201729944, guid: f01093f0db7dca440b2f11f17daaf294, type: 3}
   - {fileID: 1325527777471089685, guid: 826e79ef77563424eb958871908be7aa, type: 3}
+  - {fileID: 2993731838201729944, guid: f01093f0db7dca440b2f11f17daaf294, type: 3}
+  - {fileID: 2993731838201729944, guid: f01093f0db7dca440b2f11f17daaf294, type: 3}
   - {fileID: 7737275942734137565, guid: c352e73aadc8b8e40bb37543c2ce4eb0, type: 3}
   - {fileID: 8731233105519557903, guid: e9b9859acff20e84aab4b268d1694016, type: 3}
   - {fileID: 8731233105519557903, guid: e9b9859acff20e84aab4b268d1694016, type: 3}
   - {fileID: 8731233105519557903, guid: e9b9859acff20e84aab4b268d1694016, type: 3}
+  - {fileID: 8731233105519557903, guid: e9b9859acff20e84aab4b268d1694016, type: 3}
+  - {fileID: 1325527777471089685, guid: 826e79ef77563424eb958871908be7aa, type: 3}
   segmentPack: {fileID: 11400000, guid: 1a21366094f0cbd48b7f2992bac72080, type: 2}
   hasInitialRoom: 1
   initialRoom: {fileID: 1325527777471089685, guid: 7130fa0f2ce2feb43a7e31a108589292,
@@ -1063,9 +1066,10 @@ MonoBehaviour:
   dungeonHeight: 30
   dungeonDepth: 60
   levelY: -4
-  loopCount: 0
-  minimalLoopLength: 0
+  loopCount: 2
+  minimalLoopLength: 2
   roomRefs:
+  - {fileID: 2993731838201729944, guid: f01093f0db7dca440b2f11f17daaf294, type: 3}
   - {fileID: 2993731838201729944, guid: f01093f0db7dca440b2f11f17daaf294, type: 3}
   - {fileID: 2993731838201729944, guid: f01093f0db7dca440b2f11f17daaf294, type: 3}
   - {fileID: 2993731838201729944, guid: f01093f0db7dca440b2f11f17daaf294, type: 3}
@@ -1295,7 +1299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 3
   m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 0
+  m_AdditionalLightsShadowResolutionTier: 1
   m_LightLayerMask: 1
   m_RenderingLayers: 1
   m_CustomShadowLayers: 0
@@ -1315,8 +1319,8 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 48.2
-  m_Range: 24.97
+  m_Intensity: 94.26
+  m_Range: 22.1
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10

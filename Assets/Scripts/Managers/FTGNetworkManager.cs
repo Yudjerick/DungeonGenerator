@@ -1,6 +1,5 @@
 using Mirror;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using UnityEngine;
 
@@ -10,6 +9,7 @@ public class FTGNetworkManager : NetworkRoomManager
     [SerializeField] private AliveManager aliveManagerRef;
 
     private Dictionary<NetworkConnectionToClient, GameObject> _choosenGamePlayers = new Dictionary<NetworkConnectionToClient, GameObject>();
+    private Dictionary<NetworkConnectionToClient, string> _playerNames;
 
     public override void OnRoomServerPlayersReady()
     {
@@ -25,6 +25,7 @@ public class FTGNetworkManager : NetworkRoomManager
         var startPos = GetStartPosition();
         var playerRef = fTGRoomPlayer.GetPlayerPrefab();
         _choosenGamePlayers[conn] = playerRef;
+        //_playerNames[conn] = fTGRoomPlayer.playerName;
         GameObject player = Instantiate(playerRef, startPos.position, startPos.rotation);
         var listBuff = aliveManager.AlivePlayers.Select(x => x).ToList();
         listBuff.Add(player);
@@ -71,6 +72,8 @@ public class FTGNetworkManager : NetworkRoomManager
         GameObject player = Instantiate(_choosenGamePlayers[conn], startPos.position, startPos.rotation);
         
         NetworkServer.AddPlayerForConnection(conn, player);
+        //player.GetComponent<PlayerHealth>().playerName = _playerNames[conn];
+
         var listBuff = aliveManager.AlivePlayers.Select(x => x).ToList();
         listBuff.Add(player);
         aliveManager.AlivePlayers.Clear();

@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 6012120659592013637}
   - component: {fileID: 8820681329659625980}
   - component: {fileID: 1403312049432289665}
+  - component: {fileID: 270853979507924041}
+  - component: {fileID: 7281234261626562519}
+  - component: {fileID: 3032677016825634858}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Untagged
@@ -45,7 +48,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 225945990407909027}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.3
+  m_Radius: 0.42
   m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
@@ -106,10 +109,61 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1.9947218
+  m_Radius: 0.4739103
+  m_Height: 1.9597023
   m_Direction: 1
-  m_Center: {x: 0, y: -0.7986594, z: 0}
+  m_Center: {x: 0, y: -0.7811493, z: 0}
+--- !u!114 &270853979507924041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225945990407909027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e05c1b2b1967954d99ed06820799e01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &7281234261626562519
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225945990407909027}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.59546113
+  m_Height: 2.002139
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.79166406, z: 0.095461205}
+--- !u!114 &3032677016825634858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225945990407909027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd1407d3b73cee0428e35f9f8c21c953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  <MaxHealth>k__BackingField: 100
 --- !u!1 &603502142934030976
 GameObject:
   m_ObjectHideFlags: 0

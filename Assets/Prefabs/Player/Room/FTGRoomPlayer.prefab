@@ -368,6 +368,7 @@ MonoBehaviour:
   model: {fileID: 7244573860032163855}
   classText: {fileID: 7469384689303249292}
   readyButtonImg: {fileID: 9107070635024532167}
+  playerNameText: {fileID: 7172815298912957671}
 --- !u!1 &5024122542005086106
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,6 +464,7 @@ MonoBehaviour:
   - {fileID: 5740565089628344684, guid: 803711c222dab9449aa54f7892b22e19, type: 3}
   - {fileID: 5740565089628344684, guid: c9fdcb06252372549b3ae6a5ee83e513, type: 3}
   selectedPlayerIdx: 0
+  playerName: 
 --- !u!114 &8824158098644257464
 MonoBehaviour:
   m_ObjectHideFlags: 0

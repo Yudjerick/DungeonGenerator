@@ -14,7 +14,7 @@ GameObject:
   m_Layer: 0
   m_Name: d1
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -243,7 +243,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[6]'
       value: 
-      objectReference: {fileID: 2100000, guid: 8bfcb0d491903404191e23242bd1ec97, type: 2}
+      objectReference: {fileID: 2100000, guid: 9f3247be490b1db429878ea919257614, type: 2}
     - target: {fileID: -7511558181221131132, guid: 4031ec3f788d54f4ba60bd95e451fb2d,
         type: 3}
       propertyPath: 'm_Materials.Array.data[7]'
@@ -337,6 +337,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ladder_straight_collider
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d8b36a0017f4ea0419588459e1c61956,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: d8b36a0017f4ea0419588459e1c61956, type: 3}

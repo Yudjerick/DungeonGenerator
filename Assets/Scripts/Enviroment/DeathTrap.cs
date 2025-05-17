@@ -4,6 +4,9 @@ public class DeathTrap : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<PlayerHealth>().TakeDamageServer(50f );
+        
+        var health = other.GetComponent<BaseHealth>();
+        print(other.name);
+        health?.TakeDamageServer(50f);
     }
 }
