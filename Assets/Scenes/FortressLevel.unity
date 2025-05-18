@@ -1004,7 +1004,7 @@ PrefabInstance:
     - target: {fileID: 8715471464749797266, guid: 798b7cf7d75599a4a86d0860d9cd291e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.25
+      value: 4.75
       objectReference: {fileID: 0}
     - target: {fileID: 8715471464749797266, guid: 798b7cf7d75599a4a86d0860d9cd291e,
         type: 3}
@@ -1083,7 +1083,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 3
   m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 1
+  m_AdditionalLightsShadowResolutionTier: 2
   m_LightLayerMask: 1
   m_RenderingLayers: 1
   m_CustomShadowLayers: 0
@@ -1104,12 +1104,12 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 94.26
-  m_Range: 22.1
+  m_Range: 20
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -1166,7 +1166,7 @@ Transform:
   m_GameObject: {fileID: 995281670}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 69.97, y: 11.85, z: 90.5}
+  m_LocalPosition: {x: 69.97, y: 11.85, z: 88.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
