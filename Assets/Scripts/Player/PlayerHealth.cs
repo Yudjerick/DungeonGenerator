@@ -17,14 +17,7 @@ public class PlayerHealth : BaseHealth
     public override void OnStartServer()
     {
         base.OnStartServer();
-        if (SteamManager.Initialized)
-        {
-            playerName = SteamFriends.GetPersonaName();
-        }
-        else
-        {
-            playerName = "Player" + connectionToClient.connectionId;
-        }
+        playerName = ((FTGNetworkManager)NetworkManager.singleton).playerNames[connectionToClient];
     }
 
     private void NameChangedHook(string oldName, string newName)

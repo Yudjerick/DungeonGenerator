@@ -1247,7 +1247,7 @@ GameObject:
   - component: {fileID: 4609933279000110112}
   - component: {fileID: 3155451322291640289}
   m_Layer: 0
-  m_Name: n_Player
+  m_Name: Wizzard
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1419,7 +1419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 0
-  _assetId: 2168530562
+  _assetId: 2451441596
   serverOnly: 0
   visibility: 0
   hasSpawned: 0
@@ -1471,9 +1471,9 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  <MaxHealth>k__BackingField: 100
   deadPlayer: {fileID: 2234372625122995232, guid: 6594e67b4c837174299e12f0d4da52cb,
     type: 3}
-  <MaxHealth>k__BackingField: 100
   playerName: 
   playerNameText: {fileID: 1211549277907095750}
 --- !u!114 &3553563277775003494
@@ -1493,7 +1493,7 @@ MonoBehaviour:
   syncInterval: 0
   Items: []
   initialItemsRefs:
-  - {fileID: 2382494545753446380, guid: 669f44b82c026744fb9c0374adb1a383, type: 3}
+  - {fileID: 1036066088065855247, guid: 7bf044488e912c44397091494812da1c, type: 3}
   _selectedSlotIndex: 0
   inventorySize: 4
 --- !u!114 &4609933279000110112
@@ -2160,7 +2160,7 @@ PrefabInstance:
     - target: {fileID: -5234201413376844422, guid: 39893b0fe3887db4ba4642ae23b88381,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4029573700853689288, guid: 39893b0fe3887db4ba4642ae23b88381,
         type: 3}
@@ -2241,6 +2241,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: helmet_warrior
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 39893b0fe3887db4ba4642ae23b88381,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7584266049084388203, guid: 39893b0fe3887db4ba4642ae23b88381,
         type: 3}

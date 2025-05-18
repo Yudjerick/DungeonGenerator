@@ -625,7 +625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fbb6bc9c49830d44b8cd385a4768137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Assets/Scenes/MenuLAN.unity
+  sceneName: Assets/Scenes/MenuSteam.unity
 --- !u!1 &877169724
 GameObject:
   m_ObjectHideFlags: 0

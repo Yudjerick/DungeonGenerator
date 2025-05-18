@@ -9,7 +9,7 @@ public class FTGNetworkManager : NetworkRoomManager
     [SerializeField] private AliveManager aliveManagerRef;
 
     private Dictionary<NetworkConnectionToClient, GameObject> _choosenGamePlayers = new Dictionary<NetworkConnectionToClient, GameObject>();
-    private Dictionary<NetworkConnectionToClient, string> _playerNames;
+    public Dictionary<NetworkConnectionToClient, string> playerNames = new Dictionary<NetworkConnectionToClient, string>();
 
     public override void OnRoomServerPlayersReady()
     {

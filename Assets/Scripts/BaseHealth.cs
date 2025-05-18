@@ -7,6 +7,7 @@ public class BaseHealth : NetworkBehaviour
     
     [field: SerializeField] public float MaxHealth { get; private set; }
 
+    [SerializeField]
     [SyncVar(hook = nameof(HealthChangedHook))] protected float _health;
     public float Health { get => _health; set => _health = value; }
 

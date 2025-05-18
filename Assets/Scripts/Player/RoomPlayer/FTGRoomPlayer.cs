@@ -3,6 +3,7 @@ using Steamworks;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class FTGRoomPlayer : NetworkRoomPlayer
 {
@@ -23,19 +24,37 @@ public class FTGRoomPlayer : NetworkRoomPlayer
         base.OnStartClient();
         transform.GetChild(0).SetParent(GameObject.Find("ParentPanel").transform);
 
-        
+        if (SteamManager.Initialized)
+        {
+            CmdSetPlayerName(SteamFriends.GetPersonaName());
+        }
+        else
+        {
+            CmdSetPlayerNameWithConnectionId("Player_");
+        }
+    }
+
+    [Command]
+    public void CmdSetPlayerName(string name)
+    {
+        playerName = name;
+        ((FTGNetworkManager)NetworkManager.singleton).playerNames[connectionToClient] = playerName;
+        UpdatedEvent?.Invoke();
+    }
+
+    [Command]
+    public void CmdSetPlayerNameWithConnectionId(string name)
+    {
+        var nameBuff = name;
+        nameBuff += connectionToClient.ToString();
+        playerName = nameBuff;
+        ((FTGNetworkManager)NetworkManager.singleton).playerNames[connectionToClient] = playerName;
+        UpdatedEvent?.Invoke();
     }
 
     public override void OnStartServer()
     {
-        if (SteamManager.Initialized)
-        {
-            playerName = SteamFriends.GetPersonaName();
-        }
-        else
-        {
-            playerName = "Player" + connectionToClient.connectionId;
-        }
+        
     }
 
     public void ToggleReady()
