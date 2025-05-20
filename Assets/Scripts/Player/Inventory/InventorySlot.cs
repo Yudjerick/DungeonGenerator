@@ -19,6 +19,18 @@ public class InventorySlot : MonoBehaviour
     {
         itemIcon.sprite = icon;
     }
+
+    public void SetIconTransparent(bool transparent)
+    {
+        if (transparent)
+        {
+            itemIcon.color = Color.clear;
+        }
+        else
+        {
+            itemIcon.color = Color.white;
+        }
+    }
     
     public void Highlight()
     {

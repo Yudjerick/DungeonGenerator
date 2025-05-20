@@ -169,8 +169,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Sword
-  <InventoryPicture>k__BackingField: {fileID: 10913, guid: 0000000000000000f000000000000000,
-    type: 0}
+  <InventoryPicture>k__BackingField: {fileID: 21300000, guid: cdd39238a8eda774e9c0773feb9e3d41,
+    type: 3}
   grabPoint: {fileID: 4239057530533141489}
   <Ability>k__BackingField: {fileID: 5085776876315647382}
   <PickUpItemRef>k__BackingField: {fileID: 6459801433676373726, guid: b3052f2804bd1db45bca23df88b5810d,

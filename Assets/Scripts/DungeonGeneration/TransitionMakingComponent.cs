@@ -47,7 +47,7 @@ namespace DungeonGeneration
                 selectedFrom. AddBidirectionalTransition(selectedTo, selectedFromDoor, selectedToDoor);
                 explored.Add(selectedTo);
                 unexplored.Remove(selectedTo);
-                Debug.DrawLine(selectedFromDoor.Transform.position, selectedToDoor.Transform.position, Color.green, 100000f); //Null reference here
+                Debug.DrawLine(selectedFromDoor.Transform.position, selectedToDoor.Transform.position, Color.green, 100000f);
             }
         }
 

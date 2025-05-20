@@ -8,12 +8,6 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private List<InventorySlot> slots;
     [SerializeField] private Sprite emptySlotSprite;
     [SerializeField] private InventorySlot slotPrefab;
-
-    private void Start()
-    {
-        //slots = new List<InventorySlot>();
-        //UpdateUI();
-    }
     private void OnEnable()
     {
         model.InventoryUpdatedEvent += UpdateUI;

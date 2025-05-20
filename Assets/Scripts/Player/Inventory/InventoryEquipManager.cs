@@ -9,11 +9,11 @@ public class InventoryEquipManager : MonoBehaviour
     void Start()
     {
         equipped = null;
-        model.InventoryUpdatedEvent += OnInventoryUpdate;
-        model.SlotIndexUpdatedEvent += OnInventoryUpdate;
+        model.InventoryUpdatedEvent += UpdateEquipped;
+        model.SlotIndexUpdatedEvent += UpdateEquipped;
     }
 
-    private void OnInventoryUpdate()
+    private void UpdateEquipped()
     {
         for(int i = 0; i < model.Items.Count; i++)
         {
