@@ -38,7 +38,7 @@ namespace DungeonGeneration
         private int _floorIndex;
 
         public bool[,] SolidMap { get; set; }
-        public List<RoomData> Rooms { get; set; } = new List<RoomData>();
+        [field: SerializeField] public List<RoomData> Rooms { get; set; } = new List<RoomData>();
         public GameObject Floor { get; set; }
         public int Gap { get => gap; set => gap = value; }
         public float GridCellSize { get => gridCellSize; set => gridCellSize = value; }
@@ -148,7 +148,7 @@ namespace DungeonGeneration
             }
         }
 
-        public void InstantiateCorridors()
+        public GameObject InstantiateCorridors()
         {
             var corridor = new GameObject("Corridor");
             corridor.transform.parent = Floor.transform;
@@ -165,6 +165,7 @@ namespace DungeonGeneration
                 }
 
             }
+            return corridor;
         }
 
         public void AddCorridorsToUnusedDoors()
@@ -209,7 +210,27 @@ namespace DungeonGeneration
             MarkDoorTypes();
             MakePathes();
             AddCorridorsToUnusedDoors();
-            InstantiateCorridors();
+
+            var corridor = InstantiateCorridors();
+
+            /*corridor.AddComponent<MeshFilter>();
+            MeshFilter[] meshFilters = corridor.GetComponentsInChildren<MeshFilter>();
+            CombineInstance[] combine = new CombineInstance[meshFilters.Length];
+
+            int i = 0;
+            while (i < meshFilters.Length)
+            {
+                combine[i].mesh = meshFilters[i].sharedMesh;
+                combine[i].transform = meshFilters[i].transform.localToWorldMatrix;
+                meshFilters[i].gameObject.SetActive(false);
+
+                i++;
+            }
+
+            Mesh mesh = new Mesh();
+            mesh.CombineMeshes(combine);
+            corridor.GetComponent<MeshFilter>().sharedMesh = mesh;
+            //transform.gameObject.SetActive(true);*/
         }
     }
 }
