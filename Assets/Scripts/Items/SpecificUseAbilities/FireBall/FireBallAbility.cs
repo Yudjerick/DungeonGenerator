@@ -30,6 +30,11 @@ public class FireBallAbility : OnUseAbility
 
     public override void OnUseButtonUpClient()
     {
+        if (_chargeProgress > 0.5f)
+        {
+            _chargeProgress = 0f;
+            _isCharging = false;
+        }
         _isCharging = false;
         _isUncharging = true;
     }
