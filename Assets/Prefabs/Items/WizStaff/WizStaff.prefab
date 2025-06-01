@@ -368,6 +368,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   chargeSpeed: 0.2
   unchargeSpeed: 0.5
+  fireballPrefab: {fileID: 2684429493737962013, guid: 5cb7e90a3fdd4ea41b9cb0a859f79d97,
+    type: 3}
+  spawnPoint: {fileID: 4166156094697202947}
 --- !u!1001 &602226361342535382
 PrefabInstance:
   m_ObjectHideFlags: 0

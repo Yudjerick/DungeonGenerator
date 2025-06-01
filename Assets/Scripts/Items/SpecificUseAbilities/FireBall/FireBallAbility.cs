@@ -1,4 +1,5 @@
- using UnityEngine;
+using Mirror;
+using UnityEngine;
 using UnityEngine.VFX;
 
 public class FireBallAbility : OnUseAbility
@@ -8,6 +9,10 @@ public class FireBallAbility : OnUseAbility
 
     [SerializeField] private float chargeSpeed;
     [SerializeField] private float unchargeSpeed;
+
+    [SerializeField] private FireballProjectile fireballPrefab;
+    [SerializeField] private Transform spawnPoint;
+ 
     private float _chargeProgress = 0f;
     private bool _isCharging;
     private bool _isUncharging;
@@ -29,9 +34,22 @@ public class FireBallAbility : OnUseAbility
         _isUncharging = true;
     }
 
+    public override void OnUseButtonUpServer()
+    {
+        if (_chargeProgress > 0.5f)
+        {
+            var fireball = Instantiate(fireballPrefab, spawnPoint.transform.position, spawnPoint.rotation);
+            NetworkServer.Spawn(fireball.gameObject);
+            fireball.Initialize(_chargeProgress, transform.root.GetChild(0).forward);
+            _chargeProgress = 0f;
+            _isCharging = false;
+        }
+    }
+
 
     private void Update()
     {
+        
         fireballVFX.SetFloat("Charge", chargeSampling.Evaluate(_chargeProgress));
         if (_isCharging)
         {
