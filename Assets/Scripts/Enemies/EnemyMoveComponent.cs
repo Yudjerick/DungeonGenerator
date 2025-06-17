@@ -1,7 +1,9 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyMoveComponent : MonoBehaviour
@@ -25,10 +27,16 @@ public class EnemyMoveComponent : MonoBehaviour
     void Update()
     {
         //_rb.velocity = (_player.transform.position - transform.position).normalized;
-        if(_player != null && _agent.isActiveAndEnabled)
-        {
-           _agent.SetDestination(_player.transform.position);
-        }
         
+        MoveToPlayer();
+    }
+
+    [Server]
+    private void MoveToPlayer()
+    {
+        if (_player != null && _agent.isActiveAndEnabled)
+        {
+            _agent.SetDestination(_player.transform.position);
+        }
     }
 }

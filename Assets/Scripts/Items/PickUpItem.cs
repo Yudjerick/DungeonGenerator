@@ -1,4 +1,7 @@
+using Assets.Scripts.Items;
 using Mirror;
+using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 /// <summary>
 /// Represents item's picking up functionslity. 

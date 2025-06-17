@@ -1,3 +1,4 @@
+using Assets.Scripts.Items;
 using Mirror;
 using UnityEngine;
 
@@ -23,5 +24,15 @@ public class OnUseAbility : MonoBehaviour
     public virtual void OnUseButtonUpClient()
     {
 
+    }
+
+    public virtual void SetStateFromBundle(StateBundle bundle)
+    {
+
+    }
+
+    public virtual StateBundle GetStateBundle()
+    {
+        return null;
     }
 }

@@ -70,10 +70,13 @@ public class Inventory : NetworkBehaviour
     {
         if (Items[SelectedSlotIndex] != null && Items[SelectedSlotIndex] is DroppableInventoryItem)
         {
-            var instance = Instantiate(((DroppableInventoryItem)Items[SelectedSlotIndex]).PickUpItemRef);
+            var droppable = (DroppableInventoryItem)Items[SelectedSlotIndex];
+            var instance = Instantiate(droppable.PickUpItemRef);
             instance.transform.position = Items[SelectedSlotIndex].transform.position;
             instance.transform.rotation = Items[SelectedSlotIndex].transform.rotation; 
             NetworkServer.Spawn(instance.gameObject);
+            var stateBundle = droppable.Ability?.GetStateBundle();
+            //instance.RpcInitStateFromBundle(stateBundle);
             RpcDropItem();
             return true;
         }

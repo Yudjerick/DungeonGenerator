@@ -1,3 +1,4 @@
+using Mirror;
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ public class NavMeshBaker : MonoBehaviour
     [SerializeField] GameObject enemy;
     public GameObject Enemy;
 
-    [Button]
+    [Server]
     public void Bake()
     {
         surface.BuildNavMesh();

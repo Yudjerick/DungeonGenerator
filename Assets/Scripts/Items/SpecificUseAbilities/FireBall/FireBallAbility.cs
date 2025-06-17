@@ -1,3 +1,4 @@
+using Assets.Scripts.Items;
 using Mirror;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -17,12 +18,21 @@ public class FireBallAbility : OnUseAbility
     private bool _isCharging;
     private bool _isUncharging;
 
+    [SerializeField] private float cooldown;
+    private float _currentCooldown;
+    
+
     private void Start()
     {
         fireballVFX.gameObject.SetActive(false);
+        _currentCooldown = 0f;
     }
     public override void OnUseButtonDownCLient()
     {
+        if(_currentCooldown > 0f)
+        {
+            return;
+        }
         _isUncharging = false;
         _isCharging = true;
         fireballVFX.gameObject.SetActive(true);
@@ -33,6 +43,7 @@ public class FireBallAbility : OnUseAbility
         if (_chargeProgress > 0.5f)
         {
             _chargeProgress = 0f;
+            _currentCooldown = cooldown;
             _isCharging = false;
         }
         _isCharging = false;
@@ -75,5 +86,25 @@ public class FireBallAbility : OnUseAbility
                 fireballVFX.gameObject.SetActive( false );
             }
         }
+        else if(_currentCooldown > 0f)
+        {
+            _currentCooldown -= Time.deltaTime;
+            if(_currentCooldown < 0f)
+            {
+                _currentCooldown = 0f;
+            }
+        }
+    }
+
+    public override StateBundle GetStateBundle()
+    {
+        var bundle = new StateBundle();
+        bundle.PutFloat("cooldown", _currentCooldown);
+        return bundle;
+    }
+
+    public override void SetStateFromBundle(StateBundle bundle)
+    {
+        _currentCooldown = bundle.GetFloat("cooldown");
     }
 }

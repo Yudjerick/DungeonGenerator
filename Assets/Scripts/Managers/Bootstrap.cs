@@ -36,6 +36,13 @@ public class Bootstrap : NetworkBehaviour
         seedInitializer.SetRandomInitialState();
         
         FindAnyObjectByType<DungeonGenerator>().Generate();
+        
+        GenerateOnServer();
+    }
+
+    [Server]
+    private void GenerateOnServer()
+    {
         FindAnyObjectByType<NavMeshBaker>().Bake();
     }
 
