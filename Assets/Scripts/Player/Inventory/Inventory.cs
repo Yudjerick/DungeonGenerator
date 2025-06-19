@@ -38,7 +38,7 @@ public class Inventory : NetworkBehaviour
             Items.Add(itemInstance);
             if(itemInstance is DroppableInventoryItem)
             {
-                ((DroppableInventoryItem)itemInstance).Init(GetComponent<EquipPointsProvider>());
+                ((DroppableInventoryItem)itemInstance).Init(GetComponent<EquipPointsProvider>(), null);
             }
         }
         while (Items.Count < inventorySize)
@@ -47,7 +47,7 @@ public class Inventory : NetworkBehaviour
         }
         InventoryUpdatedEvent?.Invoke();
     }
-    public bool CheckCanPickUp(PickUpItem item)
+    public bool CheckCanPickUp(PickupItem item)
     {
         if (Items[SelectedSlotIndex] == null)
         {
@@ -76,7 +76,10 @@ public class Inventory : NetworkBehaviour
             instance.transform.rotation = Items[SelectedSlotIndex].transform.rotation; 
             NetworkServer.Spawn(instance.gameObject);
             var stateBundle = droppable.Ability?.GetStateBundle();
-            //instance.RpcInitStateFromBundle(stateBundle);
+            if(stateBundle != null)
+            {
+                instance.SetState(stateBundle);
+            }
             RpcDropItem();
             return true;
         }

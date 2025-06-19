@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class DroppableInventoryItem : InventoryItem
 {
-    [field: SerializeField] public PickUpItem PickUpItemRef { get; private set; }
+    [field: SerializeField] public PickupItem PickUpItemRef { get; private set; }
 
     public virtual void OnDrop()
     {

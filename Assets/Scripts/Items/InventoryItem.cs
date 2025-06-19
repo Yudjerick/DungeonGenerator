@@ -15,22 +15,32 @@ namespace Assets.Scripts.Items
         [field: SerializeField] public Sprite InventoryPicture { get; private set; }
         [SerializeField] protected Transform grabPoint;
         [field: SerializeField] public OnUseAbility Ability { get; private set; }
-        public virtual void Init(EquipPointsProvider provider)
+        public virtual void Init(EquipPointsProvider provider, StateBundle stateBundle)
         {
             grabPoint.transform.parent = null;
             transform.SetParent(grabPoint);
             grabPoint.transform.parent = provider.rightHand;
             grabPoint.localPosition = Vector3.zero;
             grabPoint.localRotation = Quaternion.identity;
+            
+            if(stateBundle != null)
+            {
+                Ability.SetStateFromBundle(stateBundle);
+            }
 
         }
         public virtual void OnEquip(){ }
 
+        /// <summary>
+        /// called each time item is selected after inventory was updated (even if it was already selected)
+        /// </summary>
         public virtual void UpdateShown()
         {
             gameObject.SetActive(true);
         }
-
+        /// <summary>
+        /// called each time item is not selected after inventory was updated
+        /// </summary>
         public virtual void UpdateHidden()
         {
             gameObject.SetActive(false);

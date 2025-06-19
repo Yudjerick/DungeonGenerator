@@ -291,7 +291,7 @@ MonoBehaviour:
     type: 0}
   grabPoint: {fileID: 616135892549828756}
   <Ability>k__BackingField: {fileID: 2060736711078794959}
-  <PickUpItemRef>k__BackingField: {fileID: 4956760712785013473, guid: f628db0f7714c5844833d2decb29f738,
+  <PickUpItemRef>k__BackingField: {fileID: 1902602341510767063, guid: f628db0f7714c5844833d2decb29f738,
     type: 3}
 --- !u!114 &2060736711078794959
 MonoBehaviour:
@@ -371,6 +371,7 @@ MonoBehaviour:
   fireballPrefab: {fileID: 2684429493737962013, guid: 5cb7e90a3fdd4ea41b9cb0a859f79d97,
     type: 3}
   spawnPoint: {fileID: 4166156094697202947}
+  cooldown: 20
 --- !u!1001 &602226361342535382
 PrefabInstance:
   m_ObjectHideFlags: 0

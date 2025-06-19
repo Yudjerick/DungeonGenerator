@@ -19,13 +19,12 @@ public class FireBallAbility : OnUseAbility
     private bool _isUncharging;
 
     [SerializeField] private float cooldown;
-    private float _currentCooldown;
+    [SerializeField] private float _currentCooldown;
     
 
     private void Start()
     {
         fireballVFX.gameObject.SetActive(false);
-        _currentCooldown = 0f;
     }
     public override void OnUseButtonDownCLient()
     {
@@ -58,6 +57,7 @@ public class FireBallAbility : OnUseAbility
             NetworkServer.Spawn(fireball.gameObject);
             fireball.Initialize(_chargeProgress, transform.root.GetChild(0).forward);
             _chargeProgress = 0f;
+            _currentCooldown = cooldown;
             _isCharging = false;
         }
     }
@@ -65,7 +65,6 @@ public class FireBallAbility : OnUseAbility
 
     private void Update()
     {
-        
         fireballVFX.SetFloat("Charge", chargeSampling.Evaluate(_chargeProgress));
         if (_isCharging)
         {
@@ -105,6 +104,7 @@ public class FireBallAbility : OnUseAbility
 
     public override void SetStateFromBundle(StateBundle bundle)
     {
+        
         _currentCooldown = bundle.GetFloat("cooldown");
     }
 }

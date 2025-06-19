@@ -6,35 +6,49 @@ using UnityEngine;
 /// <summary>
 /// Represents item's picking up functionslity. 
 /// </summary>
-public class PickUpItem : NetworkBehaviour, Interactable
+public class PickupItem : NetworkBehaviour, Interactable
 {
-    public bool IsInteractable { get => true; set => throw new System.NotImplementedException(); }
+    public bool IsInteractable { get => _isInteractable; set => _isInteractable = value; }
+    private bool _isInteractable = true;
     [field: SerializeField] public DroppableInventoryItem InventoryItemRef { get; private set; }
 
     private InteractionController interactionController;
 
+    [SerializeField] private PickupState state;
+ 
     [Server]
     public void Interact(InteractionController controller)
     {
         if (controller.Inventory.CheckCanPickUp(this))
         {
             interactionController = controller;
-            RpcOnPickedUp(controller.gameObject);
+            RpcOnPickedUp(controller.gameObject, GetState());
             
             
             
         }
     }
 
+    [Server]
+    public void SetState(StateBundle bundle)
+    {
+        state.SetStateFromBundle(bundle);
+    }
+
+    [Server]
+    public StateBundle GetState()
+    {
+        return state.GetStateBundle();
+    }
    
 
     [ClientRpc]
-    void RpcOnPickedUp(GameObject player)
+    void RpcOnPickedUp(GameObject player, StateBundle stateBundle)
     {
         var instance = Instantiate(InventoryItemRef);
         interactionController = player.GetComponent<InteractionController>();
         interactionController.Inventory.AddItem(instance, interactionController.Inventory.SelectedSlotIndex);
-        instance.Init(player.GetComponent<EquipPointsProvider>());
+        instance.Init(player.GetComponent<EquipPointsProvider>(), stateBundle);
         NetworkServer.Destroy(gameObject);
     }
 
