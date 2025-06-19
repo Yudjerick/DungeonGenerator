@@ -47,19 +47,7 @@ public class Inventory : NetworkBehaviour
             Items.Add(null);
         }
         InventoryUpdatedEvent?.Invoke();
-    }
-    public bool CheckCanPickUp(PickupItem item)
-    {
-        if (Items[SelectedSlotIndex] == null)
-        {
-            return true;
-        }
-        var availableSlot = GetFirstAvailableSlotIndex();
-        if(availableSlot != -1)
-        {
-            return true;
-        }
-        return false;
+        
     }
     public void AddItem(InventoryItem inventoryItem, int idx)
     {
@@ -119,6 +107,10 @@ public class Inventory : NetworkBehaviour
     }
     public int GetFirstAvailableSlotIndex()
     {
+        if (Items[SelectedSlotIndex] == null)
+        {
+            return SelectedSlotIndex;
+        }
         for(int i  = 0; i < Items.Count; i++) 
         {
             if (Items[i] == null)

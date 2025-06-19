@@ -19,13 +19,10 @@ public class PickupItem : NetworkBehaviour, Interactable
     [Server]
     public void Interact(InteractionController controller)
     {
-        if (controller.Inventory.CheckCanPickUp(this))
+        var idx = controller.Inventory.GetFirstAvailableSlotIndex();
+        if (idx != -1)
         {
-            interactionController = controller;
-            RpcOnPickedUp(controller.gameObject, GetState());
-            
-            
-            
+            RpcOnPickedUp(controller.gameObject, GetState(), idx);
         }
     }
 
@@ -38,16 +35,16 @@ public class PickupItem : NetworkBehaviour, Interactable
     [Server]
     public StateBundle GetState()
     {
-        return state.GetStateBundle();
+        return state?.GetStateBundle();
     }
    
 
     [ClientRpc]
-    void RpcOnPickedUp(GameObject player, StateBundle stateBundle)
+    void RpcOnPickedUp(GameObject player, StateBundle stateBundle, int idx)
     {
         var instance = Instantiate(InventoryItemRef);
         interactionController = player.GetComponent<InteractionController>();
-        interactionController.Inventory.AddItem(instance, interactionController.Inventory.SelectedSlotIndex);
+        interactionController.Inventory.AddItem(instance, idx);
         instance.Init(player.GetComponent<EquipPointsProvider>(), stateBundle);
         NetworkServer.Destroy(gameObject);
     }

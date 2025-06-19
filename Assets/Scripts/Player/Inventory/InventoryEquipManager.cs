@@ -6,11 +6,17 @@ public class InventoryEquipManager : MonoBehaviour
     [SerializeField] private Inventory model;
 
     private InventoryItem equipped;
-    void Start()
+    private void OnEnable()
     {
         equipped = null;
         model.InventoryUpdatedEvent += UpdateEquipped;
         model.SlotIndexUpdatedEvent += UpdateEquipped;
+    }
+
+    private void OnDisable()
+    {
+        model.InventoryUpdatedEvent -= UpdateEquipped;
+        model.SlotIndexUpdatedEvent -= UpdateEquipped;
     }
 
     private void UpdateEquipped()
