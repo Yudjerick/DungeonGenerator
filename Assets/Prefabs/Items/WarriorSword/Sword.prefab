@@ -30,10 +30,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0.00000002669254, z: -0.00000002669254, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 60.000004, y: 60.000004, z: 60.000004}
+  m_LocalScale: {x: 60, y: 60, z: 60}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 8924187370008246299}
+  m_Father: {fileID: 7503575438895224724}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8582216744261848384
 MeshFilter:
@@ -121,6 +121,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e05c1b2b1967954d99ed06820799e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2821060782692658045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7503575438895224724}
+  m_Layer: 0
+  m_Name: Visuals
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7503575438895224724
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2821060782692658045}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8734065276186432394}
+  m_Father: {fileID: 8924187370008246299}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3813219797288854585
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +184,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 8734065276186432394}
+  - {fileID: 7503575438895224724}
   - {fileID: 4239057530533141489}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -173,6 +205,7 @@ MonoBehaviour:
     type: 3}
   grabPoint: {fileID: 4239057530533141489}
   <Ability>k__BackingField: {fileID: 5085776876315647382}
+  visuals: {fileID: 2821060782692658045}
   <PickUpItemRef>k__BackingField: {fileID: 6459801433676373726, guid: b3052f2804bd1db45bca23df88b5810d,
     type: 3}
 --- !u!114 &5085776876315647382

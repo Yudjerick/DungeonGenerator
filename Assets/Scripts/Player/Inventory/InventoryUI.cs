@@ -12,12 +12,14 @@ public class InventoryUI : MonoBehaviour
     {
         model.InventoryUpdatedEvent += UpdateUI;
         model.SlotIndexUpdatedEvent += UpdateUI;
+        model.ItemStateUpdatedEvent += UpdateItemState;
     }
 
     private void OnDisable()
     {
         model.InventoryUpdatedEvent -= UpdateUI;
         model.SlotIndexUpdatedEvent -= UpdateUI;
+        model.ItemStateUpdatedEvent -= UpdateItemState;
     }
 
     private void RecreateItemSlots()
@@ -49,6 +51,7 @@ public class InventoryUI : MonoBehaviour
             else
             {
                 slots[i].SetIcon(emptySlotSprite);
+                slots[i].UpdateCooldownClockEffect(0);
             }
             if(i == model.SelectedSlotIndex)
             {
@@ -60,5 +63,10 @@ public class InventoryUI : MonoBehaviour
             }
             
         }
+    }
+
+    private void UpdateItemState(int idx)
+    {
+        slots[idx].UpdateCooldownClockEffect(model.Items[idx].CooldownClockState);
     }
 }

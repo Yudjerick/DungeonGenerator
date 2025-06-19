@@ -15,6 +15,12 @@ namespace Assets.Scripts.Items
         [field: SerializeField] public Sprite InventoryPicture { get; private set; }
         [SerializeField] protected Transform grabPoint;
         [field: SerializeField] public OnUseAbility Ability { get; private set; }
+
+        /// <summary>
+        /// Gameobject to disable when item is unequipped
+        /// </summary>
+        [SerializeField] private GameObject visuals;
+        public float CooldownClockState { get; set; } = 0;
         public virtual void Init(EquipPointsProvider provider, StateBundle stateBundle)
         {
             grabPoint.transform.parent = null;
@@ -36,14 +42,29 @@ namespace Assets.Scripts.Items
         /// </summary>
         public virtual void UpdateShown()
         {
-            gameObject.SetActive(true);
+            if(visuals!= null)
+            {
+                visuals.SetActive(true);
+            }
+            else
+            {
+                gameObject.SetActive(true);
+            }
+            
         }
         /// <summary>
         /// called each time item is not selected after inventory was updated
         /// </summary>
         public virtual void UpdateHidden()
         {
-            gameObject.SetActive(false);
+            if (visuals != null)
+            {
+                visuals.SetActive(false);
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 }

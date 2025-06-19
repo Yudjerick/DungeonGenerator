@@ -29,6 +29,7 @@ public class Inventory : NetworkBehaviour
     [SerializeField] private int inventorySize = 4;
     public Action InventoryUpdatedEvent;
     public Action SlotIndexUpdatedEvent;
+    public Action<int> ItemStateUpdatedEvent;
     public override void OnStartClient()
     {
         base.OnStartClient();

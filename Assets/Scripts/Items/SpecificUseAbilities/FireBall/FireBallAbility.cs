@@ -18,6 +18,10 @@ public class FireBallAbility : OnUseAbility
     private bool _isCharging;
     private bool _isUncharging;
 
+    private Inventory _inventory;
+    private InventoryItem _item;
+    private int _idxInInventory;
+
     [SerializeField] private float cooldown;
     [SerializeField] private float _currentCooldown;
     
@@ -25,6 +29,9 @@ public class FireBallAbility : OnUseAbility
     private void Start()
     {
         fireballVFX.gameObject.SetActive(false);
+        _inventory = GetComponentInParent<Inventory>();
+        _item = GetComponentInParent<InventoryItem>();
+        _idxInInventory = _inventory.Items.IndexOf(_item);
     }
     public override void OnUseButtonDownCLient()
     {
@@ -59,6 +66,8 @@ public class FireBallAbility : OnUseAbility
             _chargeProgress = 0f;
             _currentCooldown = cooldown;
             _isCharging = false;
+            _item.CooldownClockState = _currentCooldown / cooldown;
+            _inventory.ItemStateUpdatedEvent?.Invoke(_idxInInventory);
         }
     }
 
@@ -92,6 +101,8 @@ public class FireBallAbility : OnUseAbility
             {
                 _currentCooldown = 0f;
             }
+            _item.CooldownClockState = _currentCooldown / cooldown;
+            _inventory.ItemStateUpdatedEvent?.Invoke(_idxInInventory);
         }
     }
 

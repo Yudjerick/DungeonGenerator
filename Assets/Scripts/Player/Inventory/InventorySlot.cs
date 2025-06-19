@@ -8,6 +8,7 @@ public class InventorySlot : MonoBehaviour
 {
     [SerializeField] private Image itemIcon;
     [SerializeField] private GameObject itemContainer;
+    [SerializeField] private Image cooldownClockEffect;
     private Image _containerImage;
 
     private void OnEnable()
@@ -40,5 +41,10 @@ public class InventorySlot : MonoBehaviour
     public void UnHighlight()
     {
         _containerImage.color = Color.white;
+    }
+
+    public void UpdateCooldownClockEffect(float value)
+    {
+        cooldownClockEffect.fillAmount = value;
     }
 }
