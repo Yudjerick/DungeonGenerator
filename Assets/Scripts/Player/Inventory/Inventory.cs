@@ -69,16 +69,40 @@ public class Inventory : NetworkBehaviour
             {
                 instance.SetState(stateBundle);
             }
-            RpcDropItem();
+            RpcDropItem(SelectedSlotIndex);
             return true;
         }
         return false;
     }
-    [ClientRpc]
-    public void RpcDropItem()
+
+    [Server]
+    public void DropAllItems()
     {
-        ((DroppableInventoryItem)Items[SelectedSlotIndex]).OnDrop();
-        Items[SelectedSlotIndex] = null;
+        for(int i = 0; i < Items.Count; i++) 
+        {
+            var item = Items[i];
+            if (item != null && item is DroppableInventoryItem)
+            {
+                var droppable = (DroppableInventoryItem)item;
+                var instance = Instantiate(droppable.PickUpItemRef);
+                instance.transform.position = item.transform.position;
+                instance.transform.rotation = item.transform.rotation;
+                NetworkServer.Spawn(instance.gameObject);
+                var stateBundle = droppable.Ability?.GetStateBundle();
+                if (stateBundle != null)
+                {
+                    instance.SetState(stateBundle);
+                }
+                RpcDropItem(i);
+            }
+        }
+    }
+
+    [ClientRpc]
+    public void RpcDropItem(int index)
+    {
+        ((DroppableInventoryItem)Items[index]).OnDrop();
+        Items[index] = null;
         InventoryUpdatedEvent?.Invoke();
     }
     [ClientRpc]

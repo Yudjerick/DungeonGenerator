@@ -39,14 +39,17 @@ public class PlayerHealth : BaseHealth
         print(AliveManager.instance);
         AliveManager.instance.SetPlayerDead(gameObject);
         GameObject newPlayer = Instantiate(deadPlayer, transform.position, transform.rotation);
-        //AliveManager.instance.DeadPlayers.Add(newPlayer); 
-        NetworkServer.ReplacePlayerForConnection(connection, newPlayer, ReplacePlayerOptions.Destroy);
+        GetComponent<Inventory>().DropAllItems();
+        RpcDieCLient();
+        //AliveManager.instance.DeadPlayers.Add(newPlayer);
+        
+        NetworkServer.ReplacePlayerForConnection(connection, newPlayer, ReplacePlayerOptions.KeepActive);
     }
 
-    private void OnDisable()
+    [ClientRpc]
+    private void RpcDieCLient()
     {
+        GetComponentInChildren<RagdollManager>().EnableRagdollMode();
         DieEvent?.Invoke();
     } 
-
-    
 }

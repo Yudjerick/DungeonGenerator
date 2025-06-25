@@ -17,7 +17,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'initialItemsRefs.Array.data[0]'
       value: 
-      objectReference: {fileID: 2382494545753446380, guid: 669f44b82c026744fb9c0374adb1a383,
+      objectReference: {fileID: 1036066088065855247, guid: 7bf044488e912c44397091494812da1c,
         type: 3}
     - target: {fileID: 5531052203066612199, guid: 35ad22abf37e4b94396ca40550ba83e9,
         type: 3}
@@ -27,7 +27,7 @@ PrefabInstance:
     - target: {fileID: 5531052203066612199, guid: 35ad22abf37e4b94396ca40550ba83e9,
         type: 3}
       propertyPath: _assetId
-      value: 2220270269
+      value: 2550584624
       objectReference: {fileID: 0}
     - target: {fileID: 5714026299009799099, guid: 35ad22abf37e4b94396ca40550ba83e9,
         type: 3}
@@ -82,7 +82,7 @@ PrefabInstance:
     - target: {fileID: 5740565089628344684, guid: 35ad22abf37e4b94396ca40550ba83e9,
         type: 3}
       propertyPath: m_Name
-      value: Warrior
+      value: Wizard
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
