@@ -6,8 +6,8 @@ using UnityEngine.AI;
 
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class EnemyMoveComponent : MonoBehaviour
-{
+public class EnemyMoveComponent : NetworkBehaviour 
+{ 
     private GameObject _player;
     private NavMeshAgent _agent;
     private Rigidbody _rb;

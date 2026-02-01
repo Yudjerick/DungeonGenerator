@@ -9,7 +9,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private DungeonGenerator generator;
     private Rigidbody rb;
     [SerializeField] private float walkingSpeed = 7.5f;
     [SerializeField] private float sprintSpeed;
@@ -39,12 +38,15 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public bool canMove = true;
 
+    private void OnEnable()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
     void Start()
     {
         
 
-        rb = GetComponent<Rigidbody>();
-        generator = FindAnyObjectByType<DungeonGenerator>();
+        
 
         // Lock cursor
         Cursor.lockState = CursorLockMode.Locked;

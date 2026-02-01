@@ -50,6 +50,10 @@ public class PlayerHealth : BaseHealth
     private void RpcDieCLient()
     {
         GetComponentInChildren<RagdollManager>().EnableRagdollMode();
+        if (isLocalPlayer)
+        {
+            GetComponent<PlayerInput>().enabled = false;
+        }
         DieEvent?.Invoke();
     } 
 }

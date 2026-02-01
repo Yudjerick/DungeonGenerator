@@ -949,7 +949,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   localPlayerObjects:
-  - {fileID: 0}
+  - {fileID: 4449887361949891642}
   localPlayerScripts:
   - {fileID: 8871083123836459876}
   - {fileID: 4307311120130049909}
@@ -983,7 +983,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20a13d37cd658164ebf9ee605a339c2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generator: {fileID: 0}
   walkingSpeed: 3.5
   sprintSpeed: 6
   crouchSpeed: 2
@@ -2003,6 +2002,12 @@ PrefabInstance:
 --- !u!224 &2662027546740390801 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5052956876390076473, guid: d5a2cc51b0cf6bf45a66e7d0728f8764,
+    type: 3}
+  m_PrefabInstance: {fileID: 7128879844659227560}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4449887361949891642 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6858967425197479826, guid: d5a2cc51b0cf6bf45a66e7d0728f8764,
     type: 3}
   m_PrefabInstance: {fileID: 7128879844659227560}
   m_PrefabAsset: {fileID: 0}
