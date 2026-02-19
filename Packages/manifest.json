@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.adrenak.univoice": "3.0.0",
+    "com.adrenak.rnnoise4unity": "1.0.0",
     "com.heathen.steamworksfoundation": "https://github.com/heathen-engineering/Toolkit-for-Steamworks-Foundation.git?path=Unity/com.heathen.steamworksfoundation",
     "com.heathen.systemcore": "https://github.com/heathen-engineering/SystemCore.git?path=/com.heathen.systemcore",
     "com.mirror.steamworks.net": "https://github.com/Chykary/FizzySteamworks.git?path=/com.mirror.steamworks.net",
@@ -20,6 +20,7 @@
     "com.unity.render-pipelines.universal": "17.0.3",
     "com.unity.test-framework": "1.4.5",
     "com.unity.timeline": "1.8.7",
+    "com.unity.toonshader": "0.13.1-preview",
     "com.unity.ugui": "2.0.0",
     "com.unity.visualeffectgraph": "17.0.3",
     "com.unity.visualscripting": "1.9.4",
@@ -58,10 +59,11 @@
   },
   "scopedRegistries": [
     {
-      "name": "package.openupm.com",
-      "url": "https://package.openupm.com",
+      "name": "npmjs",
+      "url": "https://registry.npmjs.org",
       "scopes": [
-        "com.adrenak.univoice"
+        "com.npmjs",
+        "com.adrenak.rnnoise4unity"
       ]
     }
   ]
